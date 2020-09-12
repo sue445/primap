@@ -1,5 +1,10 @@
 FROM golang:1.15
 
+# Install firebase emulator
+RUN wget https://firebase.tools/bin/linux/latest -O /usr/local/bin/firebase \
+ && chmod 755 /usr/local/bin/firebase \
+ && firebase setup:emulators:firestore
+
 WORKDIR /app
 COPY . .
 

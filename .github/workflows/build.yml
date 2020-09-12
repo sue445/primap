@@ -38,11 +38,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-${{ env.GO_VERSION }}-
 
+      - name: Install firebase emulator
+        run: |
+          set -xe
+          sudo wget https://firebase.tools/bin/linux/latest -O /usr/local/bin/firebase
+          sudo chmod 755 /usr/local/bin/firebase
+          firebase setup:emulators:firestore
+
       - name: Run test
         run: |
           set -xe
-          make test
-          make testrace
+          firebase emulators:exec --only firestore "make test"
+          firebase emulators:exec --only firestore "make testrace"
 
       - name: Slack Notification (not success)
         uses: homoluctus/slatify@master

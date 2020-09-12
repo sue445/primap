@@ -1,5 +1,10 @@
 FROM golang:1.15
 
+RUN apt-get update \
+ && apt-get install -y openjdk-11-jre \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
 # Install firebase emulator
 RUN wget https://firebase.tools/bin/linux/latest -O /usr/local/bin/firebase \
  && chmod 755 /usr/local/bin/firebase \

@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    volumes:
+      - gopath-data:/go
+
+volumes:
+  gopath-data:
+    driver: local

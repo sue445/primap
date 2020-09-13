@@ -120,6 +120,8 @@ func deleteCollection(ctx context.Context, client *firestore.Client, ref *firest
 func TestShopDao_SaveShops_And_GetShop(t *testing.T) {
 	defer cleanup()
 
+	revision := "20200123-123456"
+
 	shop := &ShopEntity{
 		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",
 		Prefecture: "三重県",
@@ -128,7 +130,7 @@ func TestShopDao_SaveShops_And_GetShop(t *testing.T) {
 	}
 
 	dao := NewShopDao(testProjectID)
-	err := dao.SaveShops([]*ShopEntity{shop})
+	err := dao.SaveShops([]*ShopEntity{shop}, revision)
 
 	if !assert.NoError(t, err) {
 		return
@@ -140,6 +142,7 @@ func TestShopDao_SaveShops_And_GetShop(t *testing.T) {
 		assert.Equal(t, "ＭＥＧＡドン・キホーテＵＮＹ名張", got1.Name)
 		assert.Equal(t, "三重県", got1.Prefecture)
 		assert.Equal(t, "三重県名張市下比奈知黒田3100番地の1", got1.Address)
+		assert.Equal(t, "20200123-123456", got1.Revision)
 		assert.Equal(t, []string{"prichan"}, got1.Series)
 		assert.NotNil(t, got1.CreatedAt)
 		assert.NotNil(t, got1.UpdatedAt)

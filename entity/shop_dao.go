@@ -3,7 +3,6 @@ package entity
 import (
 	"cloud.google.com/go/firestore"
 	"context"
-	"time"
 )
 
 const (
@@ -22,12 +21,12 @@ func NewShopDao(projectID string) *ShopDao {
 }
 
 // SaveShops save shops to Firestore
-func (d *ShopDao) SaveShops(shops []*ShopEntity) error {
+func (d *ShopDao) SaveShops(shops []*ShopEntity, revision string) error {
 	if len(shops) > maxBatchCount {
 		slicedShops := sliceShops(shops, maxBatchCount)
 
 		for _, s := range slicedShops {
-			err := d.SaveShops(s)
+			err := d.SaveShops(s, revision)
 			if err != nil {
 				return err
 			}
@@ -48,6 +47,7 @@ func (d *ShopDao) SaveShops(shops []*ShopEntity) error {
 	batch := client.Batch()
 	for _, shop := range shops {
 		docRef := client.Collection(shopCollectionName).Doc(shop.Name)
+		shop.Revision = revision
 		batch.Set(docRef, shop.toFirestore())
 	}
 
@@ -102,25 +102,7 @@ func (d *ShopDao) GetShop(name string) (*ShopEntity, error) {
 	}
 
 	data := docsnap.Data()
-
-	var series []string
-	rawSeries := data["Series"].([]interface{})
-
-	for _, raw := range rawSeries {
-		series = append(series, raw.(string))
-	}
-
-	createdAt := data["CreatedAt"].(time.Time)
-	updatedAt := data["UpdatedAt"].(time.Time)
-
-	shop := &ShopEntity{
-		Name:       data["Name"].(string),
-		Prefecture: data["Prefecture"].(string),
-		Address:    data["Address"].(string),
-		Series:     series,
-		CreatedAt:  &createdAt,
-		UpdatedAt:  &updatedAt,
-	}
+	shop := fromFirestore(data)
 
 	return shop, nil
 }

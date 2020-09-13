@@ -3,7 +3,6 @@ package entity
 import (
 	"cloud.google.com/go/firestore"
 	"context"
-	"time"
 )
 
 const (
@@ -102,25 +101,7 @@ func (d *ShopDao) GetShop(name string) (*ShopEntity, error) {
 	}
 
 	data := docsnap.Data()
-
-	var series []string
-	rawSeries := data["Series"].([]interface{})
-
-	for _, raw := range rawSeries {
-		series = append(series, raw.(string))
-	}
-
-	createdAt := data["CreatedAt"].(time.Time)
-	updatedAt := data["UpdatedAt"].(time.Time)
-
-	shop := &ShopEntity{
-		Name:       data["Name"].(string),
-		Prefecture: data["Prefecture"].(string),
-		Address:    data["Address"].(string),
-		Series:     series,
-		CreatedAt:  &createdAt,
-		UpdatedAt:  &updatedAt,
-	}
+	shop := fromFirestore(data)
 
 	return shop, nil
 }

@@ -31,3 +31,26 @@ func (e *ShopEntity) toFirestore() map[string]interface{} {
 
 	return data
 }
+
+func fromFirestore(data map[string]interface{}) *ShopEntity {
+	var series []string
+	rawSeries := data["Series"].([]interface{})
+
+	for _, raw := range rawSeries {
+		series = append(series, raw.(string))
+	}
+
+	createdAt := data["CreatedAt"].(time.Time)
+	updatedAt := data["UpdatedAt"].(time.Time)
+
+	shop := &ShopEntity{
+		Name:       data["Name"].(string),
+		Prefecture: data["Prefecture"].(string),
+		Address:    data["Address"].(string),
+		Series:     series,
+		CreatedAt:  &createdAt,
+		UpdatedAt:  &updatedAt,
+	}
+
+	return shop
+}

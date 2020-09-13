@@ -3,7 +3,6 @@ package testutil
 import (
 	"cloud.google.com/go/firestore"
 	"context"
-	"github.com/sue445/primap/entity"
 	"google.golang.org/api/iterator"
 )
 
@@ -23,7 +22,7 @@ func CleanupFirestore() {
 
 	defer client.Close()
 
-	deleteCollection(ctx, client, client.Collection(entity.ShopCollectionName), 100)
+	deleteCollection(ctx, client, client.Collection("Shops"), 100)
 }
 
 // https://firebase.google.com/docs/firestore/manage-data/delete-data#collections

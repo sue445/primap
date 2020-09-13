@@ -3,7 +3,7 @@ package entity
 import "time"
 
 const (
-	ShopCollectionName = "Shops"
+	shopCollectionName = "Shops"
 )
 
 // ShopEntity represents a shop entity for Firestore

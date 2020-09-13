@@ -3,26 +3,16 @@ package prismdb
 import (
 	"github.com/jarcoal/httpmock"
 	"github.com/stretchr/testify/assert"
-	"io/ioutil"
+	"github.com/sue445/primap/testutil"
 	"testing"
 )
-
-func readTestData(filename string) string {
-	buf, err := ioutil.ReadFile(filename)
-
-	if err != nil {
-		panic(err)
-	}
-
-	return string(buf)
-}
 
 func TestClient_GetAllShops(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
 	httpmock.RegisterResponder("POST", "https://prismdb.takanakahiko.me/sparql",
-		httpmock.NewStringResponder(200, readTestData("testdata/all_shops.json")))
+		httpmock.NewStringResponder(200, testutil.ReadTestData("testdata/all_shops.json")))
 
 	want := &Shop{
 		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",

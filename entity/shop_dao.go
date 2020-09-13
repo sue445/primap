@@ -21,12 +21,12 @@ func NewShopDao(projectID string) *ShopDao {
 }
 
 // SaveShops save shops to Firestore
-func (d *ShopDao) SaveShops(shops []*ShopEntity) error {
+func (d *ShopDao) SaveShops(shops []*ShopEntity, revision string) error {
 	if len(shops) > maxBatchCount {
 		slicedShops := sliceShops(shops, maxBatchCount)
 
 		for _, s := range slicedShops {
-			err := d.SaveShops(s)
+			err := d.SaveShops(s, revision)
 			if err != nil {
 				return err
 			}
@@ -47,6 +47,7 @@ func (d *ShopDao) SaveShops(shops []*ShopEntity) error {
 	batch := client.Batch()
 	for _, shop := range shops {
 		docRef := client.Collection(shopCollectionName).Doc(shop.Name)
+		shop.Revision = revision
 		batch.Set(docRef, shop.toFirestore())
 	}
 

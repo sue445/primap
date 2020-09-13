@@ -11,6 +11,7 @@ type ShopEntity struct {
 	Name       string
 	Prefecture string
 	Address    string
+	Revision   string
 	Series     []string
 	CreatedAt  *time.Time
 	UpdatedAt  *time.Time
@@ -21,6 +22,7 @@ func (e *ShopEntity) toFirestore() map[string]interface{} {
 		"Name":       e.Name,
 		"Prefecture": e.Prefecture,
 		"Address":    e.Address,
+		"Revision":   e.Revision,
 		"Series":     e.Series,
 		"UpdatedAt":  time.Now(),
 	}
@@ -47,6 +49,7 @@ func fromFirestore(data map[string]interface{}) *ShopEntity {
 		Name:       data["Name"].(string),
 		Prefecture: data["Prefecture"].(string),
 		Address:    data["Address"].(string),
+		Revision:   data["Revision"].(string),
 		Series:     series,
 		CreatedAt:  &createdAt,
 		UpdatedAt:  &updatedAt,

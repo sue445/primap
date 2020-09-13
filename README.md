@@ -4,5 +4,5 @@
 ### Testing
 ```bash
 docker-compose build
-docker-compose run app bash -c 'firebase emulators:exec --only firestore "make test"'
+docker-compose run --rm app bash -c 'firebase emulators:exec --only firestore "make test"'
 ```

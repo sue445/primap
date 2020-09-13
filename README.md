@@ -1,6 +1,13 @@
 # primap
 
 ## Develop
+### Run server
+```bash
+docker-compose up --build
+```
+
+open http://localhost:8000
+
 ### Testing
 ```bash
 docker-compose build

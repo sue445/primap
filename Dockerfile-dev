@@ -13,4 +13,6 @@ RUN wget https://firebase.tools/bin/linux/latest -O /usr/local/bin/firebase \
 WORKDIR /app
 COPY . .
 
-RUN go get -d -v ./...
+RUN go build -o bin/primap
+
+CMD ["/app/bin/primap"]

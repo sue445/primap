@@ -73,7 +73,7 @@ func TestShopDao_SaveShops_And_GetShop(t *testing.T) {
 		Series:     []string{"prichan"},
 	}
 
-	dao := NewShopDao(testutil.TestProjectID)
+	dao := NewShopDao(testutil.TestProjectID())
 	err := dao.SaveShops([]*ShopEntity{shop}, revision)
 
 	if !assert.NoError(t, err) {

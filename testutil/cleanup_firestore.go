@@ -4,17 +4,23 @@ import (
 	"cloud.google.com/go/firestore"
 	"context"
 	"google.golang.org/api/iterator"
+	"os"
 )
 
-const (
-	// TestProjectID represents projectID for test
-	TestProjectID = "test"
-)
+// TestProjectID returns projectID for test
+func TestProjectID() string {
+	if os.Getenv("GCP_PROJECT") != "" {
+		return os.Getenv("GCP_PROJECT")
+	}
+
+	return "test"
+}
+
 
 // CleanupFirestore cleanup Firestore data in test
 func CleanupFirestore() {
 	ctx := context.Background()
-	client, err := firestore.NewClient(ctx, TestProjectID)
+	client, err := firestore.NewClient(ctx, TestProjectID())
 
 	if err != nil {
 		panic(err)

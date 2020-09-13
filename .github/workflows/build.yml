@@ -50,6 +50,8 @@ jobs:
           set -xe
           firebase emulators:exec --only firestore "make test"
           firebase emulators:exec --only firestore "make testrace"
+        env:
+          GCP_PROJECT: test
 
       - name: Slack Notification (not success)
         uses: homoluctus/slatify@master

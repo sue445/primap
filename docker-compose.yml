@@ -11,6 +11,7 @@ services:
       - "8000:8000"
     environment:
       PORT: 8000
+      GCP_PROJECT: test
 
 volumes:
   gopath-data:

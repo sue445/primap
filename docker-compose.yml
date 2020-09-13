@@ -7,6 +7,10 @@ services:
       dockerfile: Dockerfile-dev
     volumes:
       - gopath-data:/go
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: 8000
 
 volumes:
   gopath-data:

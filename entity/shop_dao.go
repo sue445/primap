@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	// c.f. https://firebase.google.com/docs/firestore/manage-data/transactions?hl=ja#batched-writes
+	// c.f. https://firebase.google.com/docs/firestore/manage-data/transactions#batched-writes
 	maxBatchCount = 500
 )
 

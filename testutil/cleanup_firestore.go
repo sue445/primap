@@ -16,7 +16,6 @@ func TestProjectID() string {
 	return "test"
 }
 
-
 // CleanupFirestore cleanup Firestore data in test
 func CleanupFirestore() {
 	ctx := context.Background()
@@ -67,4 +66,3 @@ func deleteCollection(ctx context.Context, client *firestore.Client, ref *firest
 		}
 	}
 }
-

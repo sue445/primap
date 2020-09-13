@@ -56,7 +56,7 @@ jobs:
         if: "! success()"
         continue-on-error: true
         with:
-          job_name: ${{ format('*build* ({0})', env.GO_VERSION) }}
+          job_name: ${{ format('*test* ({0})', env.GO_VERSION) }}
           type: ${{ job.status }}
           icon_emoji: ":octocat:"
           url: ${{ secrets.SLACK_WEBHOOK }}
@@ -101,6 +101,28 @@ jobs:
         if: "! success()"
         continue-on-error: true
         with:
+          job_name: ${{ format('*lint* ({0})', env.GO_VERSION) }}
+          type: ${{ job.status }}
+          icon_emoji: ":octocat:"
+          url: ${{ secrets.SLACK_WEBHOOK }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    name: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+
+      - run: docker build .
+
+      - name: Slack Notification (not success)
+        uses: homoluctus/slatify@master
+        if: "! success()"
+        continue-on-error: true
+        with:
           job_name: ${{ format('*build* ({0})', env.GO_VERSION) }}
           type: ${{ job.status }}
           icon_emoji: ":octocat:"
@@ -111,6 +133,7 @@ jobs:
     needs:
       - test
       - lint
+      - build
 
     runs-on: ubuntu-latest
 

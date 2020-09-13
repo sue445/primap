@@ -12,7 +12,7 @@ func TestClient_GetAllShops(t *testing.T) {
 	defer httpmock.DeactivateAndReset()
 
 	httpmock.RegisterResponder("POST", "https://prismdb.takanakahiko.me/sparql",
-		httpmock.NewStringResponder(200, testutil.ReadTestData("testdata/all_shops.json")))
+		httpmock.NewStringResponder(200, testutil.ReadTestData("../testdata/all_shops.json")))
 
 	want := &Shop{
 		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",

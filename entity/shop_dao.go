@@ -46,7 +46,7 @@ func (d *ShopDao) SaveShops(shops []*ShopEntity, revision string) error {
 
 	batch := client.Batch()
 	for _, shop := range shops {
-		docRef := client.Collection(shopCollectionName).Doc(shop.Name)
+		docRef := client.Collection(ShopCollectionName).Doc(shop.Name)
 		shop.Revision = revision
 		batch.Set(docRef, shop.toFirestore())
 	}
@@ -90,7 +90,7 @@ func (d *ShopDao) GetShop(name string) (*ShopEntity, error) {
 
 	defer client.Close()
 
-	docsnap, err := client.Collection(shopCollectionName).Doc(name).Get(ctx)
+	docsnap, err := client.Collection(ShopCollectionName).Doc(name).Get(ctx)
 
 	if err != nil {
 		if docsnap != nil {

@@ -1,15 +1,9 @@
 package entity
 
 import (
-	"cloud.google.com/go/firestore"
-	"context"
 	"github.com/stretchr/testify/assert"
-	"google.golang.org/api/iterator"
+	"github.com/sue445/primap/testutil"
 	"testing"
-)
-
-const (
-	testProjectID = "test"
 )
 
 func Test_sliceShops_Sliced(t *testing.T) {
@@ -67,58 +61,8 @@ func Test_sliceShops_NotSliced2(t *testing.T) {
 	assert.Equal(t, [][]*ShopEntity{shops}, got)
 }
 
-func cleanup() {
-	ctx := context.Background()
-	client, err := firestore.NewClient(ctx, testProjectID)
-
-	if err != nil {
-		panic(err)
-	}
-
-	defer client.Close()
-
-	deleteCollection(ctx, client, client.Collection(shopCollectionName), 100)
-}
-
-// https://firebase.google.com/docs/firestore/manage-data/delete-data?hl=ja#collections
-func deleteCollection(ctx context.Context, client *firestore.Client, ref *firestore.CollectionRef, batchSize int) error {
-	for {
-		// Get a batch of documents
-		iter := ref.Limit(batchSize).Documents(ctx)
-		numDeleted := 0
-
-		// Iterate through the documents, adding
-		// a delete operation for each one to a
-		// WriteBatch.
-		batch := client.Batch()
-		for {
-			doc, err := iter.Next()
-			if err == iterator.Done {
-				break
-			}
-			if err != nil {
-				return err
-			}
-
-			batch.Delete(doc.Ref)
-			numDeleted++
-		}
-
-		// If there are no documents to delete,
-		// the process is over.
-		if numDeleted == 0 {
-			return nil
-		}
-
-		_, err := batch.Commit(ctx)
-		if err != nil {
-			return err
-		}
-	}
-}
-
 func TestShopDao_SaveShops_And_GetShop(t *testing.T) {
-	defer cleanup()
+	defer testutil.CleanupFirestore()
 
 	revision := "20200123-123456"
 
@@ -129,7 +73,7 @@ func TestShopDao_SaveShops_And_GetShop(t *testing.T) {
 		Series:     []string{"prichan"},
 	}
 
-	dao := NewShopDao(testProjectID)
+	dao := NewShopDao(testutil.TestProjectID)
 	err := dao.SaveShops([]*ShopEntity{shop}, revision)
 
 	if !assert.NoError(t, err) {

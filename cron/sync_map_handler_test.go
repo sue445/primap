@@ -10,7 +10,7 @@ import (
 )
 
 func Test_syncMap(t *testing.T) {
-	defer testutil.CleanupFirestore()
+	// defer testutil.CleanupFirestore()
 
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()

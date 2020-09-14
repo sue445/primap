@@ -1,4 +1,4 @@
-package entity
+package db
 
 import (
 	"cloud.google.com/go/firestore"

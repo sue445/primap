@@ -3,6 +3,7 @@ package db
 import (
 	"cloud.google.com/go/firestore"
 	"context"
+	"time"
 )
 
 const (
@@ -44,11 +45,13 @@ func (d *ShopDao) SaveShops(shops []*ShopEntity, revision string) error {
 
 	defer client.Close()
 
+	currentTime := time.Now()
 	batch := client.Batch()
 	for _, shop := range shops {
 		docRef := client.Collection(shopCollectionName).Doc(shop.Name)
 		shop.Revision = revision
-		batch.Set(docRef, shop.toFirestore())
+		shop.UpdatedAt = currentTime
+		batch.Set(docRef, shop)
 	}
 
 	_, err = batch.Commit(ctx)
@@ -101,8 +104,11 @@ func (d *ShopDao) GetShop(name string) (*ShopEntity, error) {
 		return nil, err
 	}
 
-	data := docsnap.Data()
-	shop := fromFirestore(data)
+	var shop ShopEntity
+	err = docsnap.DataTo(&shop)
+	if err != nil {
+		return nil, err
+	}
 
-	return shop, nil
+	return &shop, nil
 }

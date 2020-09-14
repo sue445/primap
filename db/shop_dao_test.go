@@ -89,7 +89,6 @@ func TestShopDao_SaveShops_And_GetShop(t *testing.T) {
 			assert.Equal(t, "三重県名張市下比奈知黒田3100番地の1", got1.Address)
 			assert.Equal(t, "20200123-123456", got1.Revision)
 			assert.Equal(t, []string{"prichan"}, got1.Series)
-			assert.NotNil(t, got1.CreatedAt)
 			assert.NotNil(t, got1.UpdatedAt)
 		}
 	}

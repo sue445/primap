@@ -36,7 +36,6 @@ func Test_updateMap(t *testing.T) {
 			assert.Equal(t, "三重県名張市下比奈知黒田3100番地の1", got.Address)
 			assert.Equal(t, "20200123-123456", got.Revision)
 			assert.Equal(t, []string{"prichan"}, got.Series)
-			assert.NotNil(t, got.CreatedAt)
 			assert.NotNil(t, got.UpdatedAt)
 		}
 	}

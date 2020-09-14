@@ -3,7 +3,7 @@ package cron
 import (
 	"fmt"
 	"github.com/itchyny/timefmt-go"
-	"github.com/sue445/primap/entity"
+	"github.com/sue445/primap/db"
 	"github.com/sue445/primap/prismdb"
 	"log"
 	"net/http"
@@ -27,7 +27,7 @@ func syncMap(time time.Time) error {
 		return err
 	}
 
-	var entityShops []*entity.ShopEntity
+	var entityShops []*db.ShopEntity
 	for _, shop := range shops {
 		entityShops = append(entityShops, toEntity(shop))
 	}
@@ -35,7 +35,7 @@ func syncMap(time time.Time) error {
 	revision := timefmt.Format(time, "%Y%m%d-%H%M%S")
 
 	projectID := os.Getenv("GCP_PROJECT")
-	dao := entity.NewShopDao(projectID)
+	dao := db.NewShopDao(projectID)
 
 	err = dao.SaveShops(entityShops, revision)
 	if err != nil {
@@ -47,8 +47,8 @@ func syncMap(time time.Time) error {
 	return nil
 }
 
-func toEntity(shop *prismdb.Shop) *entity.ShopEntity {
-	return &entity.ShopEntity{
+func toEntity(shop *prismdb.Shop) *db.ShopEntity {
+	return &db.ShopEntity{
 		Name:       shop.Name,
 		Prefecture: shop.Prefecture,
 		Address:    shop.Address,

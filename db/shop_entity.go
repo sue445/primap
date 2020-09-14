@@ -1,4 +1,4 @@
-package entity
+package db
 
 import "time"
 

@@ -3,7 +3,7 @@ package cron
 import (
 	"github.com/jarcoal/httpmock"
 	"github.com/stretchr/testify/assert"
-	"github.com/sue445/primap/entity"
+	"github.com/sue445/primap/db"
 	"github.com/sue445/primap/testutil"
 	"testing"
 	"time"
@@ -26,7 +26,7 @@ func Test_syncMap(t *testing.T) {
 		return
 	}
 
-	dao := entity.NewShopDao(testutil.TestProjectID())
+	dao := db.NewShopDao(testutil.TestProjectID())
 	got, err := dao.GetShop("ＭＥＧＡドン・キホーテＵＮＹ名張")
 
 	if assert.NoError(t, err) {

@@ -13,6 +13,14 @@ import (
 
 // SyncMapHandler returns handler of /cron/sync_map
 func SyncMapHandler(w http.ResponseWriter, r *http.Request) {
+	err := syncMap(time.Now())
+
+	if err != nil {
+		w.WriteHeader(500)
+		fmt.Fprint(w, err)
+		return
+	}
+
 	fmt.Fprint(w, "ok")
 }
 

@@ -5,6 +5,7 @@ go 1.15
 require (
 	cloud.google.com/go/firestore v1.3.0
 	github.com/gorilla/mux v1.8.0
+	github.com/itchyny/timefmt-go v0.1.1
 	github.com/jarcoal/httpmock v1.0.6
 	github.com/knakk/digest v0.0.0-20160404164910-fd45becddc49 // indirect
 	github.com/knakk/rdf v0.0.0-20190304171630-8521bf4c5042 // indirect

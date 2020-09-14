@@ -62,7 +62,7 @@ func Test_sliceShops_NotSliced2(t *testing.T) {
 }
 
 func TestShopDao_SaveShops_And_GetShop(t *testing.T) {
-	defer testutil.CleanupFirestore()
+	// defer testutil.CleanupFirestore()
 
 	revision := "20200123-123456"
 

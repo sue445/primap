@@ -25,9 +25,17 @@ func CleanupFirestore() {
 		panic(err)
 	}
 
-	defer client.Close()
+	defer func() {
+		err := client.Close()
+		if err != nil {
+			panic(err)
+		}
+	}()
 
-	deleteCollection(ctx, client, client.Collection("Shops"), 100)
+	err = deleteCollection(ctx, client, client.Collection("Shops"), 100)
+	if err != nil {
+		panic(err)
+	}
 }
 
 // https://firebase.google.com/docs/firestore/manage-data/delete-data#collections

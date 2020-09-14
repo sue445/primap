@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func Test_syncMap(t *testing.T) {
+func Test_updateMap(t *testing.T) {
 	// defer testutil.CleanupFirestore()
 
 	httpmock.Activate()
@@ -20,7 +20,7 @@ func Test_syncMap(t *testing.T) {
 
 	time := time.Date(2020, 1, 23, 12, 34, 56, 0, time.UTC)
 
-	err := syncMap(time)
+	err := updateMap(time)
 
 	if !assert.NoError(t, err) {
 		return

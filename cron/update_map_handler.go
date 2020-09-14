@@ -11,12 +11,20 @@ import (
 	"time"
 )
 
-// SyncMapHandler returns handler of /cron/sync_map
-func SyncMapHandler(w http.ResponseWriter, r *http.Request) {
+// UpdateMapHandler returns handler of /cron/update_map
+func UpdateMapHandler(w http.ResponseWriter, r *http.Request) {
+	err := updateMap(time.Now())
+
+	if err != nil {
+		w.WriteHeader(500)
+		fmt.Fprint(w, err)
+		return
+	}
+
 	fmt.Fprint(w, "ok")
 }
 
-func syncMap(time time.Time) error {
+func updateMap(time time.Time) error {
 	client, err := prismdb.NewClient()
 	if err != nil {
 		return err

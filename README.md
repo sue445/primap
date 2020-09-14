@@ -1,5 +1,5 @@
 # primap
-[![Build Status](https://github.com/sue445/primap/workflows/test/badge.svg?branch=master)](https://github.com/sue445/primap/actions?query=workflow%3Atest)
+[![Build Status](https://github.com/sue445/primap/workflows/build/badge.svg?branch=master)](https://github.com/sue445/primap/actions?query=workflow%3Abuild)
 
 ## Develop
 ### Run server

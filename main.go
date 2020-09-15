@@ -11,7 +11,7 @@ import (
 
 func main() {
 	r := mux.NewRouter()
-	r.HandleFunc("/cron/update_map", cron.UpdateMapHandler)
+	r.HandleFunc("/cron/update_map", cron.UpdateMapHandler).Methods("POST")
 	http.Handle("/", r)
 
 	port := os.Getenv("PORT")

@@ -4,6 +4,9 @@
 ## Develop
 ### Run server
 ```bash
+cp .env.examle .env
+vi .env
+
 docker-compose up --build
 ```
 

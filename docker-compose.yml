@@ -12,6 +12,9 @@ services:
     environment:
       PORT: 8000
       GCP_PROJECT: test
+      SENTRY_DSN: ${SENTRY_DSN}
+      SENTRY_ENVIRONMENT: development
+      SENTRY_DEBUG: "true"
 
 volumes:
   gopath-data:

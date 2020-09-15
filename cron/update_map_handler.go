@@ -2,6 +2,7 @@ package cron
 
 import (
 	"fmt"
+	"github.com/getsentry/sentry-go"
 	"github.com/itchyny/timefmt-go"
 	"github.com/sue445/primap/db"
 	"github.com/sue445/primap/prismdb"
@@ -16,12 +17,18 @@ func UpdateMapHandler(w http.ResponseWriter, r *http.Request) {
 	err := updateMap(time.Now())
 
 	if err != nil {
-		w.WriteHeader(500)
-		fmt.Fprint(w, err)
+		handleError(w, err)
 		return
 	}
 
 	fmt.Fprint(w, "ok")
+}
+
+func handleError(w http.ResponseWriter, err error) {
+	log.Printf("[ERROR] %+v", err)
+	sentry.CaptureException(err)
+	w.WriteHeader(500)
+	fmt.Fprint(w, err)
 }
 
 func updateMap(time time.Time) error {

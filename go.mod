@@ -4,6 +4,7 @@ go 1.15
 
 require (
 	cloud.google.com/go/firestore v1.3.0
+	github.com/getsentry/sentry-go v0.7.0
 	github.com/gorilla/mux v1.8.0
 	github.com/itchyny/timefmt-go v0.1.1
 	github.com/jarcoal/httpmock v1.0.6

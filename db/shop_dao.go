@@ -6,11 +6,6 @@ import (
 	"time"
 )
 
-const (
-	// c.f. https://firebase.google.com/docs/firestore/manage-data/transactions#batched-writes
-	maxBatchCount = 500
-)
-
 // ShopDao represents a shop DAO for Firestore
 type ShopDao struct {
 	projectID string
@@ -42,67 +37,6 @@ func (d *ShopDao) SaveShop(shop *ShopEntity) error {
 	}
 
 	return nil
-}
-
-// SaveShops save shops to Firestore
-func (d *ShopDao) SaveShops(shops []*ShopEntity, revision string) error {
-	if len(shops) > maxBatchCount {
-		slicedShops := sliceShops(shops, maxBatchCount)
-
-		for _, s := range slicedShops {
-			err := d.SaveShops(s, revision)
-			if err != nil {
-				return err
-			}
-		}
-
-		return nil
-	}
-
-	ctx := context.Background()
-	client, err := firestore.NewClient(ctx, d.projectID)
-
-	if err != nil {
-		return err
-	}
-
-	defer client.Close()
-
-	currentTime := time.Now()
-	batch := client.Batch()
-	for _, shop := range shops {
-		docRef := client.Collection(shopCollectionName).Doc(shop.Name)
-		shop.Revision = revision
-		shop.UpdatedAt = currentTime
-		batch.Set(docRef, shop)
-	}
-
-	_, err = batch.Commit(ctx)
-
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func sliceShops(shops []*ShopEntity, n int) [][]*ShopEntity {
-	if len(shops) <= n {
-		return [][]*ShopEntity{shops}
-	}
-
-	var sliced [][]*ShopEntity
-	for start := 0; start < len(shops); start += n {
-		end := start + n
-		if end < len(shops) {
-			sliced = append(sliced, shops[start:end])
-		} else {
-			// Last slice
-			sliced = append(sliced, shops[start:])
-		}
-	}
-
-	return sliced
 }
 
 // GetShop returns shop Firestore

@@ -39,8 +39,8 @@ func (d *ShopDao) SaveShop(shop *ShopEntity) error {
 	return nil
 }
 
-// GetShop returns shop Firestore
-func (d *ShopDao) GetShop(name string) (*ShopEntity, error) {
+// LoadShop returns shop Firestore
+func (d *ShopDao) LoadShop(name string) (*ShopEntity, error) {
 	ctx := context.Background()
 	client, err := firestore.NewClient(ctx, d.projectID)
 

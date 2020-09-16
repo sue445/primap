@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestShopDao_SaveShop_And_GetShop(t *testing.T) {
+func TestShopDao_SaveShop_And_LoadShop(t *testing.T) {
 	defer testutil.CleanupFirestore()
 
 	shop := &ShopEntity{
@@ -23,7 +23,7 @@ func TestShopDao_SaveShop_And_GetShop(t *testing.T) {
 		return
 	}
 
-	got1, err := dao.GetShop("ＭＥＧＡドン・キホーテＵＮＹ名張")
+	got1, err := dao.LoadShop("ＭＥＧＡドン・キホーテＵＮＹ名張")
 
 	if assert.NoError(t, err) {
 		if assert.NotNil(t, got1) {
@@ -35,7 +35,7 @@ func TestShopDao_SaveShop_And_GetShop(t *testing.T) {
 		}
 	}
 
-	got2, err := dao.GetShop("UNKNOWN")
+	got2, err := dao.LoadShop("UNKNOWN")
 
 	if assert.NoError(t, err) {
 		assert.Nil(t, got2)

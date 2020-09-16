@@ -13,4 +13,5 @@ require (
 	github.com/knakk/sparql v0.0.0-20191213045353-fd0bd0e76475
 	github.com/stretchr/testify v1.6.1
 	google.golang.org/api v0.29.0
+	google.golang.org/genproto v0.0.0-20200728010541-3dc8dca74b7b
 )

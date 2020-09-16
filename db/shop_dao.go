@@ -69,3 +69,22 @@ func (d *ShopDao) LoadShop(name string) (*ShopEntity, error) {
 
 	return &shop, nil
 }
+
+// LoadOrCreateShop returns shop Firestore. If not found, create Shop
+func (d *ShopDao) LoadOrCreateShop(name string) (*ShopEntity, error) {
+	foundShop, err := d.LoadShop(name)
+	if err != nil {
+		return nil, err
+	}
+
+	if foundShop != nil {
+		return foundShop, nil
+	}
+
+	createdShop := &ShopEntity{
+		Name:      name,
+		CreatedAt: time.Now(),
+		Series:    []string{},
+	}
+	return createdShop, nil
+}

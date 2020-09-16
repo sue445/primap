@@ -21,6 +21,29 @@ func NewShopDao(projectID string) *ShopDao {
 	return &ShopDao{projectID: projectID}
 }
 
+// SaveShop save shop to Firestore
+func (d *ShopDao) SaveShop(shop *ShopEntity) error {
+	ctx := context.Background()
+	client, err := firestore.NewClient(ctx, d.projectID)
+
+	if err != nil {
+		return err
+	}
+
+	defer client.Close()
+
+	shop.UpdatedAt = time.Now()
+
+	docRef := client.Collection(shopCollectionName).Doc(shop.Name)
+	_, err = docRef.Set(ctx, shop)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // SaveShops save shops to Firestore
 func (d *ShopDao) SaveShops(shops []*ShopEntity, revision string) error {
 	if len(shops) > maxBatchCount {

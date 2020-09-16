@@ -23,21 +23,25 @@ func TestShopDao_SaveShop_And_LoadShop(t *testing.T) {
 		return
 	}
 
-	got1, err := dao.LoadShop("ＭＥＧＡドン・キホーテＵＮＹ名張")
+	got, err := dao.LoadShop("ＭＥＧＡドン・キホーテＵＮＹ名張")
 
 	if assert.NoError(t, err) {
-		if assert.NotNil(t, got1) {
-			assert.Equal(t, "ＭＥＧＡドン・キホーテＵＮＹ名張", got1.Name)
-			assert.Equal(t, "三重県", got1.Prefecture)
-			assert.Equal(t, "三重県名張市下比奈知黒田3100番地の1", got1.Address)
-			assert.Equal(t, []string{"prichan"}, got1.Series)
-			assert.NotNil(t, got1.UpdatedAt)
+		if assert.NotNil(t, got) {
+			assert.Equal(t, "ＭＥＧＡドン・キホーテＵＮＹ名張", got.Name)
+			assert.Equal(t, "三重県", got.Prefecture)
+			assert.Equal(t, "三重県名張市下比奈知黒田3100番地の1", got.Address)
+			assert.Equal(t, []string{"prichan"}, got.Series)
+			assert.NotNil(t, got.UpdatedAt)
 		}
 	}
+}
 
-	got2, err := dao.LoadShop("UNKNOWN")
+func TestShopDao_LoadShop(t *testing.T) {
+	dao := NewShopDao(testutil.TestProjectID())
+
+	got, err := dao.LoadShop("UNKNOWN")
 
 	if assert.NoError(t, err) {
-		assert.Nil(t, got2)
+		assert.Nil(t, got)
 	}
 }

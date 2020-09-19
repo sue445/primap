@@ -25,31 +25,30 @@ type ShopEntity struct {
 
 // UpdateAddressWithLocation update address and fetch location if necessary
 func (e *ShopEntity) UpdateAddressWithLocation(address string) error {
-	if e.Address == address || config.GetGoogleMapsAPIKey() == "" {
+	if e.Address == address {
 		return nil
 	}
 
-	c, err := maps.NewClient(maps.WithAPIKey(config.GetGoogleMapsAPIKey()))
+	if config.GetGoogleMapsAPIKey() != "" {
+		c, err := maps.NewClient(maps.WithAPIKey(config.GetGoogleMapsAPIKey()))
 
-	if err != nil {
-		return err
-	}
+		if err != nil {
+			return err
+		}
 
-	r := &maps.GeocodingRequest{
-		Address: address,
-	}
+		r := &maps.GeocodingRequest{Address: address}
+		resp, err := c.Geocode(context.Background(), r)
 
-	resp, err := c.Geocode(context.Background(), r)
+		if err != nil {
+			return err
+		}
 
-	if err != nil {
-		return err
+		e.Location = &latlng.LatLng{
+			Latitude:  resp[0].Geometry.Location.Lat,
+			Longitude: resp[0].Geometry.Location.Lng,
+		}
 	}
 
 	e.Address = address
-	e.Location = &latlng.LatLng{
-		Latitude:  resp[0].Geometry.Location.Lat,
-		Longitude: resp[0].Geometry.Location.Lng,
-	}
-
 	return nil
 }

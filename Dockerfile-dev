@@ -7,8 +7,10 @@ RUN apt-get update \
 
 # Install firebase emulator
 RUN wget https://firebase.tools/bin/linux/latest -O /usr/local/bin/firebase \
- && chmod 755 /usr/local/bin/firebase \
- && firebase setup:emulators:firestore
+ && chmod 755 /usr/local/bin/firebase
+
+RUN firebase setup:emulators:firestore \
+ && firebase setup:emulators:pubsub
 
 # Create and change to the app directory.
 WORKDIR /app
@@ -22,4 +24,6 @@ COPY . ./
 
 RUN go build -mod=readonly -o server
 
-CMD ["/app/server"]
+ENV GCP_PROJECT=test
+
+CMD ["firebase", "--project", "test", "emulators:exec", "--only", "firestore,pubsub", "/app/server"]

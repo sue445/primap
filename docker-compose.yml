@@ -11,7 +11,6 @@ services:
       - "8000:8000"
     environment:
       PORT: 8000
-      GCP_PROJECT: test
       SENTRY_DSN: ${SENTRY_DSN}
       SENTRY_ENVIRONMENT: development
       SENTRY_DEBUG: "true"

@@ -16,7 +16,7 @@ const (
 
 // CronUpdateShopsHandler returns handler of /job/cron/update_shops
 func CronUpdateShopsHandler(w http.ResponseWriter, r *http.Request) {
-	err := getAndPublishShops()
+	err := getAndPublishShops(config.GetProjectID())
 
 	if err != nil {
 		handleError(w, err)
@@ -26,7 +26,7 @@ func CronUpdateShopsHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "ok")
 }
 
-func getAndPublishShops() error {
+func getAndPublishShops(projectID string) error {
 	prismdbClient, err := prismdb.NewClient()
 	if err != nil {
 		return err
@@ -38,7 +38,7 @@ func getAndPublishShops() error {
 	}
 
 	ctx := context.Background()
-	pubsubClient, err := pubsub.NewClient(ctx, config.GetProjectID())
+	pubsubClient, err := pubsub.NewClient(ctx, projectID)
 	if err != nil {
 		return err
 	}

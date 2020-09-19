@@ -34,6 +34,7 @@ func main() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/job/cron/update_shops", job.CronUpdateShopsHandler).Methods("POST")
+	r.HandleFunc("/job/queue/save_shop", job.QueueSaveShopHandler).Methods("POST")
 	http.Handle("/", r)
 
 	port := os.Getenv("PORT")

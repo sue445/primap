@@ -3,14 +3,14 @@ package testutil
 import (
 	"cloud.google.com/go/firestore"
 	"context"
+	"github.com/sue445/primap/config"
 	"google.golang.org/api/iterator"
-	"os"
 )
 
 // TestProjectID returns projectID for test
 func TestProjectID() string {
-	if os.Getenv("GCP_PROJECT") != "" {
-		return os.Getenv("GCP_PROJECT")
+	if config.GetProjectID() != "" {
+		return config.GetProjectID()
 	}
 
 	return "test"

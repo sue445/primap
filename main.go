@@ -28,6 +28,7 @@ func main() {
 	defer sentry.Flush(2 * time.Second)
 
 	config.Init(&config.InitParams{
+		ProjectID:        os.Getenv("GCP_PROJECT"),
 		GoogleMapsAPIKey: os.Getenv("GOOGLE_MAPS_API_KEY"),
 	})
 

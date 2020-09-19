@@ -1,12 +1,18 @@
 package cron
 
 import (
+	"cloud.google.com/go/pubsub"
+	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/getsentry/sentry-go"
-	"github.com/sue445/primap/db"
 	"github.com/sue445/primap/prismdb"
 	"log"
 	"net/http"
+)
+
+const (
+	topicID = "shop-save-topic"
 )
 
 // UpdateMapHandler returns handler of /cron/update_map
@@ -23,11 +29,19 @@ func handleError(w http.ResponseWriter, err error) {
 	fmt.Fprint(w, err)
 }
 
-func toEntity(shop *prismdb.Shop) *db.ShopEntity {
-	return &db.ShopEntity{
-		Name:       shop.Name,
-		Prefecture: shop.Prefecture,
-		Address:    shop.Address,
-		Series:     shop.Series,
+func publishShop(client *pubsub.Client, ctx context.Context, shop *prismdb.Shop) error {
+	topic := client.Topic(topicID)
+
+	data, err := json.Marshal(shop)
+
+	if err != nil {
+		return err
 	}
+
+	_, err = topic.Publish(ctx, &pubsub.Message{Data: data}).Get(ctx)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

@@ -8,7 +8,8 @@ import (
 )
 
 func TestShopDao_SaveShop_And_LoadShop(t *testing.T) {
-	defer testutil.CleanupFirestore()
+	testutil.SetRandomProjectID()
+	// defer testutil.CleanupFirestore()
 
 	shop := &ShopEntity{
 		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",

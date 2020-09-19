@@ -52,11 +52,11 @@ func queueSaveShopHandler(r *http.Request) error {
 		return err
 	}
 
-	return saveShop(&shop)
+	return saveShop(config.GetProjectID(), &shop)
 }
 
-func saveShop(shop *prismdb.Shop) error {
-	dao := db.NewShopDao(config.GetProjectID())
+func saveShop(projectID string, shop *prismdb.Shop) error {
+	dao := db.NewShopDao(projectID)
 
 	entity, err := dao.LoadOrCreateShop(shop.Name)
 	if err != nil {

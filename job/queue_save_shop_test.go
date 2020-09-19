@@ -9,7 +9,8 @@ import (
 )
 
 func Test_saveShop(t *testing.T) {
-	defer testutil.CleanupFirestore()
+	testutil.SetRandomProjectID()
+	// defer testutil.CleanupFirestore()
 
 	shop := &prismdb.Shop{
 		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",
@@ -18,7 +19,7 @@ func Test_saveShop(t *testing.T) {
 		Series:     []string{"prichan"},
 	}
 
-	err := saveShop(shop)
+	err := saveShop(testutil.TestProjectID(), shop)
 
 	if !assert.NoError(t, err) {
 		return
@@ -35,11 +36,7 @@ func Test_saveShop(t *testing.T) {
 			assert.Equal(t, []string{"prichan"}, got.Series)
 			assert.False(t, got.CreatedAt.IsZero())
 			assert.False(t, got.UpdatedAt.IsZero())
-
-			if assert.NotNil(t, got.Location) {
-				assert.InDelta(t, 0, got.Location.GetLatitude(), 0.01)
-				assert.InDelta(t, 0, got.Location.GetLongitude(), 0.01)
-			}
+			assert.Nil(t, got.Location)
 		}
 	}
 }

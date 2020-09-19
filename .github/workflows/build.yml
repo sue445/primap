@@ -44,12 +44,13 @@ jobs:
           sudo wget https://firebase.tools/bin/linux/latest -O /usr/local/bin/firebase
           sudo chmod 755 /usr/local/bin/firebase
           firebase setup:emulators:firestore
+          firebase setup:emulators:pubsub
 
       - name: Run test
         run: |
           set -xe
-          firebase emulators:exec --only firestore "make test"
-          firebase emulators:exec --only firestore "make testrace"
+          firebase emulators:exec --project test --only firestore,pubsub "make test"
+          firebase emulators:exec --project test --only firestore,pubsub "make testrace"
         env:
           GCP_PROJECT: test
 

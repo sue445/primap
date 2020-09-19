@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/getsentry/sentry-go"
 	"github.com/gorilla/mux"
+	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/cron"
 	"log"
 	"net/http"
@@ -25,6 +26,10 @@ func main() {
 	// Flush buffered events before the program terminates.
 	// Set the timeout to the maximum duration the program can afford to wait.
 	defer sentry.Flush(2 * time.Second)
+
+	config.Init(&config.InitParams{
+		GoogleMapsAPIKey: os.Getenv("GOOGLE_MAPS_API_KEY"),
+	})
 
 	r := mux.NewRouter()
 	r.HandleFunc("/cron/update_map", cron.UpdateMapHandler).Methods("POST")

@@ -15,6 +15,7 @@ services:
       SENTRY_DSN: ${SENTRY_DSN}
       SENTRY_ENVIRONMENT: development
       SENTRY_DEBUG: "true"
+      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY}
 
 volumes:
   gopath-data:

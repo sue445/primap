@@ -1,14 +1,12 @@
-package cron
+package job
 
 import (
 	"cloud.google.com/go/pubsub"
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/getsentry/sentry-go"
 	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/prismdb"
-	"log"
 	"net/http"
 )
 
@@ -16,8 +14,8 @@ const (
 	topicID = "shop-save-topic"
 )
 
-// UpdateShopsHandler returns handler of /cron/update_shops
-func UpdateShopsHandler(w http.ResponseWriter, r *http.Request) {
+// CronUpdateShopsHandler returns handler of /job/cron/update_shops
+func CronUpdateShopsHandler(w http.ResponseWriter, r *http.Request) {
 	err := getAndPublishShops()
 
 	if err != nil {
@@ -26,13 +24,6 @@ func UpdateShopsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprint(w, "ok")
-}
-
-func handleError(w http.ResponseWriter, err error) {
-	log.Printf("[ERROR] %+v", err)
-	sentry.CaptureException(err)
-	w.WriteHeader(500)
-	fmt.Fprint(w, err)
 }
 
 func getAndPublishShops() error {

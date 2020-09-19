@@ -1,4 +1,4 @@
-package cron
+package job
 
 import (
 	"cloud.google.com/go/pubsub"

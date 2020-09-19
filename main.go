@@ -5,7 +5,7 @@ import (
 	"github.com/getsentry/sentry-go"
 	"github.com/gorilla/mux"
 	"github.com/sue445/primap/config"
-	"github.com/sue445/primap/cron"
+	"github.com/sue445/primap/job"
 	"log"
 	"net/http"
 	"os"
@@ -33,7 +33,7 @@ func main() {
 	})
 
 	r := mux.NewRouter()
-	r.HandleFunc("/cron/update_shops", cron.UpdateShopsHandler).Methods("POST")
+	r.HandleFunc("/job/cron/update_shops", job.CronUpdateShopsHandler).Methods("POST")
 	http.Handle("/", r)
 
 	port := os.Getenv("PORT")

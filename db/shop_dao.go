@@ -123,3 +123,19 @@ func (d *ShopDao) GetAllIDs() ([]string, error) {
 	sort.Strings(ids)
 	return ids, nil
 }
+
+// DeleteShop delete shop from firestore
+func (d *ShopDao) DeleteShop(name string) error {
+	shop, err := d.LoadShop(name)
+	if err != nil {
+		return err
+	}
+
+	shop.Deleted = true
+	err = d.SaveShop(shop)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

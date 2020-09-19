@@ -5,7 +5,7 @@ import (
 	"github.com/getsentry/sentry-go"
 	"github.com/gorilla/mux"
 	"github.com/sue445/primap/config"
-	"github.com/sue445/primap/cron"
+	"github.com/sue445/primap/job"
 	"log"
 	"net/http"
 	"os"
@@ -28,11 +28,13 @@ func main() {
 	defer sentry.Flush(2 * time.Second)
 
 	config.Init(&config.InitParams{
+		ProjectID:        os.Getenv("GCP_PROJECT"),
 		GoogleMapsAPIKey: os.Getenv("GOOGLE_MAPS_API_KEY"),
 	})
 
 	r := mux.NewRouter()
-	r.HandleFunc("/cron/update_map", cron.UpdateMapHandler).Methods("POST")
+	r.HandleFunc("/job/cron/update_shops", job.CronUpdateShopsHandler).Methods("POST")
+	r.HandleFunc("/job/queue/save_shop", job.QueueSaveShopHandler).Methods("POST")
 	http.Handle("/", r)
 
 	port := os.Getenv("PORT")

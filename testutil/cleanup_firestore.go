@@ -3,17 +3,29 @@ package testutil
 import (
 	"cloud.google.com/go/firestore"
 	"context"
+	"github.com/google/uuid"
 	"google.golang.org/api/iterator"
-	"os"
 )
+
+var randomProjectID string
+
+// SetRandomProjectID set random projectID for test
+func SetRandomProjectID() {
+	u := uuid.New()
+
+	randomProjectID = u.String()
+}
 
 // TestProjectID returns projectID for test
 func TestProjectID() string {
-	if os.Getenv("GCP_PROJECT") != "" {
-		return os.Getenv("GCP_PROJECT")
-	}
+	// c.f. https://firebase.google.com/docs/firestore/security/test-rules-emulator#run_local_tests
+	return randomProjectID
 
-	return "test"
+	//if config.GetProjectID() != "" {
+	//	return config.GetProjectID()
+	//}
+	//
+	//return "test"
 }
 
 // CleanupFirestore cleanup Firestore data in test
@@ -32,6 +44,7 @@ func CleanupFirestore() {
 		}
 	}()
 
+	// FIXME: this isn't working...
 	err = deleteCollection(ctx, client, client.Collection("Shops"), 100)
 	if err != nil {
 		panic(err)

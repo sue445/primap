@@ -3,6 +3,8 @@ package db
 import (
 	"cloud.google.com/go/firestore"
 	"context"
+	"google.golang.org/api/iterator"
+	"sort"
 	"time"
 )
 
@@ -87,4 +89,53 @@ func (d *ShopDao) LoadOrCreateShop(name string) (*ShopEntity, error) {
 		Series:    []string{},
 	}
 	return createdShop, nil
+}
+
+// GetAllIDs returns all shop ids
+func (d *ShopDao) GetAllIDs() ([]string, error) {
+	ctx := context.Background()
+	client, err := firestore.NewClient(ctx, d.projectID)
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer client.Close()
+
+	itr := client.Collection(shopCollectionName).Where("deleted", "==", false).Documents(ctx)
+	defer itr.Stop()
+
+	var ids []string
+
+	for {
+		doc, err := itr.Next()
+		if err == iterator.Done {
+			break
+		}
+
+		if err != nil {
+			return []string{}, err
+		}
+
+		ids = append(ids, doc.Ref.ID)
+	}
+
+	sort.Strings(ids)
+	return ids, nil
+}
+
+// DeleteShop delete shop from firestore
+func (d *ShopDao) DeleteShop(name string) error {
+	shop, err := d.LoadShop(name)
+	if err != nil {
+		return err
+	}
+
+	shop.Deleted = true
+	err = d.SaveShop(shop)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

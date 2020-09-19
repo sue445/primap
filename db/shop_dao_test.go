@@ -8,7 +8,8 @@ import (
 )
 
 func TestShopDao_SaveShop_And_LoadShop(t *testing.T) {
-	defer testutil.CleanupFirestore()
+	testutil.SetRandomProjectID()
+	// defer testutil.CleanupFirestore()
 
 	shop := &ShopEntity{
 		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",
@@ -70,4 +71,62 @@ func TestShopDao_LoadOrCreateShop(t *testing.T) {
 			assert.Nil(t, got.Location)
 		}
 	}
+}
+
+func TestShopDao_GetAllIDs(t *testing.T) {
+	testutil.SetRandomProjectID()
+
+	dao := NewShopDao(testutil.TestProjectID())
+
+	shops := []*ShopEntity{
+		{Name: "foo", Deleted: false},
+		{Name: "bar", Deleted: true},
+		{Name: "baz", Deleted: false},
+	}
+	for _, shop := range shops {
+		err := dao.SaveShop(shop)
+
+		if !assert.NoError(t, err) {
+			return
+		}
+	}
+
+	got, err := dao.GetAllIDs()
+	if !assert.NoError(t, err) {
+		return
+	}
+
+	assert.Equal(t, []string{"baz", "foo"}, got)
+}
+
+func TestShopDao_DeleteShop(t *testing.T) {
+	testutil.SetRandomProjectID()
+
+	dao := NewShopDao(testutil.TestProjectID())
+
+	shop := &ShopEntity{
+		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",
+		Prefecture: "三重県",
+		Address:    "三重県名張市下比奈知黒田3100番地の1",
+		Series:     []string{"prichan"},
+		Location:   &latlng.LatLng{Latitude: 34.629542, Longitude: 136.125065},
+	}
+	err := dao.SaveShop(shop)
+
+	if !assert.NoError(t, err) {
+		return
+	}
+
+	err = dao.DeleteShop("ＭＥＧＡドン・キホーテＵＮＹ名張")
+	if !assert.NoError(t, err) {
+		return
+	}
+
+	updated, err := dao.LoadShop("ＭＥＧＡドン・キホーテＵＮＹ名張")
+	if !assert.NoError(t, err) {
+		return
+	}
+
+	assert.True(t, updated.Deleted)
+	assert.NotZero(t, updated.UpdatedAt)
 }

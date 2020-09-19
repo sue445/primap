@@ -21,6 +21,7 @@ type ShopEntity struct {
 	CreatedAt  time.Time      `firestore:"created_at"`
 	UpdatedAt  time.Time      `firestore:"updated_at"`
 	Location   *latlng.LatLng `firestore:"latlng"`
+	Deleted    bool           `firestore:"deleted"`
 }
 
 // UpdateAddressWithLocation update address and fetch location if necessary

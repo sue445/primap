@@ -4,7 +4,9 @@ go 1.15
 
 require (
 	cloud.google.com/go/firestore v1.3.0
+	cloud.google.com/go/pubsub v1.3.1
 	github.com/getsentry/sentry-go v0.7.0
+	github.com/google/uuid v1.1.1
 	github.com/gorilla/mux v1.8.0
 	github.com/jarcoal/httpmock v1.0.6
 	github.com/knakk/digest v0.0.0-20160404164910-fd45becddc49 // indirect
@@ -13,5 +15,6 @@ require (
 	github.com/stretchr/testify v1.6.1
 	google.golang.org/api v0.29.0
 	google.golang.org/genproto v0.0.0-20200728010541-3dc8dca74b7b
+	google.golang.org/grpc v1.30.0
 	googlemaps.github.io/maps v1.2.2
 )

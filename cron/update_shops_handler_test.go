@@ -42,9 +42,7 @@ func Test_publishShop(t *testing.T) {
 		Series:     []string{"prichan"},
 	}
 
-	err = publishShop(client, ctx, shop)
+	err = publishShop(ctx, client, shop)
 
-	if !assert.NoError(t, err) {
-		return
-	}
+	assert.NoError(t, err)
 }

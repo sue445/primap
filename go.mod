@@ -14,5 +14,6 @@ require (
 	github.com/stretchr/testify v1.6.1
 	google.golang.org/api v0.29.0
 	google.golang.org/genproto v0.0.0-20200728010541-3dc8dca74b7b
+	google.golang.org/grpc v1.30.0
 	googlemaps.github.io/maps v1.2.2
 )

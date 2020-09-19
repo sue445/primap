@@ -6,7 +6,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/sue445/primap/config"
+	"github.com/sue445/primap/db"
 	"github.com/sue445/primap/prismdb"
+	"github.com/sue445/primap/util"
 	"net/http"
 )
 
@@ -50,6 +52,11 @@ func getAndPublishShops(projectID string) error {
 		}
 	}
 
+	err = deleteRemovedShops(projectID, shops)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -65,6 +72,30 @@ func publishShop(ctx context.Context, client *pubsub.Client, shop *prismdb.Shop)
 	_, err = topic.Publish(ctx, &pubsub.Message{Data: data}).Get(ctx)
 	if err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func deleteRemovedShops(projectID string, newShops []*prismdb.Shop) error {
+	var newShopNames []string
+	for _, shop := range newShops {
+		newShopNames = append(newShopNames, shop.Name)
+	}
+
+	dao := db.NewShopDao(projectID)
+	dbShopNames, err := dao.GetAllIDs()
+	if err != nil {
+		return err
+	}
+
+	removedShopNames := util.SubtractSlice(dbShopNames, newShopNames)
+
+	for _, name := range removedShopNames {
+		err := dao.DeleteShop(name)
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil

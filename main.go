@@ -33,7 +33,7 @@ func main() {
 	})
 
 	r := mux.NewRouter()
-	r.HandleFunc("/cron/update_map", cron.UpdateMapHandler).Methods("POST")
+	r.HandleFunc("/cron/update_shops", cron.UpdateShopsHandler).Methods("POST")
 	http.Handle("/", r)
 
 	port := os.Getenv("PORT")

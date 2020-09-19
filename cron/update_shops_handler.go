@@ -15,8 +15,8 @@ const (
 	topicID = "shop-save-topic"
 )
 
-// UpdateMapHandler returns handler of /cron/update_map
-func UpdateMapHandler(w http.ResponseWriter, r *http.Request) {
+// UpdateShopsHandler returns handler of /cron/update_shops
+func UpdateShopsHandler(w http.ResponseWriter, r *http.Request) {
 	// TODO: Impl
 
 	fmt.Fprint(w, "ok")

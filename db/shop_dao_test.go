@@ -72,3 +72,29 @@ func TestShopDao_LoadOrCreateShop(t *testing.T) {
 		}
 	}
 }
+
+func TestShopDao_GetAllIDs(t *testing.T) {
+	testutil.SetRandomProjectID()
+
+	dao := NewShopDao(testutil.TestProjectID())
+
+	shops := []*ShopEntity{
+		{Name: "foo", Deleted: false},
+		{Name: "bar", Deleted: true},
+		{Name: "baz", Deleted: false},
+	}
+	for _, shop := range shops {
+		err := dao.SaveShop(shop)
+
+		if !assert.NoError(t, err) {
+			return
+		}
+	}
+
+	got, err := dao.GetAllIDs()
+	if !assert.NoError(t, err) {
+		return
+	}
+
+	assert.Equal(t, []string{"baz", "foo"}, got)
+}

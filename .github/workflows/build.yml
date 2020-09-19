@@ -49,8 +49,8 @@ jobs:
       - name: Run test
         run: |
           set -xe
-          firebase emulators:exec --project test --only firestore,pubsub "make test"
-          firebase emulators:exec --project test --only firestore,pubsub "make testrace"
+          firebase --project $GCP_PROJECT emulators:exec --only firestore,pubsub "make test"
+          firebase --project $GCP_PROJECT emulators:exec --only firestore,pubsub "make testrace"
         env:
           GCP_PROJECT: test
 

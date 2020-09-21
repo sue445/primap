@@ -1,0 +1,48 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  GCP_PROJECT:    primap
+  GCR_REGISTRY:   asia.gcr.io
+  GCR_IMAGE_NAME: asia.gcr.io/primap/primap
+
+jobs:
+  deploy:
+    name: deploy
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+
+      - name: docker build
+        run: docker build -t $GCR_IMAGE_NAME:$GITHUB_SHA -f Dockerfile .
+
+      - name: GCP Authenticate
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: latest
+          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          export_default_credentials: true
+          project_id: ${{ env.GCP_PROJECT }}
+
+      - name: push to GCR
+        run: |
+          gcloud auth configure-docker $GCR_REGISTRY
+          docker push $GCR_IMAGE_NAME:$GITHUB_SHA
+
+      - name: Slack Notification
+        uses: homoluctus/slatify@master
+        if: always()
+        continue-on-error: true
+        with:
+          job_name: '*deploy*'
+          type: ${{ job.status }}
+          icon_emoji: ":octocat:"
+          url: ${{ secrets.SLACK_WEBHOOK }}
+          token: ${{ secrets.GITHUB_TOKEN }}

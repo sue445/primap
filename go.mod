@@ -13,8 +13,10 @@ require (
 	github.com/knakk/rdf v0.0.0-20190304171630-8521bf4c5042 // indirect
 	github.com/knakk/sparql v0.0.0-20191213045353-fd0bd0e76475
 	github.com/stretchr/testify v1.6.1
-	google.golang.org/api v0.29.0
-	google.golang.org/genproto v0.0.0-20200728010541-3dc8dca74b7b
-	google.golang.org/grpc v1.30.0
+	github.com/sue445/gcp-secretmanagerenv v0.1.0
+	golang.org/x/sys v0.0.0-20200918174421-af09f7315aff // indirect
+	google.golang.org/api v0.32.0
+	google.golang.org/genproto v0.0.0-20200921165018-b9da36f5f452
+	google.golang.org/grpc v1.32.0
 	googlemaps.github.io/maps v1.2.2
 )

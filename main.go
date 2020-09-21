@@ -1,9 +1,11 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"github.com/getsentry/sentry-go"
 	"github.com/gorilla/mux"
+	"github.com/sue445/gcp-secretmanagerenv"
 	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/job"
 	"log"
@@ -13,9 +15,26 @@ import (
 )
 
 func main() {
-	sentryDebug := os.Getenv("SENTRY_DEBUG") != ""
+	projectID := os.Getenv("GCP_PROJECT")
 
-	err := sentry.Init(sentry.ClientOptions{
+	sentryDebug := os.Getenv("SENTRY_DEBUG") != ""
+	secretmanager, err := secretmanagerenv.NewClient(context.Background(), projectID)
+	if err != nil {
+		log.Fatalf("secretmanagerenv.NewClient: %s", err)
+	}
+
+	sentryDsn, err := secretmanager.GetValueFromEnvOrSecretManager("SENTRY_DSN", false)
+	if err != nil {
+		log.Fatalf("secretmanager.GetValueFromEnvOrSecretManager: %s", err)
+	}
+
+	googleMapsAPIKey, err := secretmanager.GetValueFromEnvOrSecretManager("GOOGLE_MAPS_API_KEY", true)
+	if err != nil {
+		log.Fatalf("secretmanager.GetValueFromEnvOrSecretManager: %s", err)
+	}
+
+	err = sentry.Init(sentry.ClientOptions{
+		Dsn:              sentryDsn,
 		AttachStacktrace: true,
 		Debug:            sentryDebug,
 	})
@@ -28,8 +47,8 @@ func main() {
 	defer sentry.Flush(2 * time.Second)
 
 	config.Init(&config.InitParams{
-		ProjectID:        os.Getenv("GCP_PROJECT"),
-		GoogleMapsAPIKey: os.Getenv("GOOGLE_MAPS_API_KEY"),
+		ProjectID:        projectID,
+		GoogleMapsAPIKey: googleMapsAPIKey,
 	})
 
 	r := mux.NewRouter()

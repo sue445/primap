@@ -5,7 +5,7 @@ steps:
       - 'deploy'
       - 'primap'
       - '--image'
-      - 'asia.gcr.io/primap/primap:${IMAGE_TAG}'
+      - 'asia.gcr.io/primap/primap:${COMMIT_SHA}'
       - '--region'
       - 'asia-northeast1'
       - '--platform'

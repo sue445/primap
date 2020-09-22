@@ -48,7 +48,7 @@ jobs:
             --cpu 1.0 \
             --memory 256Mi \
             --max-instances default \
-            --set-env-vars=PORT=8000 \
+            --set-env-vars=PORT=8000,SENTRY_ENVIRONMENT=production \
             --service-account cloud-run-manager@primap.iam.gserviceaccount.com
 
       - name: Slack Notification

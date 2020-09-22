@@ -2,6 +2,7 @@ package db
 
 import (
 	"context"
+	"github.com/pkg/errors"
 	"github.com/sue445/primap/config"
 	"google.golang.org/genproto/googleapis/type/latlng"
 	"googlemaps.github.io/maps"
@@ -34,14 +35,14 @@ func (e *ShopEntity) UpdateAddressWithLocation(address string) error {
 		c, err := maps.NewClient(maps.WithAPIKey(config.GetGoogleMapsAPIKey()))
 
 		if err != nil {
-			return err
+			return errors.WithStack(err)
 		}
 
 		r := &maps.GeocodingRequest{Address: address}
 		resp, err := c.Geocode(context.Background(), r)
 
 		if err != nil {
-			return err
+			return errors.WithStack(err)
 		}
 
 		e.Location = &latlng.LatLng{

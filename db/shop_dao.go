@@ -3,6 +3,7 @@ package db
 import (
 	"cloud.google.com/go/firestore"
 	"context"
+	"github.com/pkg/errors"
 	"google.golang.org/api/iterator"
 	"sort"
 	"time"
@@ -24,7 +25,7 @@ func (d *ShopDao) SaveShop(shop *ShopEntity) error {
 	client, err := firestore.NewClient(ctx, d.projectID)
 
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 
 	defer client.Close()
@@ -35,7 +36,7 @@ func (d *ShopDao) SaveShop(shop *ShopEntity) error {
 	_, err = docRef.Set(ctx, shop)
 
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 
 	return nil
@@ -47,7 +48,7 @@ func (d *ShopDao) LoadShop(name string) (*ShopEntity, error) {
 	client, err := firestore.NewClient(ctx, d.projectID)
 
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 
 	defer client.Close()
@@ -60,13 +61,13 @@ func (d *ShopDao) LoadShop(name string) (*ShopEntity, error) {
 			return nil, nil
 		}
 
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 
 	var shop ShopEntity
 	err = docsnap.DataTo(&shop)
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 
 	return &shop, nil
@@ -76,7 +77,7 @@ func (d *ShopDao) LoadShop(name string) (*ShopEntity, error) {
 func (d *ShopDao) LoadOrCreateShop(name string) (*ShopEntity, error) {
 	foundShop, err := d.LoadShop(name)
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 
 	if foundShop != nil {
@@ -97,7 +98,7 @@ func (d *ShopDao) GetAllIDs() ([]string, error) {
 	client, err := firestore.NewClient(ctx, d.projectID)
 
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 
 	defer client.Close()
@@ -114,7 +115,7 @@ func (d *ShopDao) GetAllIDs() ([]string, error) {
 		}
 
 		if err != nil {
-			return []string{}, err
+			return []string{}, errors.WithStack(err)
 		}
 
 		ids = append(ids, doc.Ref.ID)
@@ -128,13 +129,13 @@ func (d *ShopDao) GetAllIDs() ([]string, error) {
 func (d *ShopDao) DeleteShop(name string) error {
 	shop, err := d.LoadShop(name)
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 
 	shop.Deleted = true
 	err = d.SaveShop(shop)
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 
 	return nil

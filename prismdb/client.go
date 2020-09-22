@@ -2,6 +2,7 @@ package prismdb
 
 import (
 	"github.com/knakk/sparql"
+	"github.com/pkg/errors"
 	"strings"
 	"time"
 )
@@ -18,7 +19,7 @@ func NewClient() (*Client, error) {
 	)
 
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 
 	return &Client{repo: repo}, nil
@@ -47,7 +48,7 @@ ORDER BY ?prefecture ?shop
 	res, err := c.repo.Query(query)
 
 	if err != nil {
-		return []*Shop{}, err
+		return []*Shop{}, errors.WithStack(err)
 	}
 
 	var shops []*Shop

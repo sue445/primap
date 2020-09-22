@@ -6,6 +6,7 @@ import (
 	"github.com/sue445/primap/config"
 	"google.golang.org/genproto/googleapis/type/latlng"
 	"googlemaps.github.io/maps"
+	"log"
 	"time"
 )
 
@@ -45,9 +46,14 @@ func (e *ShopEntity) UpdateAddressWithLocation(address string) error {
 			return errors.WithStack(err)
 		}
 
-		e.Location = &latlng.LatLng{
-			Latitude:  resp[0].Geometry.Location.Lat,
-			Longitude: resp[0].Geometry.Location.Lng,
+		if len(resp) > 0 {
+			e.Location = &latlng.LatLng{
+				Latitude:  resp[0].Geometry.Location.Lat,
+				Longitude: resp[0].Geometry.Location.Lng,
+			}
+		} else {
+			log.Printf("[WARN] Location is unknown: Address=%s, Shop=%+v", address, e)
+			e.Location = nil
 		}
 	}
 

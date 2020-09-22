@@ -44,11 +44,11 @@ jobs:
             --region asia-northeast1 \
             --platform managed \
             --concurrency 80 \
-            --port 8080 \
             --allow-unauthenticated \
             --cpu 1.0 \
             --memory 256Mi \
             --max-instances default \
+            --set-env-vars=PORT=8000 \
             --service-account cloud-run-manager@primap.iam.gserviceaccount.com
 
       - name: Slack Notification

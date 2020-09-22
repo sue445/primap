@@ -21,3 +21,5 @@ steps:
       - '256Mi'
       - '--max-instances'
       - 'default'
+      - '--service-account'
+      - 'cloud-run-manager@primap.iam.gserviceaccount.com'

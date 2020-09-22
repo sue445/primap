@@ -24,6 +24,4 @@ COPY . ./
 
 RUN go build -mod=readonly -o server
 
-ENV GCP_PROJECT=test
-
 CMD ["firebase", "--project", "test", "emulators:exec", "--only", "firestore,pubsub", "/app/server"]

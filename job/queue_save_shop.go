@@ -3,6 +3,7 @@ package job
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/pkg/errors"
 	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/db"
 	"github.com/sue445/primap/prismdb"
@@ -35,21 +36,21 @@ func queueSaveShopHandler(r *http.Request) error {
 	body, err := ioutil.ReadAll(r.Body)
 
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 
 	var m PubSubMessage
 	err = json.Unmarshal(body, &m)
 
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 
 	var shop prismdb.Shop
 	err = json.Unmarshal(m.Message.Data, &shop)
 
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 
 	return saveShop(config.GetProjectID(), &shop)
@@ -60,7 +61,7 @@ func saveShop(projectID string, shop *prismdb.Shop) error {
 
 	entity, err := dao.LoadOrCreateShop(shop.Name)
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 
 	entity.Prefecture = shop.Prefecture
@@ -68,12 +69,12 @@ func saveShop(projectID string, shop *prismdb.Shop) error {
 
 	err = entity.UpdateAddressWithLocation(shop.Address)
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 
 	err = dao.SaveShop(entity)
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 
 	return nil

@@ -4,6 +4,7 @@ import (
 	"cloud.google.com/go/firestore"
 	"context"
 	"github.com/google/uuid"
+	"github.com/pkg/errors"
 	"google.golang.org/api/iterator"
 )
 
@@ -68,7 +69,7 @@ func deleteCollection(ctx context.Context, client *firestore.Client, ref *firest
 				break
 			}
 			if err != nil {
-				return err
+				return errors.WithStack(err)
 			}
 
 			batch.Delete(doc.Ref)
@@ -83,7 +84,7 @@ func deleteCollection(ctx context.Context, client *firestore.Client, ref *firest
 
 		_, err := batch.Commit(ctx)
 		if err != nil {
-			return err
+			return errors.WithStack(err)
 		}
 	}
 }

@@ -20,17 +20,17 @@ func main() {
 	sentryDebug := os.Getenv("SENTRY_DEBUG") != ""
 	secretmanager, err := secretmanagerenv.NewClient(context.Background(), projectID)
 	if err != nil {
-		log.Fatalf("secretmanagerenv.NewClient: %s", err)
+		panic(err)
 	}
 
 	sentryDsn, err := secretmanager.GetValueFromEnvOrSecretManager("SENTRY_DSN", false)
 	if err != nil {
-		log.Fatalf("secretmanager.GetValueFromEnvOrSecretManager: %s", err)
+		panic(err)
 	}
 
 	googleMapsAPIKey, err := secretmanager.GetValueFromEnvOrSecretManager("GOOGLE_MAPS_API_KEY", true)
 	if err != nil {
-		log.Fatalf("secretmanager.GetValueFromEnvOrSecretManager: %s", err)
+		panic(err)
 	}
 
 	err = sentry.Init(sentry.ClientOptions{
@@ -39,7 +39,7 @@ func main() {
 		Debug:            sentryDebug,
 	})
 	if err != nil {
-		log.Fatalf("sentry.Init: %s", err)
+		panic(err)
 	}
 
 	// Flush buffered events before the program terminates.

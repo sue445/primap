@@ -53,7 +53,7 @@ func getAndPublishShops(projectID string) error {
 		}
 	}
 
-	fmt.Printf("[getAndPublishShops] Published shops=%d\n", len(shops))
+	fmt.Printf("[INFO][getAndPublishShops] Published shops=%d\n", len(shops))
 
 	err = deleteRemovedShops(projectID, shops)
 	if err != nil {
@@ -99,10 +99,10 @@ func deleteRemovedShops(projectID string, newShops []*prismdb.Shop) error {
 		if err != nil {
 			return errors.WithStack(err)
 		}
-		fmt.Printf("[deleteRemovedShops] Deleted shop=%s\n", name)
+		fmt.Printf("[INFO][deleteRemovedShops] Deleted shop=%s\n", name)
 	}
 
-	fmt.Printf("[deleteRemovedShops] Deleted shops=%d\n", len(removedShopNames))
+	fmt.Printf("[INFO][deleteRemovedShops] Deleted shops=%d\n", len(removedShopNames))
 
 	return nil
 }

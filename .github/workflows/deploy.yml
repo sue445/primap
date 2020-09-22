@@ -49,7 +49,7 @@ jobs:
             --cpu 1.0 \
             --memory 256Mi \
             --max-instances default \
-            --set-env-vars SENTRY_ENVIRONMENT=production \
+            --set-env-vars GCP_PROJECT=$GCP_PROJECT,SENTRY_ENVIRONMENT=production \
             --service-account cloud-run-manager@primap.iam.gserviceaccount.com
 
       - name: Slack Notification

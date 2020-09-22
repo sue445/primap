@@ -46,7 +46,7 @@ jobs:
             --concurrency 80 \
             --port 8080 \
             --allow-unauthenticated \
-            --cpu 500m \
+            --cpu 1.0 \
             --memory 256Mi \
             --max-instances default \
             --service-account cloud-run-manager@primap.iam.gserviceaccount.com

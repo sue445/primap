@@ -28,7 +28,7 @@ func main() {
 		panic(err)
 	}
 
-	googleMapsAPIKey, err := secretmanager.GetValueFromEnvOrSecretManager("GOOGLE_MAPS_API_KEY", true)
+	googleMapsAPIKey, err := secretmanager.GetValueFromEnvOrSecretManager("GOOGLE_MAPS_API_KEY", false)
 	if err != nil {
 		panic(err)
 	}

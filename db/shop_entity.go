@@ -27,7 +27,7 @@ type ShopEntity struct {
 }
 
 // UpdateAddressWithLocation update address and fetch location if necessary
-func (e *ShopEntity) UpdateAddressWithLocation(address string) error {
+func (e *ShopEntity) UpdateAddressWithLocation(ctx context.Context, address string) error {
 	if e.Address == address {
 		return nil
 	}
@@ -40,7 +40,7 @@ func (e *ShopEntity) UpdateAddressWithLocation(address string) error {
 		}
 
 		r := &maps.GeocodingRequest{Address: address}
-		resp, err := c.Geocode(context.Background(), r)
+		resp, err := c.Geocode(ctx, r)
 
 		if err != nil {
 			return errors.WithStack(err)

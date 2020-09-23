@@ -1,6 +1,7 @@
 package job
 
 import (
+	"context"
 	"github.com/stretchr/testify/assert"
 	"github.com/sue445/primap/db"
 	"github.com/sue445/primap/prismdb"
@@ -19,7 +20,8 @@ func Test_saveShop(t *testing.T) {
 		Series:     []string{"prichan"},
 	}
 
-	err := saveShop(testutil.TestProjectID(), shop)
+	ctx := context.Background()
+	err := saveShop(ctx, testutil.TestProjectID(), shop)
 
 	if !assert.NoError(t, err) {
 		return

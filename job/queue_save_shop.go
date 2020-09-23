@@ -1,6 +1,7 @@
 package job
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"github.com/pkg/errors"
@@ -53,10 +54,10 @@ func queueSaveShopHandler(r *http.Request) error {
 		return errors.WithStack(err)
 	}
 
-	return saveShop(config.GetProjectID(), &shop)
+	return saveShop(r.Context(), config.GetProjectID(), &shop)
 }
 
-func saveShop(projectID string, shop *prismdb.Shop) error {
+func saveShop(ctx context.Context, projectID string, shop *prismdb.Shop) error {
 	dao := db.NewShopDao(projectID)
 
 	entity, err := dao.LoadOrCreateShop(shop.Name)
@@ -67,7 +68,7 @@ func saveShop(projectID string, shop *prismdb.Shop) error {
 	entity.Prefecture = shop.Prefecture
 	entity.Series = shop.Series
 
-	err = entity.UpdateAddressWithLocation(shop.Address)
+	err = entity.UpdateAddressWithLocation(ctx, shop.Address)
 	if err != nil {
 		return errors.WithStack(err)
 	}

@@ -47,7 +47,8 @@ jobs:
             --allow-unauthenticated \
             --cpu 1.0 \
             --memory 128Mi \
-            --max-instances default \
+            --min-instances 0 \
+            --max-instances 1 \
             --set-env-vars GCP_PROJECT=$GCP_PROJECT,SENTRY_ENVIRONMENT=production \
             --service-account cloud-run-manager@primap.iam.gserviceaccount.com
 

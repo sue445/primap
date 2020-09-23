@@ -51,6 +51,14 @@ jobs:
             --set-env-vars GCP_PROJECT=$GCP_PROJECT,SENTRY_ENVIRONMENT=production \
             --service-account cloud-run-manager@primap.iam.gserviceaccount.com
 
+      - name: Install firebase
+        run: |
+          set -xe
+          sudo wget https://firebase.tools/bin/linux/latest -O /usr/local/bin/firebase
+          sudo chmod 755 /usr/local/bin/firebase
+
+      - run: firebase deploy
+
       - name: Slack Notification
         uses: homoluctus/slatify@master
         if: always()

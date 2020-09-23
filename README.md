@@ -13,6 +13,11 @@ docker-compose up --build
 
 open http://localhost:8000
 
+### Run firebase hosting
+```bash
+firebase serve --only hosting
+```
+
 ### Testing
 ```bash
 docker-compose build && docker-compose run --rm app bash -c 'firebase --project test emulators:exec --only firestore,pubsub "make test"'

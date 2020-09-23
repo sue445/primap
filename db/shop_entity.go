@@ -28,9 +28,12 @@ type ShopEntity struct {
 
 // UpdateAddressWithLocation update address and fetch location if necessary
 func (e *ShopEntity) UpdateAddressWithLocation(ctx context.Context, address string) error {
-	if e.Address == address {
+	if e.Address == address && e.Location != nil {
 		return nil
 	}
+
+	// If Address is changed, should update Location.
+	// But when Location is nil(undefined), always should update.
 
 	if config.GetGoogleMapsAPIKey() != "" {
 		c, err := maps.NewClient(maps.WithAPIKey(config.GetGoogleMapsAPIKey()))

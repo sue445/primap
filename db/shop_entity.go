@@ -22,15 +22,18 @@ type ShopEntity struct {
 	Series     []string       `firestore:"series"`
 	CreatedAt  time.Time      `firestore:"created_at"`
 	UpdatedAt  time.Time      `firestore:"updated_at"`
-	Location   *latlng.LatLng `firestore:"latlng"`
+	Location   *latlng.LatLng `firestore:"location"`
 	Deleted    bool           `firestore:"deleted"`
 }
 
 // UpdateAddressWithLocation update address and fetch location if necessary
-func (e *ShopEntity) UpdateAddressWithLocation(address string) error {
-	if e.Address == address {
+func (e *ShopEntity) UpdateAddressWithLocation(ctx context.Context, address string) error {
+	if e.Address == address && e.Location != nil {
 		return nil
 	}
+
+	// If Address is changed, should update Location.
+	// But when Location is nil(undefined), always should update.
 
 	if config.GetGoogleMapsAPIKey() != "" {
 		c, err := maps.NewClient(maps.WithAPIKey(config.GetGoogleMapsAPIKey()))
@@ -40,7 +43,7 @@ func (e *ShopEntity) UpdateAddressWithLocation(address string) error {
 		}
 
 		r := &maps.GeocodingRequest{Address: address}
-		resp, err := c.Geocode(context.Background(), r)
+		resp, err := c.Geocode(ctx, r)
 
 		if err != nil {
 			return errors.WithStack(err)

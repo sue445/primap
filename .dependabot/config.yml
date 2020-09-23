@@ -1,0 +1,20 @@
+# c.f. https://dependabot.com/docs/config-file/
+version: 1
+
+update_configs:
+  - package_manager: "go:modules"
+
+    directory: "/"
+
+    update_schedule: "weekly"
+
+    default_assignees:
+      - sue445
+
+    automerged_updates:
+      - match:
+          dependency_name: "github.com/stretchr/testify"
+          update_type: "all"
+      - match:
+          dependency_name: "github.com/golang/mock"
+          update_type: "all"

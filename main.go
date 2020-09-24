@@ -8,17 +8,11 @@ import (
 	"github.com/sue445/gcp-secretmanagerenv"
 	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/job"
-	"html/template"
 	"log"
 	"net/http"
 	"os"
-	"path/filepath"
 	"time"
 )
-
-//var (
-//	indexTmpl = readTemplate("index.html")
-//)
 
 func main() {
 	projectID := os.Getenv("GCP_PROJECT")
@@ -60,7 +54,6 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/job/cron/update_shops", job.CronUpdateShopsHandler).Methods("POST")
 	r.HandleFunc("/job/queue/save_shop", job.QueueSaveShopHandler).Methods("POST")
-	// r.HandleFunc("/", indexHandler)
 	http.Handle("/", r)
 
 	port := os.Getenv("PORT")
@@ -70,28 +63,4 @@ func main() {
 
 	log.Printf("Listening on port %s", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
-}
-
-//func indexHandler(w http.ResponseWriter, r *http.Request) {
-//	if r.URL.Path != "/" {
-//		http.NotFound(w, r)
-//		return
-//	}
-//
-//	if os.Getenv("GCP_PROJECT") == "" {
-//		// Hot reloading for local
-//		indexTmpl = readTemplate("index.html")
-//	}
-//
-//	vars := map[string]string{}
-//
-//	if err := indexTmpl.Execute(w, vars); err != nil {
-//		sentry.CaptureException(err)
-//		log.Printf("Error executing template: %v", err)
-//		http.Error(w, "Internal server error", http.StatusInternalServerError)
-//	}
-//}
-
-func readTemplate(name string) *template.Template {
-	return template.Must(template.ParseFiles(filepath.Join("templates", name)))
 }

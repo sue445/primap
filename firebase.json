@@ -10,6 +10,9 @@
       "port": 5000
     }
   },
+  "firestore": {
+    "rules": "firebase/firestore.rules"
+  },
   "hosting": {
     "public": "public",
     "ignore": [

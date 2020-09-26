@@ -3,9 +3,9 @@ package job
 import (
 	"context"
 	"github.com/stretchr/testify/assert"
-	"github.com/sue445/primap/db"
-	"github.com/sue445/primap/prismdb"
-	"github.com/sue445/primap/testutil"
+	"github.com/sue445/primap/server/db"
+	"github.com/sue445/primap/server/prismdb"
+	"github.com/sue445/primap/server/testutil"
 	"testing"
 )
 

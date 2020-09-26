@@ -2,7 +2,7 @@ package db
 
 import (
 	"github.com/stretchr/testify/assert"
-	"github.com/sue445/primap/testutil"
+	"github.com/sue445/primap/server/testutil"
 	"google.golang.org/genproto/googleapis/type/latlng"
 	"testing"
 )

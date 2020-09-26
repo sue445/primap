@@ -15,7 +15,7 @@ type Client struct {
 // NewClient create a Client instance
 func NewClient() (*Client, error) {
 	repo, err := sparql.NewRepo("https://prismdb.takanakahiko.me/sparql",
-		sparql.Timeout(time.Millisecond*1500),
+		sparql.Timeout(time.Second*30),
 	)
 
 	if err != nil {

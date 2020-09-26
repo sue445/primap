@@ -16,6 +16,20 @@ services:
       SENTRY_DEBUG: "true"
       GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY}
 
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev-frontend
+    volumes:
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./webpack.config.js:/app/webpack.config.js
+      - ./frontend:/app/frontend
+      - node-data:/app/node_modules
+    ports:
+      - "8080:8080"
+
 volumes:
   gopath-data:
+    driver: local
+  node-data:
     driver: local

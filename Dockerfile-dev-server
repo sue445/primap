@@ -23,6 +23,6 @@ RUN go mod download
 COPY *.go ./
 COPY server/ server/
 
-RUN go build -mod=readonly -o server
+RUN go build -mod=readonly -o primap
 
-CMD ["firebase", "--project", "test", "emulators:exec", "--only", "firestore,pubsub", "/app/server"]
+CMD ["firebase", "--project", "test", "emulators:exec", "--only", "firestore,pubsub", "/app/primap"]

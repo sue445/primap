@@ -1,0 +1,71 @@
+name: build-frontend
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths-ignore:
+      - "**.md"
+
+env:
+  NODE_VERSION: 14
+
+jobs:
+  webpack:
+    name: webpack
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/cache@v2
+        with:
+          path: node_modules/
+          key: v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+
+      - run: npm install
+      - run: npm run build
+
+      - name: Slack Notification (not success)
+        uses: homoluctus/slatify@master
+        if: "! success()"
+        continue-on-error: true
+        with:
+          job_name: "*webpack*"
+          type: ${{ job.status }}
+          icon_emoji: ":octocat:"
+          url: ${{ secrets.SLACK_WEBHOOK }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  notify:
+    needs:
+      - webpack
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Slack Notification (success)
+        uses: homoluctus/slatify@master
+        if: always()
+        continue-on-error: true
+        with:
+          job_name: '*build-frontend*'
+          type: ${{ job.status }}
+          icon_emoji: ":octocat:"
+          url: ${{ secrets.SLACK_WEBHOOK }}
+          token: ${{ secrets.GITHUB_TOKEN }}

@@ -83,9 +83,9 @@ jobs:
       - uses: actions/cache@v1
         with:
           path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-lint-${{ hashFiles('**/go.sum') }}
+          key: v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('**/go.sum') }}
           restore-keys: |
-            ${{ runner.os }}-go-lint-
+            v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-
 
       - name: Run lint
         run: |

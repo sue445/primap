@@ -9,6 +9,7 @@ env:
   GCP_PROJECT:    primap
   GCR_REGISTRY:   asia.gcr.io
   GCR_IMAGE_NAME: asia.gcr.io/primap/primap
+  NODE_VERSION:   14
 
 jobs:
   deploy:
@@ -19,6 +20,20 @@ jobs:
     steps:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/cache@v2
+        with:
+          path: node_modules/
+          key: v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+
+      - run: npm install
+      - run: npm run build
 
       - name: docker build
         run: docker build -t $GCR_IMAGE_NAME:$GITHUB_SHA -f Dockerfile .

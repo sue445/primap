@@ -18,3 +18,22 @@ update_configs:
       - match:
           dependency_name: "github.com/golang/mock"
           update_type: "all"
+
+  - package_manager: "javascript"
+
+    directory: "/"
+
+    update_schedule: "daily"
+
+    automerged_updates:
+      - match:
+          dependency_type: "development"
+          update_type: "all"
+      - match:
+          dependency_type: "production"
+          update_type: "semver:patch"
+
+    default_assignees:
+      - sue445
+
+    version_requirement_updates: "auto"

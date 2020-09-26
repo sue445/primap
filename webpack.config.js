@@ -2,13 +2,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/app/app.tsx',
+  entry: './frontend/app/app.tsx',
   plugins: [
     new CleanWebpackPlugin({
       cleanAfterEveryBuildPatterns: ['public/build']
     }),
     new HtmlWebpackPlugin({
-      template: 'src/templates/index.html'
+      template: 'frontend/templates/index.html'
     }),
   ],
   output: {

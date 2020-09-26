@@ -33,8 +33,6 @@ cloud.google.com/go/pubsub v1.1.0/go.mod h1:EwwdRX2sKPjnvnqCa270oGRyludottCI76h+
 cloud.google.com/go/pubsub v1.2.0/go.mod h1:jhfEVHT8odbXTkndysNHCcx0awwzvfOlguIAii9o8iA=
 cloud.google.com/go/pubsub v1.3.1 h1:ukjixP1wl0LpnZ6LWtZJ0mX5tBmjp1f8Sqer8Z2OMUU=
 cloud.google.com/go/pubsub v1.3.1/go.mod h1:i+ucay31+CNRpDW4Lu78I4xXG+O1r/MAHgjpRVR+TSU=
-cloud.google.com/go/pubsub v1.6.2 h1:K7hN/6mRJ8/cvUgvR8Ef8y0VFuIYkNznO6KueMhJgy8=
-cloud.google.com/go/pubsub v1.6.2/go.mod h1:1oQj9CTnallffJQvEjCYl4azoOxp8vcqZpPzZWKSYhE=
 cloud.google.com/go/pubsub v1.7.0 h1:6F2z3wscm0fDteFWZQb6gtdKsvyUH1rQkv2xNVDbEqM=
 cloud.google.com/go/pubsub v1.7.0/go.mod h1:NDxAMUTc2NNyeXo2v/+VwBpxsGjVPpdrGmIvkyCbsYI=
 cloud.google.com/go/storage v1.0.0/go.mod h1:IhtSnM/ZTZV8YYJWCY8RULGVqBDmpoyjwiyrjsg+URw=
@@ -258,8 +256,6 @@ github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UV
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.6.1 h1:hDPOHmpOpP40lSULcqw7IrRb/u7w6RpDC9399XyoNd0=
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
-github.com/sue445/gcp-secretmanagerenv v0.1.0 h1:YkF+UOlO/lDoOaqD6E53w+o9NBDCF43GoB72My+1zKE=
-github.com/sue445/gcp-secretmanagerenv v0.1.0/go.mod h1:N7VB9PkAquwxTM5ZeQRaZVPerPihf4xF6pnZb0m6IZY=
 github.com/sue445/gcp-secretmanagerenv v0.1.1 h1:OzNaAe0mm9Q+Su5Q2EA354u+UTNq2e5Sfy2+DHY6VA0=
 github.com/sue445/gcp-secretmanagerenv v0.1.1/go.mod h1:N7VB9PkAquwxTM5ZeQRaZVPerPihf4xF6pnZb0m6IZY=
 github.com/ugorji/go v1.1.4/go.mod h1:uQMGLiO92mf5W77hV/PUCpI3pbzQx3CRekS0kk+RGrc=
@@ -479,8 +475,6 @@ golang.org/x/tools v0.0.0-20200904185747-39188db58858 h1:xLt+iB5ksWcZVxqc+g9K41Z
 golang.org/x/tools v0.0.0-20200904185747-39188db58858/go.mod h1:Cj7w3i3Rnn0Xh82ur9kSqwfTHTeVxaDqrfMjpcNT6bE=
 golang.org/x/tools v0.0.0-20200915173823-2db8f0ff891c h1:AQsh/7arPVFDBraQa8x7GoVnwnGg1kM7J2ySI0kF5WU=
 golang.org/x/tools v0.0.0-20200915173823-2db8f0ff891c/go.mod h1:z6u4i615ZeAfBE4XtMziQW1fSVJXACjjbWkB/mvPzlU=
-golang.org/x/tools v0.0.0-20200918232735-d647fc253266 h1:k7tVuG0g1JwmD3Jh8oAl1vQ1C3jb4Hi/dUl1wWDBJpQ=
-golang.org/x/tools v0.0.0-20200918232735-d647fc253266/go.mod h1:z6u4i615ZeAfBE4XtMziQW1fSVJXACjjbWkB/mvPzlU=
 golang.org/x/tools v0.0.0-20200924224222-8d73f17870ce h1:XRr763sMfaUSNR4EsxbddvVEqYFa9picrx6ks9pJkKw=
 golang.org/x/tools v0.0.0-20200924224222-8d73f17870ce/go.mod h1:z6u4i615ZeAfBE4XtMziQW1fSVJXACjjbWkB/mvPzlU=
 golang.org/x/xerrors v0.0.0-20190717185122-a985d3407aa7/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
@@ -554,9 +548,6 @@ google.golang.org/genproto v0.0.0-20200904004341-0bd0a958aa1d/go.mod h1:FWY/as6D
 google.golang.org/genproto v0.0.0-20200914193844-75d14daec038/go.mod h1:FWY/as6DDZQgahTzZj3fqbO1CbirC29ZNUFHwi0/+no=
 google.golang.org/genproto v0.0.0-20200918140846-d0d605568037 h1:ujwz1DPMeHwCvo36rK5shXhAzc4GMRecrqQFaMZJBKQ=
 google.golang.org/genproto v0.0.0-20200918140846-d0d605568037/go.mod h1:FWY/as6DDZQgahTzZj3fqbO1CbirC29ZNUFHwi0/+no=
-google.golang.org/genproto v0.0.0-20200921151605-7abf4a1a14d5/go.mod h1:FWY/as6DDZQgahTzZj3fqbO1CbirC29ZNUFHwi0/+no=
-google.golang.org/genproto v0.0.0-20200921165018-b9da36f5f452 h1:2S8dcPkOK9QyAAKa46Cgl//VOCS6ZOsY+iwD3bb9Phg=
-google.golang.org/genproto v0.0.0-20200921165018-b9da36f5f452/go.mod h1:FWY/as6DDZQgahTzZj3fqbO1CbirC29ZNUFHwi0/+no=
 google.golang.org/genproto v0.0.0-20200925023002-c2d885f95484 h1:Rr9EZdYRq2WLckzJQVtN3ISKoP7dvgwi7jbglILNZ34=
 google.golang.org/genproto v0.0.0-20200925023002-c2d885f95484/go.mod h1:FWY/as6DDZQgahTzZj3fqbO1CbirC29ZNUFHwi0/+no=
 google.golang.org/grpc v1.19.0/go.mod h1:mqu4LbDTu4XGKhr4mRzUsmM4RtVoemTSY81AxZiDr8c=

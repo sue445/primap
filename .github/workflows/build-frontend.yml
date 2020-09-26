@@ -6,6 +6,7 @@ on:
       - master
     paths-ignore:
       - "**.md"
+      - "go.*"
   pull_request:
     types:
       - opened
@@ -13,6 +14,7 @@ on:
       - reopened
     paths-ignore:
       - "**.md"
+      - "go.*"
 
 env:
   NODE_VERSION: 14

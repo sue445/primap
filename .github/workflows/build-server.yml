@@ -6,6 +6,7 @@ on:
       - master
     paths-ignore:
       - "**.md"
+      - "package**.json"
   pull_request:
     types:
       - opened
@@ -13,6 +14,7 @@ on:
       - reopened
     paths-ignore:
       - "**.md"
+      - "package*.json"
 
 env:
   GO_VERSION: 1.15

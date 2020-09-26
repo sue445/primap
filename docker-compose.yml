@@ -1,10 +1,10 @@
 version: "3.8"
 
 services:
-  app:
+  server:
     build:
       context: .
-      dockerfile: Dockerfile-dev-app
+      dockerfile: Dockerfile-dev-server
     volumes:
       - gopath-data:/go
     ports:

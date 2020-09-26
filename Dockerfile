@@ -14,7 +14,8 @@ COPY go.* ./
 RUN go mod download
 
 # Copy local code to the container image.
-COPY . ./
+COPY *.go ./
+COPY server/ server/
 
 # Build the binary.
 # -mod=readonly ensures immutable go.mod and go.sum in container builds.

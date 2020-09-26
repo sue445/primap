@@ -20,5 +20,5 @@ firebase serve --only hosting
 
 ### Testing
 ```bash
-docker-compose build && docker-compose run --rm app bash -c 'firebase --project test emulators:exec --only firestore,pubsub "make test"'
+docker-compose build server && docker-compose run --rm server bash -c 'firebase --project test emulators:exec --only firestore,pubsub "make test"'
 ```

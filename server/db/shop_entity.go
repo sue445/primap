@@ -3,7 +3,7 @@ package db
 import (
 	"context"
 	"github.com/pkg/errors"
-	"github.com/sue445/primap/config"
+	"github.com/sue445/primap/server/config"
 	"google.golang.org/genproto/googleapis/type/latlng"
 	"googlemaps.github.io/maps"
 	"log"

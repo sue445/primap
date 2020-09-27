@@ -24,6 +24,7 @@ services:
       - ./tsconfig.json:/app/tsconfig.json
       - ./webpack.config.js:/app/webpack.config.js
       - ./frontend:/app/frontend
+      - ./public:/app/public
       - node-data:/app/node_modules
     ports:
       - "8080:8080"

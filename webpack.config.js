@@ -1,6 +1,8 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const webpack = require('webpack');
+
 module.exports = {
   entry: './frontend/app/app.tsx',
   plugins: [
@@ -10,6 +12,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'frontend/templates/index.html'
     }),
+    new webpack.EnvironmentPlugin(['REACT_APP_GOOGLE_BROWSER_API_KEY']),
   ],
   output: {
     path: __dirname + '/public',

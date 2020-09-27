@@ -28,6 +28,8 @@ services:
       - node-data:/app/node_modules
     ports:
       - "8080:8080"
+    environment:
+      REACT_APP_GOOGLE_BROWSER_API_KEY: ${REACT_APP_GOOGLE_BROWSER_API_KEY}
 
 volumes:
   gopath-data:

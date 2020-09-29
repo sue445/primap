@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MapContainer from "./components/MapContainer"
+import MapContainer from './components/MapContainer';
 
-const App: React.FC<{ compiler: string, framework: string }> = (props) => {
+const App: React.FC<{ compiler: string; framework: string }> = (props) => {
   return (
     <div>
       <div>{props.compiler}</div>
@@ -16,9 +16,9 @@ const App: React.FC<{ compiler: string, framework: string }> = (props) => {
       />
     </div>
   );
-}
+};
 
 ReactDOM.render(
   <App compiler="TypeScript" framework="React" />,
-  document.getElementById("root")
+  document.getElementById('root')
 );

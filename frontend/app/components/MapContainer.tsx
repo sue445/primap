@@ -1,36 +1,36 @@
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import React from "react";
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import React from 'react';
 
 type Props = {
-  latitude: number
-  longitude: number
-  zoom: number
-}
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
 export class MapContainer extends React.Component<Props, {}> {
   state = {
     activeMarker: {},
     selectedPlace: {},
-    showingInfoWindow: false
+    showingInfoWindow: false,
   };
 
   onMarkerClick = (props, marker) =>
     this.setState({
       activeMarker: marker,
       selectedPlace: props,
-      showingInfoWindow: true
+      showingInfoWindow: true,
     });
 
   onInfoWindowClose = () =>
     this.setState({
       activeMarker: null,
-      showingInfoWindow: false
+      showingInfoWindow: false,
     });
 
   onMapClicked = () => {
     if (this.state.showingInfoWindow)
       this.setState({
         activeMarker: null,
-        showingInfoWindow: false
+        showingInfoWindow: false,
       });
   };
 
@@ -42,13 +42,11 @@ export class MapContainer extends React.Component<Props, {}> {
         zoom={this.props.zoom}
         initialCenter={{
           lat: this.props.latitude,
-          lng: this.props.longitude
+          lng: this.props.longitude,
         }}
       >
-
         <Marker
           onClick={this.onMarkerClick}
-
           // @ts-ignore
           name={'Current location'}
         />
@@ -57,12 +55,15 @@ export class MapContainer extends React.Component<Props, {}> {
           // @ts-ignore
           marker={this.state.activeMarker}
           onClose={this.onInfoWindowClose}
-          visible={this.state.showingInfoWindow}>
+          visible={this.state.showingInfoWindow}
+        >
           <div>
-            <h1>{
-              // @ts-ignore
-              this.state.selectedPlace.name
-            }</h1>
+            <h1>
+              {
+                // @ts-ignore
+                this.state.selectedPlace.name
+              }
+            </h1>
           </div>
         </InfoWindow>
       </Map>
@@ -72,6 +73,6 @@ export class MapContainer extends React.Component<Props, {}> {
 
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_BROWSER_API_KEY,
-  language: "ja",
-// @ts-ignore
-})(MapContainer)
+  language: 'ja',
+  // @ts-ignore
+})(MapContainer);

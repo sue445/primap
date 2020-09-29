@@ -36,6 +36,8 @@ jobs:
 
       - run: npm install
       - run: npm run build
+        env:
+          REACT_APP_GOOGLE_BROWSER_API_KEY: ${{ secrets.REACT_APP_GOOGLE_BROWSER_API_KEY }}
 
       - name: docker build
         run: docker build -t $GCR_IMAGE_NAME:$GITHUB_SHA -f Dockerfile .

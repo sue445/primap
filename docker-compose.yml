@@ -24,9 +24,12 @@ services:
       - ./tsconfig.json:/app/tsconfig.json
       - ./webpack.config.js:/app/webpack.config.js
       - ./frontend:/app/frontend
+      - ./public:/app/public
       - node-data:/app/node_modules
     ports:
       - "8080:8080"
+    environment:
+      REACT_APP_GOOGLE_BROWSER_API_KEY: ${REACT_APP_GOOGLE_BROWSER_API_KEY}
 
 volumes:
   gopath-data:

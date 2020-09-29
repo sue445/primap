@@ -7,7 +7,13 @@ const App: React.FC<{ compiler: string, framework: string }> = (props) => {
     <div>
       <div>{props.compiler}</div>
       <div>{props.framework}</div>
-      <MapContainer />
+
+      <MapContainer
+        // @ts-ignore
+        latitude={35.689846}
+        longitude={139.700534}
+        zoom={15}
+      />
     </div>
   );
 }

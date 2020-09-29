@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/basarat/react-typescript.git"
+    "url": "https://github.com/sue445/primap.git"
   },
   "scripts": {
     "clean": "rm -rf ./node_modules package-lock.json && npm i",

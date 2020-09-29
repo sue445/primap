@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	cloud.google.com/go/firestore v1.3.0
-	cloud.google.com/go/pubsub v1.7.0
+	cloud.google.com/go/pubsub v1.8.0
 	github.com/getsentry/sentry-go v0.7.0
 	github.com/google/uuid v1.1.2
 	github.com/gorilla/mux v1.8.0
@@ -17,7 +17,7 @@ require (
 	github.com/sue445/gcp-secretmanagerenv v0.1.1
 	golang.org/x/sys v0.0.0-20200918174421-af09f7315aff // indirect
 	google.golang.org/api v0.32.0
-	google.golang.org/genproto v0.0.0-20200925023002-c2d885f95484
+	google.golang.org/genproto v0.0.0-20200929141702-51c3e5b607fe
 	google.golang.org/grpc v1.32.0
 	googlemaps.github.io/maps v1.2.2
 )

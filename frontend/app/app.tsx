@@ -6,6 +6,7 @@ import MapContainer from './components/MapContainer';
 
 Sentry.init({
   dsn: process.env.REACT_APP_SENTRY_DSN,
+  environment: process.env.NODE_ENV,
   integrations: [
     new Integrations.BrowserTracing(),
   ],

@@ -41,6 +41,8 @@ jobs:
 
       - run: npm install
       - run: npm run build
+        env:
+          NODE_ENV: test
 
       - name: Slack Notification (not success)
         uses: homoluctus/slatify@master

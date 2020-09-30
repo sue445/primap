@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import * as Sentry from '@sentry/react';
-import { Integrations } from '@sentry/tracing';
-import MapContainer from './components/MapContainer';
+import React from "react";
+import ReactDOM from "react-dom";
+import * as Sentry from "@sentry/react";
+import { Integrations } from "@sentry/tracing";
+import MapContainer from "./components/MapContainer";
 
 Sentry.init({
   dsn: process.env.REACT_APP_SENTRY_DSN,
@@ -29,5 +29,5 @@ const App: React.FC<{ compiler: string; framework: string }> = (props) => {
 
 ReactDOM.render(
   <App compiler="TypeScript" framework="React" />,
-  document.getElementById('root')
+  document.getElementById("root")
 );

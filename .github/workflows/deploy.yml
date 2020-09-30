@@ -5,7 +5,12 @@ on:
     branches:
       - master
     paths-ignore:
+      # Ignore files that are not used in production
       - "**.md"
+      - ".env.example"
+      - "docker-compose.yml"
+      - "Dockerfile-dev-*"
+      - "LICENSE"
 
 env:
   GCP_PROJECT:    primap

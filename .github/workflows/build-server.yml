@@ -5,16 +5,40 @@ on:
     branches:
       - master
     paths-ignore:
+      # Ignore files that are not used in production
       - "**.md"
+      - ".env.example"
+      - "docker-compose.yml"
+      - "Dockerfile-dev-*"
+      - "LICENSE"
+
+      # Ignore files used only by the frontend
+      - "firebase/**"
       - "package**.json"
+      - "prettier.config.js"
+      - "server/**"
+      - "tsconfig.json"
+      - "webpack.config.js"
   pull_request:
     types:
       - opened
       - synchronize
       - reopened
     paths-ignore:
+      # Ignore files that are not used in production
       - "**.md"
-      - "package*.json"
+      - ".env.example"
+      - "docker-compose.yml"
+      - "Dockerfile-dev-*"
+      - "LICENSE"
+
+      # Ignore files used only by the frontend
+      - "firebase/**"
+      - "package**.json"
+      - "prettier.config.js"
+      - "server/**"
+      - "tsconfig.json"
+      - "webpack.config.js"
 
 env:
   GO_VERSION: 1.15

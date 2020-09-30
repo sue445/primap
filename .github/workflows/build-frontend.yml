@@ -5,16 +5,32 @@ on:
     branches:
       - master
     paths-ignore:
+      # Ignore files that are not used in production
       - "**.md"
+      - ".env.example"
+      - "docker-compose.yml"
+      - "Dockerfile-dev-*"
+      - "LICENSE"
+
+      # Ignore files used only by the server
       - "go.*"
+      - "server/**"
   pull_request:
     types:
       - opened
       - synchronize
       - reopened
     paths-ignore:
+      # Ignore files that are not used in production
       - "**.md"
+      - ".env.example"
+      - "docker-compose.yml"
+      - "Dockerfile-dev-*"
+      - "LICENSE"
+
+      # Ignore files used only by the server
       - "go.*"
+      - "server/**"
 
 env:
   NODE_VERSION: 14

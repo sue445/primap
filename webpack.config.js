@@ -12,7 +12,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'frontend/templates/index.html'
     }),
-    new webpack.EnvironmentPlugin(['REACT_APP_GOOGLE_BROWSER_API_KEY']),
+    new webpack.EnvironmentPlugin([
+      'NODE_ENV',
+      'REACT_APP_GOOGLE_BROWSER_API_KEY',
+      'REACT_APP_SENTRY_DSN',
+    ]),
   ],
   output: {
     path: __dirname + '/public',

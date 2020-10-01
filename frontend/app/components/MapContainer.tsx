@@ -13,6 +13,15 @@ export class MapContainer extends React.Component<Props, {}> {
     showingInfoWindow: false,
   };
 
+  onMapReady = (mapProps, map) => {
+    if (navigator.geolocation != null) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const data = pos.coords;
+        map.setCenter(new google.maps.LatLng(data.latitude, data.longitude));
+      });
+    }
+  };
+
   onMarkerClick = (props, marker) =>
     this.setState({
       activeMarker: marker,
@@ -40,6 +49,7 @@ export class MapContainer extends React.Component<Props, {}> {
         // @ts-ignore
         google={this.props.google}
         zoom={this.props.zoom}
+        onReady={this.onMapReady}
         initialCenter={{
           lat: this.props.latitude,
           lng: this.props.longitude,

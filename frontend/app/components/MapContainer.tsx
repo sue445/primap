@@ -1,25 +1,76 @@
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
 import React from "react";
+import { firestore } from "firebase";
+import { GeoFireClient } from "geofirex";
+import { ShopEntity } from "./ShopEntity";
 
 type Props = {
   latitude: number;
   longitude: number;
   zoom: number;
+  geo: GeoFireClient;
 };
 export class MapContainer extends React.Component<Props, {}> {
   state = {
     activeMarker: {},
     selectedPlace: {},
     showingInfoWindow: false,
+    shops: [] as Array<ShopEntity>,
+    latitude: this.props.latitude,
+    longitude: this.props.longitude,
   };
 
-  onMapReady = (mapProps, map) => {
-    if (navigator.geolocation != null) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        const data = pos.coords;
-        map.setCenter(new google.maps.LatLng(data.latitude, data.longitude));
-      });
+  onMapReady = (mapProps, map: google.maps.Map) => {
+    if (!navigator.geolocation) {
+      return;
     }
+
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const data = pos.coords;
+      map.setCenter(new google.maps.LatLng(data.latitude, data.longitude));
+      this.setState({
+        latitude: data.latitude,
+        longitude: data.longitude,
+      });
+      this.loadShops(map);
+    });
+  };
+
+  loadShops = (map: google.maps.Map) => {
+    const bounds = map.getBounds();
+    if (!bounds) {
+      // TODO: debug
+      console.log("[WARN] map.getBounds() is undefiled");
+      return;
+    }
+
+    const geo = this.props.geo;
+    const center = geo.point(map.getCenter().lat(), map.getCenter().lng());
+    const distance = geo.distance(
+      geo.point(bounds.getSouthWest().lat(), bounds.getSouthWest().lng()),
+      geo.point(bounds.getNorthEast().lat(), bounds.getNorthEast().lng())
+    );
+
+    const firestoreRef = firestore()
+      .collection("Shops")
+      .where("deleted", "==", false)
+      .limit(1000);
+    const query = geo
+      .query(firestoreRef)
+      .within(center, distance / 2, "geography");
+
+    const shops = [];
+    query.subscribe((hits) => {
+      hits.forEach((data) => {
+        const shop = ShopEntity.createFrom(data);
+        shops.push(shop);
+      });
+      this.setState({ shops: shops });
+    });
+  };
+
+  onMapCenterChanged = (mapProps, map: google.maps.Map) => {
+    this.loadShops(map);
   };
 
   onMarkerClick = (props, marker) =>
@@ -50,16 +101,24 @@ export class MapContainer extends React.Component<Props, {}> {
         google={this.props.google}
         zoom={this.props.zoom}
         onReady={this.onMapReady}
+        onCenterChanged={this.onMapCenterChanged}
         initialCenter={{
           lat: this.props.latitude,
           lng: this.props.longitude,
         }}
       >
-        <Marker
-          onClick={this.onMarkerClick}
-          // @ts-ignore
-          name={"Current location"}
-        />
+        {this.state.shops.map((shop) => (
+          <Marker
+            key={shop.name}
+            onClick={this.onMarkerClick}
+            position={{
+              lat: shop.geography.geopoint.latitude,
+              lng: shop.geography.geopoint.longitude,
+            }}
+            // @ts-ignore
+            name={shop.name}
+          />
+        ))}
 
         <InfoWindow
           // @ts-ignore

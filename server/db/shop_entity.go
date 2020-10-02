@@ -16,14 +16,14 @@ const (
 
 // ShopEntity represents a shop entity for Firestore
 type ShopEntity struct {
-	Name       string         `firestore:"name"`
-	Prefecture string         `firestore:"prefecture"`
-	Address    string         `firestore:"address"`
-	Series     []string       `firestore:"series"`
-	CreatedAt  time.Time      `firestore:"created_at"`
-	UpdatedAt  time.Time      `firestore:"updated_at"`
-	Location   *latlng.LatLng `firestore:"location"`
-	Deleted    bool           `firestore:"deleted"`
+	Name       string         `firestore:"name"       json:"name"`
+	Prefecture string         `firestore:"prefecture" json:"prefecture"`
+	Address    string         `firestore:"address"    json:"address"`
+	Series     []string       `firestore:"series"     json:"series"`
+	CreatedAt  time.Time      `firestore:"created_at" json:"created_at"`
+	UpdatedAt  time.Time      `firestore:"updated_at" json:"updated_at"`
+	Location   *latlng.LatLng `firestore:"location"   json:"location"`
+	Deleted    bool           `firestore:"deleted"    json:"deleted"`
 }
 
 // UpdateAddressWithLocation update address and fetch location if necessary

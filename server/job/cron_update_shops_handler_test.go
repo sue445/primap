@@ -25,7 +25,8 @@ func Test_publishShop(t *testing.T) {
 	defer conn.Close()
 
 	ctx := context.Background()
-	client, err := pubsub.NewClient(ctx, testutil.TestProjectID(), option.WithGRPCConn(conn))
+	projectID := testutil.TestProjectID()
+	client, err := pubsub.NewClient(ctx, projectID, option.WithGRPCConn(conn))
 	if !assert.NoError(t, err) {
 		return
 	}

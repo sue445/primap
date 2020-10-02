@@ -10,9 +10,6 @@ import (
 )
 
 func Test_saveShop(t *testing.T) {
-	testutil.SetRandomProjectID()
-	// defer testutil.CleanupFirestore()
-
 	shop := &prismdb.Shop{
 		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",
 		Prefecture: "三重県",
@@ -21,13 +18,14 @@ func Test_saveShop(t *testing.T) {
 	}
 
 	ctx := context.Background()
-	err := saveShop(ctx, testutil.TestProjectID(), shop)
+	projectID := testutil.TestProjectID()
+	err := saveShop(ctx, projectID, shop)
 
 	if !assert.NoError(t, err) {
 		return
 	}
 
-	dao := db.NewShopDao(testutil.TestProjectID())
+	dao := db.NewShopDao(projectID)
 	got, err := dao.LoadShop("ＭＥＧＡドン・キホーテＵＮＹ名張")
 
 	if assert.NoError(t, err) {

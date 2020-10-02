@@ -8,9 +8,6 @@ import (
 )
 
 func TestShopDao_SaveShop_And_LoadShop(t *testing.T) {
-	testutil.SetRandomProjectID()
-	// defer testutil.CleanupFirestore()
-
 	shop := &ShopEntity{
 		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",
 		Prefecture: "三重県",
@@ -19,7 +16,8 @@ func TestShopDao_SaveShop_And_LoadShop(t *testing.T) {
 		Location:   &latlng.LatLng{Latitude: 34.629542, Longitude: 136.125065},
 	}
 
-	dao := NewShopDao(testutil.TestProjectID())
+	projectID := testutil.TestProjectID()
+	dao := NewShopDao(projectID)
 	err := dao.SaveShop(shop)
 
 	if !assert.NoError(t, err) {
@@ -46,7 +44,8 @@ func TestShopDao_SaveShop_And_LoadShop(t *testing.T) {
 }
 
 func TestShopDao_LoadShop(t *testing.T) {
-	dao := NewShopDao(testutil.TestProjectID())
+	projectID := testutil.TestProjectID()
+	dao := NewShopDao(projectID)
 
 	got, err := dao.LoadShop("UNKNOWN")
 
@@ -56,7 +55,8 @@ func TestShopDao_LoadShop(t *testing.T) {
 }
 
 func TestShopDao_LoadOrCreateShop(t *testing.T) {
-	dao := NewShopDao(testutil.TestProjectID())
+	projectID := testutil.TestProjectID()
+	dao := NewShopDao(projectID)
 
 	got, err := dao.LoadOrCreateShop("UNKNOWN")
 
@@ -74,9 +74,8 @@ func TestShopDao_LoadOrCreateShop(t *testing.T) {
 }
 
 func TestShopDao_GetAllIDs(t *testing.T) {
-	testutil.SetRandomProjectID()
-
-	dao := NewShopDao(testutil.TestProjectID())
+	projectID := testutil.TestProjectID()
+	dao := NewShopDao(projectID)
 
 	shops := []*ShopEntity{
 		{Name: "foo", Deleted: false},
@@ -100,9 +99,8 @@ func TestShopDao_GetAllIDs(t *testing.T) {
 }
 
 func TestShopDao_DeleteShop(t *testing.T) {
-	testutil.SetRandomProjectID()
-
-	dao := NewShopDao(testutil.TestProjectID())
+	projectID := testutil.TestProjectID()
+	dao := NewShopDao(projectID)
 
 	shop := &ShopEntity{
 		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",

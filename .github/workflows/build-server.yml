@@ -34,9 +34,9 @@ on:
 
       # Ignore files used only by the frontend
       - "firebase/**"
+      - "frontend/**"
       - "package**.json"
       - "prettier.config.js"
-      - "server/**"
       - "tsconfig.json"
       - "webpack.config.js"
 

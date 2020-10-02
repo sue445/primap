@@ -67,6 +67,7 @@ func saveShop(ctx context.Context, projectID string, shop *prismdb.Shop) error {
 
 	entity.Prefecture = shop.Prefecture
 	entity.Series = shop.Series
+	entity.Deleted = false
 
 	err = entity.UpdateAddressWithLocation(ctx, shop.Address)
 	if err != nil {

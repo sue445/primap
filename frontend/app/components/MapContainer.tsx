@@ -16,7 +16,7 @@ const shopLimit = 2000;
 
 export class MapContainer extends React.Component<Props, {}> {
   state = {
-    activeMarker: {},
+    activeMarker: {} as google.maps.Marker,
     selectedShop: emptyShop,
     showingInfoWindow: false,
     shops: [] as Array<ShopEntity>,
@@ -65,7 +65,7 @@ export class MapContainer extends React.Component<Props, {}> {
       .within(center, distance / 2, "geography");
 
     query.subscribe((hits) => {
-      const shops = [];
+      const shops = [] as Array<ShopEntity>;
       hits.forEach((data) => {
         const shop = ShopEntity.createFrom(data);
         shops.push(shop);
@@ -79,7 +79,7 @@ export class MapContainer extends React.Component<Props, {}> {
     this.loadShops(map);
   };
 
-  onMarkerClick = (props, marker) =>
+  onMarkerClick = (props, marker: google.maps.Marker) =>
     this.setState({
       activeMarker: marker,
       selectedShop: this.shopCache[props.name],
@@ -132,8 +132,8 @@ export class MapContainer extends React.Component<Props, {}> {
         ))}
 
         <InfoWindow
-          // @ts-ignore
           marker={this.state.activeMarker}
+          // @ts-ignore
           onClose={this.onInfoWindowClose}
           visible={this.state.showingInfoWindow}
         >

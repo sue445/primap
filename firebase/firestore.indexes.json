@@ -1,4 +1,13 @@
 {
-  "indexes": [],
+  "indexes": [
+    {
+      "collectionGroup": "Shops",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "deleted", "order": "ASCENDING" },
+        { "fieldPath": "geography.geohash", "order": "ASCENDING" }
+      ]
+    }
+  ],
   "fieldOverrides": []
 }

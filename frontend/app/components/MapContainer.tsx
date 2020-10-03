@@ -65,7 +65,7 @@ export class MapContainer extends React.Component<Props, {}> {
       .within(center, distance / 2, "geography");
 
     query.subscribe((hits) => {
-      const shops = [];
+      const shops = [] as Array<ShopEntity>;
       hits.forEach((data) => {
         const shop = ShopEntity.createFrom(data);
         shops.push(shop);

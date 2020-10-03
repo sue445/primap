@@ -45,8 +45,6 @@ export class MapContainer extends React.Component<Props, {}> {
   loadShops = (map: google.maps.Map) => {
     const bounds = map.getBounds();
     if (!bounds) {
-      // TODO: debug
-      console.log("[WARN] map.getBounds() is undefiled");
       return;
     }
 

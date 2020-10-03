@@ -13,7 +13,9 @@ func TestShopDao_SaveShop_And_LoadShop(t *testing.T) {
 		Prefecture: "三重県",
 		Address:    "三重県名張市下比奈知黒田3100番地の1",
 		Series:     []string{"prichan"},
-		Location:   &latlng.LatLng{Latitude: 34.629542, Longitude: 136.125065},
+		Geography: &Geography{
+			GeoPoint: &latlng.LatLng{Latitude: 34.629542, Longitude: 136.125065},
+		},
 	}
 
 	projectID := testutil.TestProjectID()
@@ -35,9 +37,9 @@ func TestShopDao_SaveShop_And_LoadShop(t *testing.T) {
 			assert.True(t, got.CreatedAt.IsZero())
 			assert.False(t, got.UpdatedAt.IsZero())
 
-			if assert.NotNil(t, got.Location) {
-				assert.InDelta(t, 34.629542, got.Location.GetLatitude(), 0.01)
-				assert.InDelta(t, 136.125065, got.Location.GetLongitude(), 0.01)
+			if assert.NotNil(t, got.Geography) {
+				assert.InDelta(t, 34.629542, got.Geography.GeoPoint.GetLatitude(), 0.01)
+				assert.InDelta(t, 136.125065, got.Geography.GeoPoint.GetLongitude(), 0.01)
 			}
 		}
 	}
@@ -68,7 +70,7 @@ func TestShopDao_LoadOrCreateShop(t *testing.T) {
 			assert.Equal(t, []string{}, got.Series)
 			assert.False(t, got.CreatedAt.IsZero())
 			assert.True(t, got.UpdatedAt.IsZero())
-			assert.Nil(t, got.Location)
+			assert.Nil(t, got.Geography)
 		}
 	}
 }
@@ -107,7 +109,6 @@ func TestShopDao_DeleteShop(t *testing.T) {
 		Prefecture: "三重県",
 		Address:    "三重県名張市下比奈知黒田3100番地の1",
 		Series:     []string{"prichan"},
-		Location:   &latlng.LatLng{Latitude: 34.629542, Longitude: 136.125065},
 	}
 	err := dao.SaveShop(shop)
 

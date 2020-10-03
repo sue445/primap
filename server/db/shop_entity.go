@@ -13,6 +13,9 @@ import (
 
 const (
 	shopCollectionName = "Shops"
+
+	// c.f. https://github.com/codediodeio/geofirex#pointlatitude-number-longitude-number-firepoint
+	geohashPrecision = 9
 )
 
 // ShopEntity represents a shop entity for Firestore
@@ -58,7 +61,7 @@ func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address str
 					Latitude:  lat,
 					Longitude: lng,
 				},
-				GeoHash: geohash.Encode(lat, lng),
+				GeoHash: geohash.EncodeWithPrecision(lat, lng, geohashPrecision),
 			}
 		} else {
 			log.Printf("[WARN] Location is unknown: Address=%s, Shop=%+v", address, e)

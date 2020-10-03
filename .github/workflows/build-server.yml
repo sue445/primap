@@ -44,6 +44,7 @@ env:
   GO_VERSION: 1.15
   GO111MODULE: "on"
   TEST_ARGS: -coverprofile coverage.out -covermode atomic
+  NODE_VERSION: 14
 
 jobs:
   test:
@@ -140,6 +141,65 @@ jobs:
           url: ${{ secrets.SLACK_WEBHOOK }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
+  go2ts:
+    name: go2ts
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: ${{ env.GO_VERSION }}
+        id: go
+
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+
+      - uses: actions/cache@v1
+        with:
+          path: ~/go/pkg/mod
+          key: v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/cache@v2
+        with:
+          path: node_modules/
+          key: v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+
+      - run: npm install
+
+      - name: "[NOTE] Run `make go2ts` if this is failed"
+        run: |
+          set -xe
+
+          export GOPATH=`go env GOPATH`
+          export PATH=$GOPATH/bin:$PATH
+
+          go get -u github.com/tkrajina/typescriptify-golang-structs/tscriptify
+
+          make go2ts
+          git --no-pager diff
+          git status | grep "nothing to commit, working tree clean"
+
+      - name: Slack Notification (not success)
+        uses: homoluctus/slatify@master
+        if: "! success()"
+        continue-on-error: true
+        with:
+          job_name: "*go2ts*"
+          type: ${{ job.status }}
+          icon_emoji: ":octocat:"
+          url: ${{ secrets.SLACK_WEBHOOK }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
   build:
     name: build
 
@@ -166,6 +226,7 @@ jobs:
     needs:
       - test
       - lint
+      - go2ts
       - build
 
     runs-on: ubuntu-latest

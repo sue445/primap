@@ -7,15 +7,6 @@
         { "fieldPath": "deleted", "order": "ASCENDING" },
         { "fieldPath": "location", "order": "ASCENDING" }
       ]
-    },
-    {
-      "collectionGroup": "Shops",
-      "queryScope": "COLLECTION",
-      "fields": [
-        { "fieldPath": "deleted", "order": "ASCENDING" },
-        { "fieldPath": "latitude", "order": "ASCENDING" },
-        { "fieldPath": "longitude", "order": "ASCENDING" }
-      ]
     }
   ],
   "fieldOverrides": []

@@ -27,6 +27,8 @@ export class ShopEntity {
   created_at: Time;
   updated_at: Time;
   location: LatLng;
+  latitude: number;
+  longitude: number;
   deleted: boolean;
 
   static createFrom(source: any) {
@@ -45,6 +47,8 @@ export class ShopEntity {
     result.location = source["location"]
       ? LatLng.createFrom(source["location"])
       : null;
+    result.latitude = source["latitude"];
+    result.longitude = source["longitude"];
     result.deleted = source["deleted"];
     return result;
   }

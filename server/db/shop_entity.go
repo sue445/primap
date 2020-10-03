@@ -23,6 +23,7 @@ type ShopEntity struct {
 	CreatedAt  time.Time      `firestore:"created_at" json:"created_at"`
 	UpdatedAt  time.Time      `firestore:"updated_at" json:"updated_at"`
 	Location   *latlng.LatLng `firestore:"location"   json:"location"`
+	Geography  *Geography     `firestore:"geography"  json:"geography"`
 	Deleted    bool           `firestore:"deleted"    json:"deleted"`
 }
 

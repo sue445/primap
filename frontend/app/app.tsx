@@ -32,12 +32,9 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
-const App: React.FC<{ compiler: string; framework: string }> = (props) => {
+const App: React.FC<{}> = (props) => {
   return (
     <div>
-      <div>{props.compiler}</div>
-      <div>{props.framework}</div>
-
       <MapContainer
         // @ts-ignore
         latitude={35.689846}
@@ -49,7 +46,4 @@ const App: React.FC<{ compiler: string; framework: string }> = (props) => {
   );
 };
 
-ReactDOM.render(
-  <App compiler="TypeScript" framework="React" />,
-  document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));

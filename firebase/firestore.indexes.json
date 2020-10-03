@@ -1,13 +1,4 @@
 {
-  "indexes": [
-    {
-      "collectionGroup": "Shops",
-      "queryScope": "COLLECTION",
-      "fields": [
-        { "fieldPath": "deleted", "order": "ASCENDING" },
-        { "fieldPath": "location", "order": "ASCENDING" }
-      ]
-    }
-  ],
+  "indexes": [],
   "fieldOverrides": []
 }

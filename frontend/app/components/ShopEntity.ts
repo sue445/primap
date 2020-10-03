@@ -12,6 +12,20 @@ export class LatLng {
     return result;
   }
 }
+export class Geography {
+  geohash: string;
+  geopoint: LatLng;
+
+  static createFrom(source: any) {
+    if ("string" === typeof source) source = JSON.parse(source);
+    const result = new Geography();
+    result.geohash = source["geohash"];
+    result.geopoint = source["geopoint"]
+      ? LatLng.createFrom(source["geopoint"])
+      : null;
+    return result;
+  }
+}
 export class Time {
   static createFrom(source: any) {
     if ("string" === typeof source) source = JSON.parse(source);
@@ -26,7 +40,7 @@ export class ShopEntity {
   series: string[];
   created_at: Time;
   updated_at: Time;
-  location: LatLng;
+  geography: Geography;
   deleted: boolean;
 
   static createFrom(source: any) {
@@ -42,8 +56,8 @@ export class ShopEntity {
     result.updated_at = source["updated_at"]
       ? Time.createFrom(source["updated_at"])
       : null;
-    result.location = source["location"]
-      ? LatLng.createFrom(source["location"])
+    result.geography = source["geography"]
+      ? Geography.createFrom(source["geography"])
       : null;
     result.deleted = source["deleted"];
     return result;

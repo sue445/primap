@@ -66,8 +66,8 @@ export class MapContainer extends React.Component<Props, {}> {
       .query(firestoreRef)
       .within(center, distance / 2, "geography");
 
-    const shops = [];
     query.subscribe((hits) => {
+      const shops = [];
       hits.forEach((data) => {
         const shop = ShopEntity.createFrom(data);
         shops.push(shop);

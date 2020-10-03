@@ -13,6 +13,8 @@ type Props = {
 
 const emptyShop = { series: [], updated_at: new Time() } as ShopEntity;
 
+const shopLimit = 2000;
+
 export class MapContainer extends React.Component<Props, {}> {
   state = {
     activeMarker: {},
@@ -59,7 +61,7 @@ export class MapContainer extends React.Component<Props, {}> {
     const firestoreRef = firestore()
       .collection("Shops")
       .where("deleted", "==", false)
-      .limit(1000);
+      .limit(shopLimit);
     const query = geo
       .query(firestoreRef)
       .within(center, distance / 2, "geography");

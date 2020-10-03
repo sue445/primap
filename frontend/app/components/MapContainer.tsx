@@ -69,7 +69,7 @@ export class MapContainer extends React.Component<Props, {}> {
     });
   };
 
-  onMapCenterChanged = (mapProps, map: google.maps.Map) => {
+  onMapRefresh = (mapProps, map: google.maps.Map) => {
     this.loadShops(map);
   };
 
@@ -101,7 +101,11 @@ export class MapContainer extends React.Component<Props, {}> {
         google={this.props.google}
         zoom={this.props.zoom}
         onReady={this.onMapReady}
-        onCenterChanged={this.onMapCenterChanged}
+        onCenterChanged={this.onMapRefresh}
+        onZoomChanged={this.onMapRefresh}
+        onDragend={this.onMapRefresh}
+        onRecenter={this.onMapRefresh}
+        onResize={this.onMapRefresh}
         initialCenter={{
           lat: this.props.latitude,
           lng: this.props.longitude,

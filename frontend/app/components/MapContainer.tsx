@@ -2,7 +2,7 @@ import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
 import React from "react";
 import { firestore } from "firebase";
 import { GeoFireClient } from "geofirex";
-import { ShopEntity } from "./ShopEntity";
+import { ShopEntity, Time } from "./ShopEntity";
 
 type Props = {
   latitude: number;
@@ -10,15 +10,20 @@ type Props = {
   zoom: number;
   geo: GeoFireClient;
 };
+
+const emptyShop = { series: [], updated_at: new Time() } as ShopEntity;
+
 export class MapContainer extends React.Component<Props, {}> {
   state = {
     activeMarker: {},
-    selectedPlace: {},
+    selectedShop: emptyShop,
     showingInfoWindow: false,
     shops: [] as Array<ShopEntity>,
     latitude: this.props.latitude,
     longitude: this.props.longitude,
   };
+
+  shopCache = {};
 
   onMapReady = (mapProps, map: google.maps.Map) => {
     if (!navigator.geolocation) {
@@ -64,6 +69,7 @@ export class MapContainer extends React.Component<Props, {}> {
       hits.forEach((data) => {
         const shop = ShopEntity.createFrom(data);
         shops.push(shop);
+        this.shopCache[shop.name] = shop;
       });
       this.setState({ shops: shops });
     });
@@ -76,13 +82,14 @@ export class MapContainer extends React.Component<Props, {}> {
   onMarkerClick = (props, marker) =>
     this.setState({
       activeMarker: marker,
-      selectedPlace: props,
+      selectedShop: this.shopCache[props.name],
       showingInfoWindow: true,
     });
 
   onInfoWindowClose = () =>
     this.setState({
       activeMarker: null,
+      selectedShop: emptyShop,
       showingInfoWindow: false,
     });
 
@@ -131,12 +138,14 @@ export class MapContainer extends React.Component<Props, {}> {
           visible={this.state.showingInfoWindow}
         >
           <div>
-            <h1>
-              {
-                // @ts-ignore
-                this.state.selectedPlace.name
-              }
-            </h1>
+            <dl>
+              <dt>name</dt>
+              <dd>{this.state.selectedShop.name}</dd>
+              <dt>address</dt>
+              <dd>{this.state.selectedShop.address}</dd>
+              <dt>series</dt>
+              <dd>{this.state.selectedShop.series.join(", ")}</dd>
+            </dl>
           </div>
         </InfoWindow>
       </Map>

@@ -23,6 +23,8 @@ type ShopEntity struct {
 	CreatedAt  time.Time      `firestore:"created_at" json:"created_at"`
 	UpdatedAt  time.Time      `firestore:"updated_at" json:"updated_at"`
 	Location   *latlng.LatLng `firestore:"location"   json:"location"`
+	Latitude   float64        `firestore:"latitude"   json:"latitude"`
+	Longitude  float64        `firestore:"longitude"  json:"longitude"`
 	Deleted    bool           `firestore:"deleted"    json:"deleted"`
 }
 
@@ -54,6 +56,8 @@ func (e *ShopEntity) UpdateAddressWithLocation(ctx context.Context, address stri
 				Latitude:  resp[0].Geometry.Location.Lat,
 				Longitude: resp[0].Geometry.Location.Lng,
 			}
+			e.Latitude = resp[0].Geometry.Location.Lat
+			e.Longitude = resp[0].Geometry.Location.Lng
 		} else {
 			log.Printf("[WARN] Location is unknown: Address=%s, Shop=%+v", address, e)
 			e.Location = nil

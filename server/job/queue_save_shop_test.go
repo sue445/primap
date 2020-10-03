@@ -37,7 +37,7 @@ func Test_saveShop(t *testing.T) {
 			assert.Equal(t, []string{"prichan"}, got.Series)
 			assert.False(t, got.CreatedAt.IsZero())
 			assert.False(t, got.UpdatedAt.IsZero())
-			assert.Nil(t, got.Location)
+			assert.Nil(t, got.Geography)
 		}
 	}
 }
@@ -81,7 +81,7 @@ func Test_saveShop_DeletedShipWillReborn(t *testing.T) {
 			assert.Equal(t, []string{"prichan"}, got.Series)
 			assert.False(t, got.CreatedAt.IsZero())
 			assert.False(t, got.UpdatedAt.IsZero())
-			assert.Nil(t, got.Location)
+			assert.Nil(t, got.Geography)
 			assert.False(t, got.Deleted)
 		}
 	}

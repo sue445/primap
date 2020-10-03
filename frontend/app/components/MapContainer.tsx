@@ -1,28 +1,95 @@
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
 import React from "react";
+import { firestore } from "firebase";
+import { GeoFireClient } from "geofirex";
+import { ShopEntity, Time } from "./ShopEntity";
 
 type Props = {
   latitude: number;
   longitude: number;
   zoom: number;
+  geo: GeoFireClient;
 };
+
+const emptyShop = { series: [], updated_at: new Time() } as ShopEntity;
+
 export class MapContainer extends React.Component<Props, {}> {
   state = {
     activeMarker: {},
-    selectedPlace: {},
+    selectedShop: emptyShop,
     showingInfoWindow: false,
+    shops: [] as Array<ShopEntity>,
+    latitude: this.props.latitude,
+    longitude: this.props.longitude,
+  };
+
+  shopCache = {};
+
+  onMapReady = (mapProps, map: google.maps.Map) => {
+    if (!navigator.geolocation) {
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const data = pos.coords;
+      map.setCenter(new google.maps.LatLng(data.latitude, data.longitude));
+      this.setState({
+        latitude: data.latitude,
+        longitude: data.longitude,
+      });
+      this.loadShops(map);
+    });
+  };
+
+  loadShops = (map: google.maps.Map) => {
+    const bounds = map.getBounds();
+    if (!bounds) {
+      // TODO: debug
+      console.log("[WARN] map.getBounds() is undefiled");
+      return;
+    }
+
+    const geo = this.props.geo;
+    const center = geo.point(map.getCenter().lat(), map.getCenter().lng());
+    const distance = geo.distance(
+      geo.point(bounds.getSouthWest().lat(), bounds.getSouthWest().lng()),
+      geo.point(bounds.getNorthEast().lat(), bounds.getNorthEast().lng())
+    );
+
+    const firestoreRef = firestore()
+      .collection("Shops")
+      .where("deleted", "==", false)
+      .limit(1000);
+    const query = geo
+      .query(firestoreRef)
+      .within(center, distance / 2, "geography");
+
+    const shops = [];
+    query.subscribe((hits) => {
+      hits.forEach((data) => {
+        const shop = ShopEntity.createFrom(data);
+        shops.push(shop);
+        this.shopCache[shop.name] = shop;
+      });
+      this.setState({ shops: shops });
+    });
+  };
+
+  onMapRefresh = (mapProps, map: google.maps.Map) => {
+    this.loadShops(map);
   };
 
   onMarkerClick = (props, marker) =>
     this.setState({
       activeMarker: marker,
-      selectedPlace: props,
+      selectedShop: this.shopCache[props.name],
       showingInfoWindow: true,
     });
 
   onInfoWindowClose = () =>
     this.setState({
       activeMarker: null,
+      selectedShop: emptyShop,
       showingInfoWindow: false,
     });
 
@@ -40,16 +107,29 @@ export class MapContainer extends React.Component<Props, {}> {
         // @ts-ignore
         google={this.props.google}
         zoom={this.props.zoom}
+        onReady={this.onMapReady}
+        onCenterChanged={this.onMapRefresh}
+        onZoomChanged={this.onMapRefresh}
+        onDragend={this.onMapRefresh}
+        onRecenter={this.onMapRefresh}
+        onResize={this.onMapRefresh}
         initialCenter={{
           lat: this.props.latitude,
           lng: this.props.longitude,
         }}
       >
-        <Marker
-          onClick={this.onMarkerClick}
-          // @ts-ignore
-          name={"Current location"}
-        />
+        {this.state.shops.map((shop) => (
+          <Marker
+            key={shop.name}
+            onClick={this.onMarkerClick}
+            position={{
+              lat: shop.geography.geopoint.latitude,
+              lng: shop.geography.geopoint.longitude,
+            }}
+            // @ts-ignore
+            name={shop.name}
+          />
+        ))}
 
         <InfoWindow
           // @ts-ignore
@@ -58,12 +138,14 @@ export class MapContainer extends React.Component<Props, {}> {
           visible={this.state.showingInfoWindow}
         >
           <div>
-            <h1>
-              {
-                // @ts-ignore
-                this.state.selectedPlace.name
-              }
-            </h1>
+            <dl>
+              <dt>name</dt>
+              <dd>{this.state.selectedShop.name}</dd>
+              <dt>address</dt>
+              <dd>{this.state.selectedShop.address}</dd>
+              <dt>series</dt>
+              <dd>{this.state.selectedShop.series.join(", ")}</dd>
+            </dl>
           </div>
         </InfoWindow>
       </Map>

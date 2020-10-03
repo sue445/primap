@@ -27,8 +27,8 @@ type ShopEntity struct {
 	Deleted    bool       `firestore:"deleted"    json:"deleted"`
 }
 
-// UpdateAddressWithLocation update address and fetch location if necessary
-func (e *ShopEntity) UpdateAddressWithLocation(ctx context.Context, address string) error {
+// UpdateAddressWithGeography update address and fetch geography if necessary
+func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address string) error {
 	if e.Address == address && e.Geography != nil {
 		return nil
 	}

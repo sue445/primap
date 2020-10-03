@@ -1,6 +1,5 @@
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
 import React from "react";
-import { firestore } from "firebase";
 import { GeoFireClient } from "geofirex";
 import { ShopEntity, Time } from "./ShopEntity";
 
@@ -58,7 +57,8 @@ export class MapContainer extends React.Component<Props, {}> {
       geo.point(bounds.getNorthEast().lat(), bounds.getNorthEast().lng())
     );
 
-    const firestoreRef = firestore()
+    const firestoreRef = geo.app
+      .firestore()
       .collection("Shops")
       .where("deleted", "==", false)
       .limit(shopLimit);

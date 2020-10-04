@@ -118,6 +118,14 @@ export class MapContainer extends React.Component<Props, {}> {
           lng: this.props.longitude,
         }}
       >
+        <Marker
+          key="__current_position"
+          position={{
+            lat: this.state.latitude,
+            lng: this.state.longitude,
+          }}
+        />
+
         {this.state.shops.map((shop) => (
           <Marker
             key={shop.name}

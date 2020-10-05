@@ -47,6 +47,14 @@ jobs:
           REACT_APP_GOOGLE_BROWSER_API_KEY: ${{ secrets.REACT_APP_GOOGLE_BROWSER_API_KEY }}
           REACT_APP_SENTRY_DSN: ${{ secrets.REACT_APP_SENTRY_DSN }}
 
+      - name: serverless deploy
+        run: |
+          mkdir -p ~/.gcloud/
+          echo "$SERVICE_ACCOUNT_KEY" > ~/.gcloud/keyfile.json
+          npm run deploy
+        env:
+          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+
       - name: docker build
         run: docker build -t $GCR_IMAGE_NAME:$GITHUB_SHA -f Dockerfile .
 

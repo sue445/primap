@@ -1,6 +1,6 @@
 module github.com/sue445/primap
 
-go 1.15
+go 1.13
 
 require (
 	cloud.google.com/go/firestore v1.3.0

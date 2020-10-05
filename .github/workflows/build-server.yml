@@ -41,7 +41,7 @@ on:
       - "webpack.config.js"
 
 env:
-  GO_VERSION: 1.15
+  GO_VERSION: 1.13
   GO111MODULE: "on"
   TEST_ARGS: -coverprofile coverage.out -covermode atomic
   NODE_VERSION: 14

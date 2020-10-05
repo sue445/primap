@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - feature/cloud_functions
     paths-ignore:
       # Ignore files that are not used in production
       - "**.md"

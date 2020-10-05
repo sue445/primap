@@ -7,9 +7,13 @@ import (
 	"github.com/sue445/primap/server/config"
 	"log"
 	"os"
+	"time"
 )
 
-func init() {
+// Cleanup should call with defer
+type Cleanup func()
+
+func initFunction() Cleanup {
 	projectID := os.Getenv("GCP_PROJECT")
 
 	sentryDebug := os.Getenv("SENTRY_DEBUG") != ""
@@ -41,6 +45,12 @@ func init() {
 		ProjectID:        projectID,
 		GoogleMapsAPIKey: googleMapsAPIKey,
 	})
+
+	return func() {
+		// Flush buffered events before the program terminates.
+		// Set the timeout to the maximum duration the program can afford to wait.
+		sentry.Flush(2 * time.Second)
+	}
 }
 
 func handleError(err error) {

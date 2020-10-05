@@ -4,19 +4,16 @@ import (
 	"cloud.google.com/go/pubsub"
 	"context"
 	"encoding/json"
-	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/sue445/primap/server/config"
 	"github.com/sue445/primap/server/db"
 	"github.com/sue445/primap/server/prismdb"
-	"time"
 )
 
 // QueueSaveShop is called from pub/sub subscription
 func QueueSaveShop(ctx context.Context, m *pubsub.Message) error {
-	// Flush buffered events before the program terminates.
-	// Set the timeout to the maximum duration the program can afford to wait.
-	defer sentry.Flush(2 * time.Second)
+	cleanup := initFunction()
+	defer cleanup()
 
 	err := queueSaveShopHandler(ctx, m)
 

@@ -5,13 +5,11 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/sue445/primap/server/config"
 	"github.com/sue445/primap/server/db"
 	"github.com/sue445/primap/server/prismdb"
 	"github.com/sue445/primap/server/util"
-	"time"
 )
 
 const (
@@ -20,9 +18,8 @@ const (
 
 // CronUpdateShops is called from cloud scheduler
 func CronUpdateShops(ctx context.Context, m *pubsub.Message) error {
-	// Flush buffered events before the program terminates.
-	// Set the timeout to the maximum duration the program can afford to wait.
-	defer sentry.Flush(2 * time.Second)
+	cleanup := initFunction()
+	defer cleanup()
 
 	err := getAndPublishShops(ctx, config.GetProjectID())
 

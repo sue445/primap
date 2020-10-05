@@ -54,6 +54,7 @@ jobs:
           npm run deploy
         env:
           SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          SLS_DEBUG: "*"
 
       # - name: docker build
       #   run: docker build -t $GCR_IMAGE_NAME:$GITHUB_SHA -f Dockerfile .

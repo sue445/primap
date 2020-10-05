@@ -13,10 +13,8 @@ on:
       - "LICENSE"
 
 env:
-  GCP_PROJECT:    primap
-  GCR_REGISTRY:   asia.gcr.io
-  GCR_IMAGE_NAME: asia.gcr.io/primap/primap
-  NODE_VERSION:   14
+  GCP_PROJECT:  primap
+  NODE_VERSION: 14
 
 jobs:
   deploy:
@@ -55,9 +53,6 @@ jobs:
           SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           SLS_DEBUG: "*"
 
-      # - name: docker build
-      #   run: docker build -t $GCR_IMAGE_NAME:$GITHUB_SHA -f Dockerfile .
-
       - name: GCP Authenticate
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
@@ -65,27 +60,6 @@ jobs:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           export_default_credentials: true
           project_id: ${{ env.GCP_PROJECT }}
-
-      # - name: push to GCR
-      #   run: |
-      #     gcloud auth configure-docker $GCR_REGISTRY
-      #     docker push $GCR_IMAGE_NAME:$GITHUB_SHA
-
-      # # c.f. https://cloud.google.com/sdk/gcloud/reference/run/deploy
-      # - name: Deploy to Cloud Run
-      #   run: |
-      #     gcloud run deploy app \
-      #       --image $GCR_IMAGE_NAME:$GITHUB_SHA \
-      #       --region asia-northeast1 \
-      #       --platform managed \
-      #       --concurrency 80 \
-      #       --port 8000 \
-      #       --allow-unauthenticated \
-      #       --cpu 1.0 \
-      #       --memory 128Mi \
-      #       --max-instances 3 \
-      #       --set-env-vars GCP_PROJECT=$GCP_PROJECT,SENTRY_ENVIRONMENT=production \
-      #       --service-account cloud-run-manager@primap.iam.gserviceaccount.com
 
       - name: Install firebase
         run: |

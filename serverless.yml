@@ -2,13 +2,21 @@ service: primap
 
 provider:
   name: google
-  runtime: go111
-  project: my-project
+  runtime: go113
+  region: asia-northeast1
+  project: primap
+  stage: production
+  memorySize: 128
+
   # The GCF credentials can be a little tricky to set up. Luckily we've documented this for you here:
   # https://serverless.com/framework/docs/providers/google/guide/credentials/
   #
   # the path to the credentials file needs to be absolute
   credentials: ~/.gcloud/keyfile.json
+
+  environment:
+    GCP_PROJECT: ${self:provider.project}
+    SENTRY_ENVIRONMENT: production
 
 plugins:
   - serverless-google-cloudfunctions
@@ -17,14 +25,39 @@ plugins:
 # package should be excluded (and not the whole node_modules directory)
 package:
   exclude:
+    - .dependabot/**
+    - .github/**
     - .gitignore
     - .git/**
+    - firebase/**
+    - frontend/**
+    - node_modules/**
+    - public/**
+    - .env.example
+    - .firebaserc
+    - Dockerfile*
+    - LICENSE
+    - Makefile
+    - "**/*.md"
+    - "**/*.yml"
+    - "**/*.json"
+    - "**/*.js"
 
 functions:
-  first:
-    handler: http
+  cron_update_shops:
+    handler: CronUpdateShops
     events:
-      - http: path
+      - event:
+          eventType: providers/cloud.pubsub/eventTypes/topic.publish
+          resource: 'projects/${self:provider.project}/topics/sls-cron-topic'
+
+  queue_save_shop:
+    handler: QueueSaveShop
+    events:
+      - event:
+          eventType: providers/cloud.pubsub/eventTypes/topic.publish
+          resource: 'projects/${self:provider.project}/topics/sls-shop-save-topic'
+
   # NOTE: the following uses an "event" event (pubSub event in this case).
   # Please create the corresponding resources in the Google Cloud
   # before deploying this service through Serverless
@@ -34,6 +67,30 @@ functions:
   #    - event:
   #        eventType: providers/cloud.pubsub/eventTypes/topic.publish
   #        resource: projects/*/topics/my-topic
+
+resources:
+  resources:
+    # c.f. https://github.com/serverless/serverless-google-cloudfunctions/issues/174#issuecomment-685430068
+    - type: pubsub.v1.topic
+      name: sls-cron-topic
+      properties:
+        topic: sls-cron-topic
+    - type: gcp-types/cloudscheduler-v1:projects.locations.jobs
+      name: sls-cron-update-shops
+      properties:
+        parent: projects/${self:provider.project}/locations/${self:provider.region} # not described in API spec but required
+        name: sls-cron-update-shops
+        description: "Map daily update scheduler"
+        schedule: "0 22 * * *" # this controls the CRON schedule of your function invocations
+        timeZone: "Asia/Tokyo"
+        pubsubTarget:
+          topicName: projects/${self:provider.project}/topics/sls-cron-topic
+
+    - name: sls-shop-save-topic
+      type: pubsub.v1.topic
+      properties:
+        topic: sls-shop-save-topic
+
 # you can define resources, templates etc. the same way you would in a
 # Google Cloud deployment configuration
 #resources:

@@ -1,4 +1,4 @@
-package main
+package primap
 
 import (
 	"cloud.google.com/go/pubsub"

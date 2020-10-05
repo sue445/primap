@@ -12,10 +12,13 @@ import (
 
 // QueueSaveShop is called from pub/sub subscription
 func QueueSaveShop(ctx context.Context, m *pubsub.Message) error {
-	cleanup := initFunction()
+	cleanup, err := initFunction()
+	if err != nil {
+		return err
+	}
 	defer cleanup()
 
-	err := queueSaveShopHandler(ctx, m)
+	err = queueSaveShopHandler(ctx, m)
 
 	if err != nil {
 		handleError(err)

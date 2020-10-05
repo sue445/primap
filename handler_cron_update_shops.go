@@ -18,10 +18,13 @@ const (
 
 // CronUpdateShops is called from cloud scheduler
 func CronUpdateShops(ctx context.Context, m *pubsub.Message) error {
-	cleanup := initFunction()
+	cleanup, err := initFunction()
+	if err != nil {
+		return err
+	}
 	defer cleanup()
 
-	err := getAndPublishShops(ctx, config.GetProjectID())
+	err = getAndPublishShops(ctx, config.GetProjectID())
 
 	if err != nil {
 		handleError(err)

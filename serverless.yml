@@ -46,6 +46,7 @@ package:
 functions:
   cron_update_shops:
     handler: CronUpdateShops
+    timeout: 540s # NOTE: This is max
     events:
       - event:
           eventType: providers/cloud.pubsub/eventTypes/topic.publish

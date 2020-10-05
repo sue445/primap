@@ -186,6 +186,7 @@ jobs:
           go get -u github.com/tkrajina/typescriptify-golang-structs/tscriptify
 
           make go2ts
+          git checkout HEAD -- go.mod go.sum
           git --no-pager diff
           git status | grep "nothing to commit, working tree clean"
 

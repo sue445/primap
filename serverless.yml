@@ -85,6 +85,8 @@ resources:
         timeZone: "Asia/Tokyo"
         pubsubTarget:
           topicName: projects/${self:provider.project}/topics/sls-cron-topic
+          attributes:
+            name: cron # this is dummy
 
     - name: sls-shop-save-topic
       type: pubsub.v1.topic

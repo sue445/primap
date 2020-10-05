@@ -19,7 +19,6 @@ require (
 	github.com/stretchr/testify v1.6.1
 	github.com/sue445/gcp-secretmanagerenv v0.1.1
 	github.com/tencentyun/scf-go-lib v0.0.0-20200624065115-ba679e2ec9c9
-	github.com/tkrajina/typescriptify-golang-structs v0.0.11 // indirect
 	golang.org/x/sys v0.0.0-20200918174421-af09f7315aff // indirect
 	google.golang.org/api v0.32.0
 	google.golang.org/genproto v0.0.0-20201001141541-efaab9d3c4f7

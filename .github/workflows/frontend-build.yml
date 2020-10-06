@@ -48,7 +48,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: node_modules/
+          path: frontend/node_modules/
           key: frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('frontend/package-lock.json') }}
           restore-keys: |
             frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
@@ -83,7 +83,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: node_modules/
+          path: frontend/node_modules/
           key: frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('frontend/package-lock.json') }}
           restore-keys: |
             frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-

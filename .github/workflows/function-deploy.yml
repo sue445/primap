@@ -36,10 +36,10 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: node_modules/
-          key: v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          path: function/node_modules/
+          key: function-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('function/package-lock.json') }}
           restore-keys: |
-            v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+            function-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
 
       - run: npm install
 

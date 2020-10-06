@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - feature/split_deploy_workflow
     paths-ignore:
       # Ignore files that are not used in production
       - "**.md"

@@ -1,0 +1,16 @@
+{
+  "name": "primap-function",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sue445/primap.git"
+  },
+  "scripts": {
+    "deploy": "serverless deploy -v"
+  },
+  "devDependencies": {
+    "serverless": "^2.4.0",
+    "serverless-google-cloudfunctions": "^3.1.1"
+  }
+}

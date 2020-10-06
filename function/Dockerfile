@@ -20,9 +20,6 @@ WORKDIR /app
 COPY go.* ./
 RUN go mod download
 
-COPY *.go Makefile ./
-COPY server/ server/
+COPY . ./
 
-RUN go build -mod=readonly -o primap
-
-CMD ["firebase", "--project", "test", "emulators:exec", "--only", "firestore,pubsub", "/app/primap"]
+CMD ["firebase", "--project", "test", "emulators:exec", "--only", "firestore,pubsub", "make test"]

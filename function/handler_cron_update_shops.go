@@ -6,10 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/pkg/errors"
-	"github.com/sue445/primap/server/config"
-	"github.com/sue445/primap/server/db"
-	"github.com/sue445/primap/server/prismdb"
-	"github.com/sue445/primap/server/util"
+	"github.com/sue445/primap/config"
+	"github.com/sue445/primap/db"
+	"github.com/sue445/primap/prismdb"
+	"github.com/sue445/primap/util"
 )
 
 const (

@@ -1,4 +1,4 @@
-name: build-frontend
+name: frontend-build
 
 on:
   push:
@@ -8,15 +8,10 @@ on:
       # Ignore files that are not used in production
       - "**.md"
       - ".github/workflows/go-mod-tidy-pr.yml"
-      - ".env.example"
-      - "docker-compose.yml"
-      - "Dockerfile-dev-*"
       - "LICENSE"
 
-      # Ignore files used only by the server
-      - "*.go"
-      - "go.*"
-      - "server/**"
+      # Ignore files used only by the function
+      - "function/**"
   pull_request:
     types:
       - opened
@@ -26,18 +21,17 @@ on:
       # Ignore files that are not used in production
       - "**.md"
       - ".github/workflows/go-mod-tidy-pr.yml"
-      - ".env.example"
-      - "docker-compose.yml"
-      - "Dockerfile-dev-*"
       - "LICENSE"
 
-      # Ignore files used only by the server
-      - "*.go"
-      - "go.*"
-      - "server/**"
+      # Ignore files used only by the function
+      - "function/**"
 
 env:
   NODE_VERSION: 14
+
+defaults:
+  run:
+    working-directory: frontend
 
 jobs:
   webpack:
@@ -54,10 +48,10 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: node_modules/
-          key: v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          path: frontend/node_modules/
+          key: frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('frontend/package-lock.json') }}
           restore-keys: |
-            v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+            frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
 
       - run: npm install
       - run: npm run build
@@ -89,10 +83,10 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: node_modules/
-          key: v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          path: frontend/node_modules/
+          key: frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('frontend/package-lock.json') }}
           restore-keys: |
-            v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+            frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
 
       - run: npm install
       - run: npm run prettier:check

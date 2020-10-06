@@ -1,4 +1,4 @@
-name: deploy-server
+name: function-deploy
 
 on:
   push:
@@ -8,21 +8,17 @@ on:
       # Ignore files that are not used in production
       - "**.md"
       - ".github/workflows/go-mod-tidy-pr.yml"
-      - ".env.example"
-      - "docker-compose.yml"
-      - "Dockerfile-dev-*"
       - "LICENSE"
 
       # Ignore files used only by the frontend
-      - "firebase/**"
       - "frontend/**"
-      - "package**.json"
-      - "prettier.config.js"
-      - "tsconfig.json"
-      - "webpack.config.js"
 
 env:
   NODE_VERSION: 14
+
+defaults:
+  run:
+    working-directory: function
 
 jobs:
   deploy:
@@ -39,10 +35,10 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: node_modules/
-          key: v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          path: function/node_modules/
+          key: function-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('function/package-lock.json') }}
           restore-keys: |
-            v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+            function-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
 
       - run: npm install
 

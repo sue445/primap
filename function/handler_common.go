@@ -5,7 +5,7 @@ import (
 	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/sue445/gcp-secretmanagerenv"
-	"github.com/sue445/primap/server/config"
+	"github.com/sue445/primap/config"
 	"log"
 	"os"
 	"time"

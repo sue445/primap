@@ -25,23 +25,12 @@ plugins:
 # package should be excluded (and not the whole node_modules directory)
 package:
   exclude:
-    - .dependabot/**
-    - .github/**
-    - .gitignore
-    - .git/**
-    - firebase/**
-    - frontend/**
     - node_modules/**
-    - public/**
-    - .env.example
-    - .firebaserc
-    - Dockerfile*
-    - LICENSE
+    - .gitignore
+    - Dockerfile
     - Makefile
-    - "**/*.md"
-    - "**/*.yml"
-    - "**/*.json"
-    - "**/*.js"
+    - package*.json
+    - serverless.yml
 
 functions:
   cron_update_shops:

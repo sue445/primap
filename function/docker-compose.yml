@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - gopath-data:/go
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: 8000
+      SENTRY_DSN: ${SENTRY_DSN}
+      SENTRY_ENVIRONMENT: development
+      SENTRY_DEBUG: "true"
+      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY}
+
+volumes:
+  gopath-data:
+    driver: local

@@ -39,5 +39,7 @@ test_all: test testrace fmt lint vet
 
 .PHONY: go2ts
 go2ts:
-	tscriptify -package=github.com/sue445/primap/server/db -target=frontend/app/components/ShopEntity.ts ShopEntity
+	tscriptify -package=github.com/sue445/primap/db -target=../frontend/app/components/ShopEntity.ts ShopEntity
+	pushd ../function/
 	npm run prettier:write
+	popd

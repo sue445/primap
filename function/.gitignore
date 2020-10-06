@@ -16,3 +16,4 @@
 
 *.log
 bin/
+node_modules/

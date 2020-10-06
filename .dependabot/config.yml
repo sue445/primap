@@ -4,7 +4,7 @@ version: 1
 update_configs:
   - package_manager: "go:modules"
 
-    directory: "/"
+    directory: "/function/"
 
     update_schedule: "daily"
 
@@ -23,7 +23,26 @@ update_configs:
 
   - package_manager: "javascript"
 
-    directory: "/"
+    directory: "/function/"
+
+    update_schedule: "daily"
+
+    automerged_updates:
+      - match:
+          dependency_type: "development"
+          update_type: "all"
+      - match:
+          dependency_type: "production"
+          update_type: "semver:patch"
+
+    default_assignees:
+      - sue445
+
+    version_requirement_updates: "auto"
+
+  - package_manager: "javascript"
+
+    directory: "/frontend/"
 
     update_schedule: "daily"
 

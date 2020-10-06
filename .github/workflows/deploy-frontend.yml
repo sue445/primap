@@ -24,7 +24,7 @@ env:
 
 jobs:
   deploy:
-    name: deploy
+    name: firebase
 
     runs-on: ubuntu-latest
 
@@ -71,7 +71,7 @@ jobs:
         if: always()
         continue-on-error: true
         with:
-          job_name: '*deploy*'
+          job_name: '*firebase*'
           type: ${{ job.status }}
           icon_emoji: ":octocat:"
           url: ${{ secrets.SLACK_WEBHOOK }}

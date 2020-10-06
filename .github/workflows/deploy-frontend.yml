@@ -1,4 +1,4 @@
-name: deploy-server
+name: deploy-frontend
 
 on:
   push:
@@ -12,15 +12,13 @@ on:
       - "Dockerfile-dev-*"
       - "LICENSE"
 
-      # Ignore files used only by the frontend
-      - "firebase/**"
-      - "frontend/**"
-      - "package**.json"
-      - "prettier.config.js"
-      - "tsconfig.json"
-      - "webpack.config.js"
+      # Ignore files used only by the server
+      - "*.go"
+      - "go.*"
+      - "server/**"
 
 env:
+  GCP_PROJECT:  primap
   NODE_VERSION: 14
 
 jobs:
@@ -45,14 +43,27 @@ jobs:
 
       - run: npm install
 
-      - name: serverless deploy
-        run: |
-          mkdir -p ~/.gcloud/
-          echo "$SERVICE_ACCOUNT_KEY" > ~/.gcloud/keyfile.json
-          npm run deploy
+      - run: npm run build
         env:
-          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-          SLS_DEBUG: "*"
+          NODE_ENV: production
+          REACT_APP_GOOGLE_BROWSER_API_KEY: ${{ secrets.REACT_APP_GOOGLE_BROWSER_API_KEY }}
+          REACT_APP_SENTRY_DSN: ${{ secrets.REACT_APP_SENTRY_DSN }}
+
+      - name: GCP Authenticate
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: latest
+          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          export_default_credentials: true
+          project_id: ${{ env.GCP_PROJECT }}
+
+      - name: Install firebase
+        run: |
+          set -xe
+          sudo wget https://firebase.tools/bin/linux/latest -O /usr/local/bin/firebase
+          sudo chmod 755 /usr/local/bin/firebase
+
+      - run: firebase deploy
 
       - name: Slack Notification
         uses: homoluctus/slatify@master

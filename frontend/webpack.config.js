@@ -4,13 +4,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './frontend/app/app.tsx',
+  entry: './app/app.tsx',
   plugins: [
     new CleanWebpackPlugin({
       cleanAfterEveryBuildPatterns: ['public/build']
     }),
     new HtmlWebpackPlugin({
-      template: 'frontend/templates/index.html'
+      template: 'templates/index.html'
     }),
     new webpack.EnvironmentPlugin([
       'NODE_ENV',

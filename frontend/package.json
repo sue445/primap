@@ -15,7 +15,7 @@
     "prettier:base": "prettier --config prettier.config.js",
     "prettier:check": "npm run prettier:base -- --list-different \"frontend/**/*.{ts,tsx}\"",
     "prettier:write": "npm run prettier:base -- --write \"frontend/**/*.{ts,tsx}\"",
-    "deploy": "serverless deploy -v"
+    "deploy": "../node_modules/.bin/serverless deploy -v"
   },
   "devDependencies": {
     "@types/googlemaps": "^3.39.13",

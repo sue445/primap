@@ -1,4 +1,4 @@
-package primap
+package server
 
 import (
 	"context"

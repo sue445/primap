@@ -3,7 +3,7 @@ version: "3.8"
 services:
   server:
     build:
-      context: .
+      context: ..
       dockerfile: Dockerfile-dev-server
     volumes:
       - gopath-data:/go
@@ -18,8 +18,8 @@ services:
 
   frontend:
     build:
-      context: .
-      dockerfile: Dockerfile-dev-frontend
+      context: ..
+      dockerfile: ../Dockerfile-dev-frontend
     volumes:
       - ./tsconfig.json:/app/tsconfig.json
       - ./webpack.config.js:/app/webpack.config.js

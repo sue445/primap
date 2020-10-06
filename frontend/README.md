@@ -18,3 +18,5 @@ vi .env
 ```bash
 npm start
 ```
+
+open http://localhost:8080

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - feature/move_dir
     paths-ignore:
       # Ignore files that are not used in production
       - "**.md"

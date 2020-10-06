@@ -1,4 +1,4 @@
-name: deploy-function
+name: function-deploy
 
 on:
   push:
@@ -8,21 +8,17 @@ on:
       # Ignore files that are not used in production
       - "**.md"
       - ".github/workflows/go-mod-tidy-pr.yml"
-      - ".env.example"
-      - "docker-compose.yml"
-      - "Dockerfile-dev-*"
       - "LICENSE"
 
       # Ignore files used only by the frontend
-      - "firebase/**"
       - "frontend/**"
-      - "package**.json"
-      - "prettier.config.js"
-      - "tsconfig.json"
-      - "webpack.config.js"
 
 env:
   NODE_VERSION: 14
+
+defaults:
+  run:
+    working-directory: function
 
 jobs:
   deploy:

@@ -1,4 +1,4 @@
-name: build-function
+name: function-build
 
 on:
   push:
@@ -8,18 +8,10 @@ on:
       # Ignore files that are not used in production
       - "**.md"
       - ".github/workflows/go-mod-tidy-pr.yml"
-      - ".env.example"
-      - "docker-compose.yml"
-      - "Dockerfile-dev-*"
       - "LICENSE"
 
       # Ignore files used only by the frontend
-      - "firebase/**"
       - "frontend/**"
-      - "package**.json"
-      - "prettier.config.js"
-      - "tsconfig.json"
-      - "webpack.config.js"
   pull_request:
     types:
       - opened
@@ -29,24 +21,20 @@ on:
       # Ignore files that are not used in production
       - "**.md"
       - ".github/workflows/go-mod-tidy-pr.yml"
-      - ".env.example"
-      - "docker-compose.yml"
-      - "Dockerfile-dev-*"
       - "LICENSE"
 
       # Ignore files used only by the frontend
-      - "firebase/**"
       - "frontend/**"
-      - "package**.json"
-      - "prettier.config.js"
-      - "tsconfig.json"
-      - "webpack.config.js"
 
 env:
   GO_VERSION: 1.13
   GO111MODULE: "on"
   TEST_ARGS: -coverprofile coverage.out -covermode atomic
   NODE_VERSION: 14
+
+defaults:
+  run:
+    working-directory: function
 
 jobs:
   test:
@@ -61,15 +49,14 @@ jobs:
           go-version: ${{ env.GO_VERSION }}
         id: go
 
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - uses: actions/cache@v1
         with:
           path: ~/go/pkg/mod
-          key: v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('**/go.sum') }}
+          key: function-v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('function/go.sum') }}
           restore-keys: |
-            v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-
+            function-v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-
 
       - name: Install firebase emulator
         run: |
@@ -110,15 +97,14 @@ jobs:
           go-version: ${{ env.GO_VERSION }}
         id: go
 
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - uses: actions/cache@v1
         with:
           path: ~/go/pkg/mod
-          key: v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('**/go.sum') }}
+          key: function-v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('function/go.sum') }}
           restore-keys: |
-            v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-
+            function-v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-
 
       - name: Run lint
         run: |
@@ -155,15 +141,14 @@ jobs:
           go-version: ${{ env.GO_VERSION }}
         id: go
 
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - uses: actions/cache@v1
         with:
           path: ~/go/pkg/mod
-          key: v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('**/go.sum') }}
+          key: function-v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('function/go.sum') }}
           restore-keys: |
-            v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-
+            function-v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-
 
       - uses: actions/setup-node@v1
         with:
@@ -172,11 +157,12 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: node_modules/
-          key: v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          key: frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('frontend/package-lock.json') }}
           restore-keys: |
-            v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+            frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
 
       - run: npm install
+        working-directory: frontend
 
       - name: "[NOTE] Run `make go2ts` if this is failed"
         run: |

@@ -29,6 +29,7 @@ jobs:
           assign: sue445
           labels: go-mod-tidy
           timezone: Asia/Tokyo
+          go_mod_directory: function/
 
       - name: Slack Notification
         uses: homoluctus/slatify@master

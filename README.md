@@ -1,7 +1,8 @@
 # primap
 [![Build Status](https://github.com/sue445/primap/workflows/build-server/badge.svg?branch=master)](https://github.com/sue445/primap/actions?query=workflow%3Abuild-server)
 [![Build Status](https://github.com/sue445/primap/workflows/build-frontend/badge.svg?branch=master)](https://github.com/sue445/primap/actions?query=workflow%3Abuild-frontend)
-[![Build Status](https://github.com/sue445/primap/workflows/deploy/badge.svg?branch=master)](https://github.com/sue445/primap/actions?query=workflow%3Adeploy)
+[![Build Status](https://github.com/sue445/primap/workflows/deploy-server/badge.svg?branch=master)](https://github.com/sue445/primap/actions?query=workflow%3Adeploy-server)
+[![Build Status](https://github.com/sue445/primap/workflows/deploy-frontend/badge.svg?branch=master)](https://github.com/sue445/primap/actions?query=workflow%3Adeploy-frontend)
 
 ## Develop
 ### Requirement API keys

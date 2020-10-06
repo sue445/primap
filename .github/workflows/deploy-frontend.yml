@@ -1,4 +1,4 @@
-name: deploy
+name: deploy-frontend
 
 on:
   push:
@@ -12,19 +12,23 @@ on:
       - "Dockerfile-dev-*"
       - "LICENSE"
 
+      # Ignore files used only by the server
+      - "*.go"
+      - "go.*"
+      - "server/**"
+
 env:
   GCP_PROJECT:  primap
   NODE_VERSION: 14
 
 jobs:
   deploy:
-    name: deploy
+    name: firebase
 
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - uses: actions/setup-node@v1
         with:
@@ -38,20 +42,12 @@ jobs:
             v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
 
       - run: npm install
+
       - run: npm run build
         env:
           NODE_ENV: production
           REACT_APP_GOOGLE_BROWSER_API_KEY: ${{ secrets.REACT_APP_GOOGLE_BROWSER_API_KEY }}
           REACT_APP_SENTRY_DSN: ${{ secrets.REACT_APP_SENTRY_DSN }}
-
-      - name: serverless deploy
-        run: |
-          mkdir -p ~/.gcloud/
-          echo "$SERVICE_ACCOUNT_KEY" > ~/.gcloud/keyfile.json
-          npm run deploy
-        env:
-          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-          SLS_DEBUG: "*"
 
       - name: GCP Authenticate
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
@@ -74,7 +70,7 @@ jobs:
         if: always()
         continue-on-error: true
         with:
-          job_name: '*deploy*'
+          job_name: '*firebase*'
           type: ${{ job.status }}
           icon_emoji: ":octocat:"
           url: ${{ secrets.SLACK_WEBHOOK }}

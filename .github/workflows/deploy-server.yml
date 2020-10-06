@@ -1,0 +1,66 @@
+name: deploy-server
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      # Ignore files that are not used in production
+      - "**.md"
+      - ".env.example"
+      - "docker-compose.yml"
+      - "Dockerfile-dev-*"
+      - "LICENSE"
+
+      # Ignore files used only by the frontend
+      - "firebase/**"
+      - "frontend/**"
+      - "package**.json"
+      - "prettier.config.js"
+      - "tsconfig.json"
+      - "webpack.config.js"
+
+env:
+  NODE_VERSION: 14
+
+jobs:
+  deploy:
+    name: serverless
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/cache@v2
+        with:
+          path: node_modules/
+          key: v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+
+      - run: npm install
+
+      - name: serverless deploy
+        run: |
+          mkdir -p ~/.gcloud/
+          echo "$SERVICE_ACCOUNT_KEY" > ~/.gcloud/keyfile.json
+          npm run deploy
+        env:
+          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          SLS_DEBUG: "*"
+
+      - name: Slack Notification
+        uses: homoluctus/slatify@master
+        if: always()
+        continue-on-error: true
+        with:
+          job_name: '*serverless*'
+          type: ${{ job.status }}
+          icon_emoji: ":octocat:"
+          url: ${{ secrets.SLACK_WEBHOOK }}
+          token: ${{ secrets.GITHUB_TOKEN }}

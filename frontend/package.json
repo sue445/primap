@@ -13,8 +13,8 @@
     "start": "webpack-dev-server -r dotenv/config -d --content-base ./public",
     "start:docker": "webpack-dev-server -d --content-base ./public --host 0.0.0.0 --port 8080",
     "prettier:base": "prettier --config prettier.config.js",
-    "prettier:check": "npm run prettier:base -- --list-different \"frontend/**/*.{ts,tsx}\"",
-    "prettier:write": "npm run prettier:base -- --write \"frontend/**/*.{ts,tsx}\""
+    "prettier:check": "npm run prettier:base -- --list-different \"**/*.{ts,tsx}\"",
+    "prettier:write": "npm run prettier:base -- --write \"**/*.{ts,tsx}\""
   },
   "devDependencies": {
     "@types/googlemaps": "^3.39.13",

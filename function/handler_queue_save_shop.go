@@ -1,13 +1,13 @@
-package server
+package primap
 
 import (
 	"cloud.google.com/go/pubsub"
 	"context"
 	"encoding/json"
 	"github.com/pkg/errors"
-	"github.com/sue445/primap/server/config"
-	"github.com/sue445/primap/server/db"
-	"github.com/sue445/primap/server/prismdb"
+	"github.com/sue445/primap/config"
+	"github.com/sue445/primap/db"
+	"github.com/sue445/primap/prismdb"
 )
 
 // QueueSaveShop is called from pub/sub subscription

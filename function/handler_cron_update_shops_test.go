@@ -1,11 +1,11 @@
-package server
+package primap
 
 import (
 	"cloud.google.com/go/pubsub"
 	"context"
 	"github.com/stretchr/testify/assert"
-	"github.com/sue445/primap/server/prismdb"
-	"github.com/sue445/primap/server/testutil"
+	"github.com/sue445/primap/prismdb"
+	"github.com/sue445/primap/testutil"
 	"testing"
 
 	"cloud.google.com/go/pubsub/pstest"

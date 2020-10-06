@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/mmcloughlin/geohash"
 	"github.com/pkg/errors"
-	"github.com/sue445/primap/server/config"
+	"github.com/sue445/primap/config"
 	"google.golang.org/genproto/googleapis/type/latlng"
 	"googlemaps.github.io/maps"
 	"log"

@@ -3,7 +3,7 @@ package prismdb
 import (
 	"github.com/jarcoal/httpmock"
 	"github.com/stretchr/testify/assert"
-	"github.com/sue445/primap/server/testutil"
+	"github.com/sue445/primap/testutil"
 	"testing"
 )
 

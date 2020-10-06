@@ -4,7 +4,7 @@ services:
   server:
     build:
       context: ..
-      dockerfile: Dockerfile-dev-server
+      dockerfile: Dockerfile-dev-function
     volumes:
       - gopath-data:/go
     ports:

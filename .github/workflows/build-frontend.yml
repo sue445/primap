@@ -13,10 +13,10 @@ on:
       - "Dockerfile-dev-*"
       - "LICENSE"
 
-      # Ignore files used only by the server
+      # Ignore files used only by the function
       - "*.go"
       - "go.*"
-      - "server/**"
+      - "function/**"
   pull_request:
     types:
       - opened
@@ -31,10 +31,10 @@ on:
       - "Dockerfile-dev-*"
       - "LICENSE"
 
-      # Ignore files used only by the server
+      # Ignore files used only by the function
       - "*.go"
       - "go.*"
-      - "server/**"
+      - "function/**"
 
 env:
   NODE_VERSION: 14

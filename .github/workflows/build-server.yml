@@ -1,4 +1,4 @@
-name: build-server
+name: build-function
 
 on:
   push:
@@ -217,7 +217,7 @@ jobs:
         if: always()
         continue-on-error: true
         with:
-          job_name: '*build-server*'
+          job_name: '*build-function*'
           type: ${{ job.status }}
           icon_emoji: ":octocat:"
           url: ${{ secrets.SLACK_WEBHOOK }}

@@ -12,17 +12,17 @@ import (
 // ShopDao represents a shop DAO for Firestore
 type ShopDao struct {
 	projectID string
+	ctx       context.Context
 }
 
 // NewShopDao create a ShopDao instance
-func NewShopDao(projectID string) *ShopDao {
-	return &ShopDao{projectID: projectID}
+func NewShopDao(ctx context.Context, projectID string) *ShopDao {
+	return &ShopDao{ctx: ctx, projectID: projectID}
 }
 
 // SaveShop save shop to Firestore
 func (d *ShopDao) SaveShop(shop *ShopEntity) error {
-	ctx := context.Background()
-	client, err := firestore.NewClient(ctx, d.projectID)
+	client, err := firestore.NewClient(d.ctx, d.projectID)
 
 	if err != nil {
 		return errors.WithStack(err)
@@ -33,7 +33,7 @@ func (d *ShopDao) SaveShop(shop *ShopEntity) error {
 	shop.UpdatedAt = time.Now()
 
 	docRef := client.Collection(shopCollectionName).Doc(shop.Name)
-	_, err = docRef.Set(ctx, shop)
+	_, err = docRef.Set(d.ctx, shop)
 
 	if err != nil {
 		return errors.WithStack(err)
@@ -44,8 +44,7 @@ func (d *ShopDao) SaveShop(shop *ShopEntity) error {
 
 // LoadShop returns shop Firestore
 func (d *ShopDao) LoadShop(name string) (*ShopEntity, error) {
-	ctx := context.Background()
-	client, err := firestore.NewClient(ctx, d.projectID)
+	client, err := firestore.NewClient(d.ctx, d.projectID)
 
 	if err != nil {
 		return nil, errors.WithStack(err)
@@ -53,7 +52,7 @@ func (d *ShopDao) LoadShop(name string) (*ShopEntity, error) {
 
 	defer client.Close()
 
-	docsnap, err := client.Collection(shopCollectionName).Doc(name).Get(ctx)
+	docsnap, err := client.Collection(shopCollectionName).Doc(name).Get(d.ctx)
 
 	if err != nil {
 		if docsnap != nil {
@@ -94,8 +93,7 @@ func (d *ShopDao) LoadOrCreateShop(name string) (*ShopEntity, error) {
 
 // GetAllIDs returns all shop ids
 func (d *ShopDao) GetAllIDs() ([]string, error) {
-	ctx := context.Background()
-	client, err := firestore.NewClient(ctx, d.projectID)
+	client, err := firestore.NewClient(d.ctx, d.projectID)
 
 	if err != nil {
 		return nil, errors.WithStack(err)
@@ -103,7 +101,7 @@ func (d *ShopDao) GetAllIDs() ([]string, error) {
 
 	defer client.Close()
 
-	itr := client.Collection(shopCollectionName).Where("deleted", "==", false).Documents(ctx)
+	itr := client.Collection(shopCollectionName).Where("deleted", "==", false).Documents(d.ctx)
 	defer itr.Stop()
 
 	var ids []string

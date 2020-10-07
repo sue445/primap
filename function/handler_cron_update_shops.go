@@ -18,7 +18,7 @@ const (
 
 // CronUpdateShops is called from cloud scheduler
 func CronUpdateShops(ctx context.Context, m *pubsub.Message) error {
-	cleanup, err := initFunction()
+	cleanup, err := initFunction(ctx)
 	if err != nil {
 		return err
 	}
@@ -59,7 +59,7 @@ func getAndPublishShops(ctx context.Context, projectID string) error {
 
 	fmt.Printf("[INFO][getAndPublishShops] Published shops=%d\n", len(shops))
 
-	err = deleteRemovedShops(projectID, shops)
+	err = deleteRemovedShops(ctx, projectID, shops)
 	if err != nil {
 		return errors.WithStack(err)
 	}
@@ -84,13 +84,13 @@ func publishShop(ctx context.Context, client *pubsub.Client, shop *prismdb.Shop)
 	return nil
 }
 
-func deleteRemovedShops(projectID string, newShops []*prismdb.Shop) error {
+func deleteRemovedShops(ctx context.Context, projectID string, newShops []*prismdb.Shop) error {
 	var newShopNames []string
 	for _, shop := range newShops {
 		newShopNames = append(newShopNames, shop.Name)
 	}
 
-	dao := db.NewShopDao(projectID)
+	dao := db.NewShopDao(ctx, projectID)
 	dbShopNames, err := dao.GetAllIDs()
 	if err != nil {
 		return errors.WithStack(err)

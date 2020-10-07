@@ -12,7 +12,7 @@ import (
 
 // QueueSaveShop is called from pub/sub subscription
 func QueueSaveShop(ctx context.Context, m *pubsub.Message) error {
-	cleanup, err := initFunction()
+	cleanup, err := initFunction(ctx)
 	if err != nil {
 		return err
 	}
@@ -40,7 +40,7 @@ func queueSaveShopHandler(ctx context.Context, m *pubsub.Message) error {
 }
 
 func saveShop(ctx context.Context, projectID string, shop *prismdb.Shop) error {
-	dao := db.NewShopDao(projectID)
+	dao := db.NewShopDao(ctx, projectID)
 
 	entity, err := dao.LoadOrCreateShop(shop.Name)
 	if err != nil {

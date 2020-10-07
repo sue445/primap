@@ -17,8 +17,6 @@ const firebaseConfig = {
   authDomain: "primap.firebaseapp.com",
   databaseURL: "https://primap.firebaseio.com",
   projectId: "primap",
-  storageBucket: "primap.appspot.com",
-  messagingSenderId: "659376400894",
   appId: "1:659376400894:web:46a6da52d40c6983c238af",
   measurementId: "G-W2NTFNL7QE",
 };

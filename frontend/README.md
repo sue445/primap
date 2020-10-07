@@ -12,6 +12,8 @@ Register followings from https://console.cloud.google.com/apis/credentials
 ```bash
 cp .env.examle .env
 vi .env
+
+npm install
 ```
 
 ### Run server

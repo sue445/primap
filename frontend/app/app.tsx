@@ -3,6 +3,7 @@ import * as firebase from "firebase/app";
 
 // Add the Firebase products that you want to use
 import "firebase/firestore";
+import "firebase/analytics";
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -21,6 +22,11 @@ const firebaseConfig = {
   measurementId: "G-W2NTFNL7QE",
 };
 firebase.initializeApp(firebaseConfig);
+
+if (process.env.NODE_ENV == "production") {
+  firebase.analytics();
+}
+
 const geo = geofirex.init(firebase);
 
 Sentry.init({

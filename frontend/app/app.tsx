@@ -13,6 +13,8 @@ import * as geofirex from "geofirex";
 
 import MapContainer from "./components/MapContainer";
 
+require("./css/app.css");
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_GOOGLE_BROWSER_API_KEY,
   authDomain: "primap.firebaseapp.com",

@@ -26,7 +26,7 @@ func Test_saveShop(t *testing.T) {
 		return
 	}
 
-	dao := db.NewShopDao(projectID)
+	dao := db.NewShopDao(ctx, projectID)
 	got, err := dao.LoadShop("ＭＥＧＡドン・キホーテＵＮＹ名張")
 
 	if assert.NoError(t, err) {
@@ -51,8 +51,9 @@ func Test_saveShop_DeletedShipWillReborn(t *testing.T) {
 	}
 
 	projectID := testutil.TestProjectID()
+	ctx := context.Background()
 
-	dao := db.NewShopDao(projectID)
+	dao := db.NewShopDao(ctx, projectID)
 	err := dao.SaveShop(
 		&db.ShopEntity{
 			Name:      "ＭＥＧＡドン・キホーテＵＮＹ名張",
@@ -64,7 +65,6 @@ func Test_saveShop_DeletedShipWillReborn(t *testing.T) {
 		return
 	}
 
-	ctx := context.Background()
 	err = saveShop(ctx, projectID, shop)
 
 	if !assert.NoError(t, err) {

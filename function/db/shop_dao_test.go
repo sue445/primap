@@ -1,6 +1,7 @@
 package db
 
 import (
+	"context"
 	"github.com/stretchr/testify/assert"
 	"github.com/sue445/primap/testutil"
 	"google.golang.org/genproto/googleapis/type/latlng"
@@ -19,7 +20,8 @@ func TestShopDao_SaveShop_And_LoadShop(t *testing.T) {
 	}
 
 	projectID := testutil.TestProjectID()
-	dao := NewShopDao(projectID)
+	ctx := context.Background()
+	dao := NewShopDao(ctx, projectID)
 	err := dao.SaveShop(shop)
 
 	if !assert.NoError(t, err) {
@@ -47,7 +49,8 @@ func TestShopDao_SaveShop_And_LoadShop(t *testing.T) {
 
 func TestShopDao_LoadShop(t *testing.T) {
 	projectID := testutil.TestProjectID()
-	dao := NewShopDao(projectID)
+	ctx := context.Background()
+	dao := NewShopDao(ctx, projectID)
 
 	got, err := dao.LoadShop("UNKNOWN")
 
@@ -58,7 +61,8 @@ func TestShopDao_LoadShop(t *testing.T) {
 
 func TestShopDao_LoadOrCreateShop(t *testing.T) {
 	projectID := testutil.TestProjectID()
-	dao := NewShopDao(projectID)
+	ctx := context.Background()
+	dao := NewShopDao(ctx, projectID)
 
 	got, err := dao.LoadOrCreateShop("UNKNOWN")
 
@@ -77,7 +81,8 @@ func TestShopDao_LoadOrCreateShop(t *testing.T) {
 
 func TestShopDao_GetAllIDs(t *testing.T) {
 	projectID := testutil.TestProjectID()
-	dao := NewShopDao(projectID)
+	ctx := context.Background()
+	dao := NewShopDao(ctx, projectID)
 
 	shops := []*ShopEntity{
 		{Name: "foo", Deleted: false},
@@ -102,7 +107,8 @@ func TestShopDao_GetAllIDs(t *testing.T) {
 
 func TestShopDao_DeleteShop(t *testing.T) {
 	projectID := testutil.TestProjectID()
-	dao := NewShopDao(projectID)
+	ctx := context.Background()
+	dao := NewShopDao(ctx, projectID)
 
 	shop := &ShopEntity{
 		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",

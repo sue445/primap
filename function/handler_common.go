@@ -14,11 +14,11 @@ import (
 // Cleanup should call with defer
 type Cleanup func()
 
-func initFunction() (Cleanup, error) {
+func initFunction(ctx context.Context) (Cleanup, error) {
 	projectID := os.Getenv("GCP_PROJECT")
 
 	sentryDebug := os.Getenv("SENTRY_DEBUG") != ""
-	secretmanager, err := secretmanagerenv.NewClient(context.Background(), projectID)
+	secretmanager, err := secretmanagerenv.NewClient(ctx, projectID)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}

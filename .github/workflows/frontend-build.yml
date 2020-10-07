@@ -7,6 +7,7 @@ on:
     paths-ignore:
       # Ignore files that are not used in production
       - "**.md"
+      - ".dependabot/config.yml"
       - ".github/workflows/go-mod-tidy-pr.yml"
       - "LICENSE"
 

@@ -38,7 +38,7 @@ Sentry.init({
 
 const App: React.FC<{}> = (props) => {
   return (
-    <div>
+    <Sentry.ErrorBoundary fallback={"An error has occurred"}>
       <MapContainer
         // @ts-ignore
         latitude={35.689846}
@@ -46,7 +46,7 @@ const App: React.FC<{}> = (props) => {
         zoom={15}
         geo={geo}
       />
-    </div>
+    </Sentry.ErrorBoundary>
   );
 };
 

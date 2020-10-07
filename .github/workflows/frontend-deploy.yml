@@ -13,6 +13,7 @@ on:
 
       # Ignore files used only by the function
       - "function/**"
+      - ".github/workflows/function-*.yml"
 
 env:
   GCP_PROJECT:  primap

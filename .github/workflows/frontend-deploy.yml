@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - tweak_sentry
     paths-ignore:
       # Ignore files that are not used in production
       - "**.md"

@@ -18,6 +18,7 @@ module.exports = {
       'NODE_ENV',
       'REACT_APP_GOOGLE_BROWSER_API_KEY',
       'REACT_APP_SENTRY_DSN',
+      'REACT_APP_SENTRY_RELEASE',
     ]),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output

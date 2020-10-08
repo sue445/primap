@@ -37,6 +37,7 @@ func initFunction(ctx context.Context) (Cleanup, error) {
 		Dsn:              sentryDsn,
 		AttachStacktrace: true,
 		Debug:            sentryDebug,
+		Release:          os.Getenv("SENTRY_RELEASE"),
 	})
 	if err != nil {
 		return nil, errors.WithStack(err)

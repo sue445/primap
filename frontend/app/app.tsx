@@ -34,6 +34,7 @@ const geo = geofirex.init(firebase);
 Sentry.init({
   dsn: process.env.REACT_APP_SENTRY_DSN,
   environment: process.env.NODE_ENV,
+  release: process.env.REACT_APP_SENTRY_RELEASE,
   integrations: [new Integrations.BrowserTracing()],
   tracesSampleRate: 1.0,
 });

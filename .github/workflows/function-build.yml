@@ -78,7 +78,7 @@ jobs:
           GCP_PROJECT: test
 
       - name: Slack Notification (not success)
-        uses: homoluctus/slatify@master
+        uses: lazy-actions/slatify@master
         if: "! success()"
         continue-on-error: true
         with:
@@ -122,7 +122,7 @@ jobs:
           make lint
 
       - name: Slack Notification (not success)
-        uses: homoluctus/slatify@master
+        uses: lazy-actions/slatify@master
         if: "! success()"
         continue-on-error: true
         with:
@@ -182,7 +182,7 @@ jobs:
           git status | grep "nothing to commit, working tree clean"
 
       - name: Slack Notification (not success)
-        uses: homoluctus/slatify@master
+        uses: lazy-actions/slatify@master
         if: "! success()"
         continue-on-error: true
         with:
@@ -202,7 +202,7 @@ jobs:
 
     steps:
       - name: Slack Notification (success)
-        uses: homoluctus/slatify@master
+        uses: lazy-actions/slatify@master
         if: always()
         continue-on-error: true
         with:

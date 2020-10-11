@@ -30,6 +30,7 @@ func initFunction(ctx context.Context) (Cleanup, error) {
 
 	err = sentry.Init(sentry.ClientOptions{
 		Dsn:              sentryDsn,
+		Environment:      os.Getenv("SENTRY_ENVIRONMENT"),
 		AttachStacktrace: true,
 		Debug:            sentryDebug,
 		Release:          os.Getenv("SENTRY_RELEASE"),

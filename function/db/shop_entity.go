@@ -38,7 +38,7 @@ type ShopEntity struct {
 func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address string) error {
 	sanitizedAddress := sanitizeAddress(address)
 
-	if e.SanitizedAddress == sanitizedAddress && e.Geography != nil {
+	if e.Address == address && e.SanitizedAddress == sanitizedAddress && e.Geography != nil {
 		return nil
 	}
 

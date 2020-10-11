@@ -4,33 +4,55 @@ export class LatLng {
   latitude?: number;
   longitude?: number;
 
-  static createFrom(source: any) {
+  static createFrom(source: any = {}) {
+    return new LatLng(source);
+  }
+
+  constructor(source: any = {}) {
     if ("string" === typeof source) source = JSON.parse(source);
-    const result = new LatLng();
-    result.latitude = source["latitude"];
-    result.longitude = source["longitude"];
-    return result;
+    this.latitude = source["latitude"];
+    this.longitude = source["longitude"];
   }
 }
 export class Geography {
   geohash: string;
-  geopoint: LatLng;
+  geopoint?: LatLng;
 
-  static createFrom(source: any) {
+  static createFrom(source: any = {}) {
+    return new Geography(source);
+  }
+
+  constructor(source: any = {}) {
     if ("string" === typeof source) source = JSON.parse(source);
-    const result = new Geography();
-    result.geohash = source["geohash"];
-    result.geopoint = source["geopoint"]
-      ? LatLng.createFrom(source["geopoint"])
-      : null;
-    return result;
+    this.geohash = source["geohash"];
+    this.geopoint = this.convertValues(source["geopoint"], LatLng);
+  }
+
+  convertValues(a: any, classs: any, asMap: boolean = false): any {
+    if (!a) {
+      return a;
+    }
+    if (a.slice) {
+      return (a as any[]).map((elem) => this.convertValues(elem, classs));
+    } else if ("object" === typeof a) {
+      if (asMap) {
+        for (const key of Object.keys(a)) {
+          a[key] = new classs(a[key]);
+        }
+        return a;
+      }
+      return new classs(a);
+    }
+    return a;
   }
 }
 export class Time {
-  static createFrom(source: any) {
+  static createFrom(source: any = {}) {
+    return new Time(source);
+  }
+
+  constructor(source: any = {}) {
     if ("string" === typeof source) source = JSON.parse(source);
-    const result = new Time();
-    return result;
   }
 }
 export class ShopEntity {
@@ -40,26 +62,40 @@ export class ShopEntity {
   series: string[];
   created_at: Time;
   updated_at: Time;
-  geography: Geography;
+  geography?: Geography;
   deleted: boolean;
 
-  static createFrom(source: any) {
+  static createFrom(source: any = {}) {
+    return new ShopEntity(source);
+  }
+
+  constructor(source: any = {}) {
     if ("string" === typeof source) source = JSON.parse(source);
-    const result = new ShopEntity();
-    result.name = source["name"];
-    result.prefecture = source["prefecture"];
-    result.address = source["address"];
-    result.series = source["series"];
-    result.created_at = source["created_at"]
-      ? Time.createFrom(source["created_at"])
-      : null;
-    result.updated_at = source["updated_at"]
-      ? Time.createFrom(source["updated_at"])
-      : null;
-    result.geography = source["geography"]
-      ? Geography.createFrom(source["geography"])
-      : null;
-    result.deleted = source["deleted"];
-    return result;
+    this.name = source["name"];
+    this.prefecture = source["prefecture"];
+    this.address = source["address"];
+    this.series = source["series"];
+    this.created_at = this.convertValues(source["created_at"], Time);
+    this.updated_at = this.convertValues(source["updated_at"], Time);
+    this.geography = this.convertValues(source["geography"], Geography);
+    this.deleted = source["deleted"];
+  }
+
+  convertValues(a: any, classs: any, asMap: boolean = false): any {
+    if (!a) {
+      return a;
+    }
+    if (a.slice) {
+      return (a as any[]).map((elem) => this.convertValues(elem, classs));
+    } else if ("object" === typeof a) {
+      if (asMap) {
+        for (const key of Object.keys(a)) {
+          a[key] = new classs(a[key]);
+        }
+        return a;
+      }
+      return new classs(a);
+    }
+    return a;
   }
 }

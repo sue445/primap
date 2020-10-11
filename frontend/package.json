@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "rm -rf ./node_modules package-lock.json && npm i",
     "upgrade": "npm install typescript@latest react@latest react-dom@latest @types/react@latest @types/react-dom@latest webpack@latest webpack-dev-server@latest webpack-cli@latest ts-loader@latest clean-webpack-plugin@latest html-webpack-plugin@latest --save-exact",
-    "build": "webpack -p",
+    "build": "webpack",
     "start": "webpack-dev-server -r dotenv/config -d --content-base ./public",
     "prettier:base": "prettier --config prettier.config.js",
     "prettier:check": "npm run prettier:base -- --list-different \"**/*.{ts,tsx}\"",
@@ -31,7 +31,7 @@
     "ts-loader": "8.0.4",
     "typescript": "4.0.3",
     "webpack": "4.44.2",
-    "webpack-cli": "3.3.12",
+    "webpack-cli": "4.0.0",
     "webpack-dev-server": "3.11.0"
   },
   "dependencies": {

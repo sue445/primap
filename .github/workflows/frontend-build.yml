@@ -61,6 +61,12 @@ jobs:
         env:
           NODE_ENV: test
 
+      - name: public/ should have been created
+        run: |
+          set -xe
+          ls -l public/build/
+          ls -l public/index.html
+
       - name: Slack Notification (not success)
         uses: lazy-actions/slatify@master
         if: "! success()"

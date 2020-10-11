@@ -59,6 +59,7 @@ export class ShopEntity {
   name: string;
   prefecture: string;
   address: string;
+  sanitized_address: string;
   series: string[];
   created_at: Time;
   updated_at: Time;
@@ -74,6 +75,7 @@ export class ShopEntity {
     this.name = source["name"];
     this.prefecture = source["prefecture"];
     this.address = source["address"];
+    this.sanitized_address = source["sanitized_address"];
     this.series = source["series"];
     this.created_at = this.convertValues(source["created_at"], Time);
     this.updated_at = this.convertValues(source["updated_at"], Time);

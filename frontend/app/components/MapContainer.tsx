@@ -102,7 +102,7 @@ export class MapContainer extends React.Component<Props, {}> {
       });
   };
 
-  onSeriesChanged = (event) => {
+  onSeriesChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       this.state.series.add(event.target.value);
     } else {

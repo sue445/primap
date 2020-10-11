@@ -36,7 +36,9 @@ type ShopEntity struct {
 
 // UpdateAddressWithGeography update address and fetch geography if necessary
 func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address string) error {
-	if e.Address == address && e.Geography != nil {
+	sanitizedAddress := sanitizeAddress(address)
+
+	if e.SanitizedAddress == sanitizedAddress && e.Geography != nil {
 		return nil
 	}
 
@@ -55,7 +57,7 @@ func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address str
 			return errors.WithStack(err)
 		}
 
-		r := &maps.GeocodingRequest{Address: address}
+		r := &maps.GeocodingRequest{Address: sanitizedAddress}
 		resp, err := c.Geocode(ctx, r)
 
 		if err != nil {
@@ -79,6 +81,7 @@ func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address str
 	}
 
 	e.Address = address
+	e.SanitizedAddress = sanitizedAddress
 	return nil
 }
 

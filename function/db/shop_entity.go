@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/mmcloughlin/geohash"
 	"github.com/pkg/errors"
+	secretmanagerenv "github.com/sue445/gcp-secretmanagerenv"
 	"github.com/sue445/primap/config"
 	"google.golang.org/genproto/googleapis/type/latlng"
 	"googlemaps.github.io/maps"
@@ -39,8 +40,13 @@ func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address str
 	// If Address is changed, should update Location.
 	// But when Location is nil(undefined), always should update.
 
-	if config.GetGoogleMapsAPIKey() != "" {
-		c, err := maps.NewClient(maps.WithAPIKey(config.GetGoogleMapsAPIKey()))
+	googleMapsAPIKey, err := getGoogleMapsAPIKey(ctx)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	if googleMapsAPIKey != "" {
+		c, err := maps.NewClient(maps.WithAPIKey(googleMapsAPIKey))
 
 		if err != nil {
 			return errors.WithStack(err)
@@ -71,4 +77,18 @@ func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address str
 
 	e.Address = address
 	return nil
+}
+
+func getGoogleMapsAPIKey(ctx context.Context) (string, error) {
+	secretmanager, err := secretmanagerenv.NewClient(ctx, config.GetProjectID())
+	if err != nil {
+		return "", errors.WithStack(err)
+	}
+
+	googleMapsAPIKey, err := secretmanager.GetValueFromEnvOrSecretManager("GOOGLE_MAPS_API_KEY", false)
+	if err != nil {
+		return "", errors.WithStack(err)
+	}
+
+	return googleMapsAPIKey, nil
 }

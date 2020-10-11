@@ -124,7 +124,7 @@ export class MapContainer extends React.Component<Props, {}> {
               value="prichan"
               checked={this.state.series.has("prichan")}
             />
-            <span className="ml-1">プリ☆チャン</span>
+            <span className="ml-1">キラッとプリ☆チャン</span>
           </label>
           <label className="flex items-center">
             <input
@@ -134,7 +134,7 @@ export class MapContainer extends React.Component<Props, {}> {
               value="pripara"
               checked={this.state.series.has("pripara")}
             />
-            <span className="ml-1">プリパラ</span>
+            <span className="ml-1">プリパラ オールアイドル</span>
           </label>
         </div>
         <Map

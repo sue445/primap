@@ -22,6 +22,7 @@ export class MapContainer extends React.Component<Props, {}> {
     shops: [] as Array<ShopEntity>,
     latitude: this.props.latitude,
     longitude: this.props.longitude,
+    series: new Set(["prichan", "pripara"]),
   };
 
   shopCache = {};
@@ -101,54 +102,93 @@ export class MapContainer extends React.Component<Props, {}> {
       });
   };
 
+  onSeriesChanged = (event) => {
+    if (event.target.checked) {
+      this.state.series.add(event.target.value);
+    } else {
+      this.state.series.delete(event.target.value);
+    }
+    this.setState({ series: this.state.series });
+  };
+
   render() {
     return (
-      <Map
-        // @ts-ignore
-        google={this.props.google}
-        zoom={this.props.zoom}
-        onReady={this.onMapReady}
-        onCenterChanged={this.onMapRefresh}
-        onZoomChanged={this.onMapRefresh}
-        onDragend={this.onMapRefresh}
-        onRecenter={this.onMapRefresh}
-        onResize={this.onMapRefresh}
-        initialCenter={{
-          lat: this.props.latitude,
-          lng: this.props.longitude,
-        }}
-      >
-        {this.state.shops.map((shop) => (
-          <Marker
-            key={shop.name}
-            onClick={this.onMarkerClick}
-            position={{
-              lat: shop.geography.geopoint.latitude,
-              lng: shop.geography.geopoint.longitude,
-            }}
-            // @ts-ignore
-            name={shop.name}
-          />
-        ))}
-
-        <InfoWindow
-          marker={this.state.activeMarker}
+      <div>
+        <div className="flex mt-6">
+          <label className="flex items-center">
+            <input
+              type="checkbox"
+              className="form-checkbox h-6 w-6"
+              onChange={this.onSeriesChanged}
+              value="prichan"
+              checked={this.state.series.has("prichan")}
+            />
+            <span className="ml-1">プリ☆チャン</span>
+          </label>
+          <label className="flex items-center">
+            <input
+              type="checkbox"
+              className="form-checkbox h-6 w-6"
+              onChange={this.onSeriesChanged}
+              value="pripara"
+              checked={this.state.series.has("pripara")}
+            />
+            <span className="ml-1">プリパラ</span>
+          </label>
+        </div>
+        <Map
           // @ts-ignore
-          onClose={this.onInfoWindowClose}
-          visible={this.state.showingInfoWindow}
+          google={this.props.google}
+          zoom={this.props.zoom}
+          onReady={this.onMapReady}
+          onCenterChanged={this.onMapRefresh}
+          onZoomChanged={this.onMapRefresh}
+          onDragend={this.onMapRefresh}
+          onRecenter={this.onMapRefresh}
+          onResize={this.onMapRefresh}
+          initialCenter={{
+            lat: this.props.latitude,
+            lng: this.props.longitude,
+          }}
         >
-          <div>
-            <dl>
-              <dt>name</dt>
-              <dd>{this.state.selectedShop.name}</dd>
-              <dt>address</dt>
-              <dd>{this.state.selectedShop.address}</dd>
-              <dt>series</dt>
-              <dd>{this.state.selectedShop.series.join(", ")}</dd>
-            </dl>
-          </div>
-        </InfoWindow>
-      </Map>
+          {this.state.shops
+            .filter((shop) => {
+              return shop.series.some((series) => {
+                return this.state.series.has(series);
+              });
+            })
+            .map((shop) => (
+              <Marker
+                key={shop.name}
+                onClick={this.onMarkerClick}
+                position={{
+                  lat: shop.geography.geopoint.latitude,
+                  lng: shop.geography.geopoint.longitude,
+                }}
+                // @ts-ignore
+                name={shop.name}
+              />
+            ))}
+
+          <InfoWindow
+            marker={this.state.activeMarker}
+            // @ts-ignore
+            onClose={this.onInfoWindowClose}
+            visible={this.state.showingInfoWindow}
+          >
+            <div>
+              <dl>
+                <dt>name</dt>
+                <dd>{this.state.selectedShop.name}</dd>
+                <dt>address</dt>
+                <dd>{this.state.selectedShop.address}</dd>
+                <dt>series</dt>
+                <dd>{this.state.selectedShop.series.join(", ")}</dd>
+              </dl>
+            </div>
+          </InfoWindow>
+        </Map>
+      </div>
     );
   }
 }

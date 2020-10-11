@@ -28,13 +28,9 @@ func initFunction(ctx context.Context) (Cleanup, error) {
 		return nil, errors.WithStack(err)
 	}
 
-	googleMapsAPIKey, err := secretmanager.GetValueFromEnvOrSecretManager("GOOGLE_MAPS_API_KEY", false)
-	if err != nil {
-		return nil, errors.WithStack(err)
-	}
-
 	err = sentry.Init(sentry.ClientOptions{
 		Dsn:              sentryDsn,
+		Environment:      os.Getenv("SENTRY_ENVIRONMENT"),
 		AttachStacktrace: true,
 		Debug:            sentryDebug,
 		Release:          os.Getenv("SENTRY_RELEASE"),
@@ -44,8 +40,7 @@ func initFunction(ctx context.Context) (Cleanup, error) {
 	}
 
 	config.Init(&config.InitParams{
-		ProjectID:        projectID,
-		GoogleMapsAPIKey: googleMapsAPIKey,
+		ProjectID: projectID,
 	})
 
 	return func() {

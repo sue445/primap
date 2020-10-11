@@ -3,12 +3,28 @@ package primap
 import (
 	"context"
 	"github.com/stretchr/testify/assert"
+	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/db"
 	"github.com/sue445/primap/prismdb"
 	"github.com/sue445/primap/testutil"
+	"os"
 	"testing"
 	"time"
 )
+
+func TestMain(m *testing.M) {
+	config.Init(&config.InitParams{
+		Environment: "test",
+	})
+
+	code := m.Run()
+
+	config.Init(&config.InitParams{
+		Environment: "",
+	})
+
+	os.Exit(code)
+}
 
 func Test_saveShop(t *testing.T) {
 	shop := &prismdb.Shop{

@@ -150,6 +150,11 @@ export class MapContainer extends React.Component<Props, {}> {
             lat: this.props.latitude,
             lng: this.props.longitude,
           }}
+          containerStyle={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+          }}
         >
           {this.state.shops
             .filter((shop) => {

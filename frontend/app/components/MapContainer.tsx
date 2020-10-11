@@ -115,6 +115,7 @@ export class MapContainer extends React.Component<Props, {}> {
     return (
       <div>
         <div className="flex mt-6">
+          <span className={"h-6 font-bold"}>絞り込み</span>
           <label className="flex items-center">
             <input
               type="checkbox"

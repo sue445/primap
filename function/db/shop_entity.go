@@ -6,9 +6,11 @@ import (
 	"github.com/pkg/errors"
 	secretmanagerenv "github.com/sue445/gcp-secretmanagerenv"
 	"github.com/sue445/primap/config"
+	"golang.org/x/text/width"
 	"google.golang.org/genproto/googleapis/type/latlng"
 	"googlemaps.github.io/maps"
 	"log"
+	"regexp"
 	"time"
 )
 
@@ -21,19 +23,22 @@ const (
 
 // ShopEntity represents a shop entity for Firestore
 type ShopEntity struct {
-	Name       string     `firestore:"name"       json:"name"`
-	Prefecture string     `firestore:"prefecture" json:"prefecture"`
-	Address    string     `firestore:"address"    json:"address"`
-	Series     []string   `firestore:"series"     json:"series"`
-	CreatedAt  time.Time  `firestore:"created_at" json:"created_at"`
-	UpdatedAt  time.Time  `firestore:"updated_at" json:"updated_at"`
-	Geography  *Geography `firestore:"geography"  json:"geography"`
-	Deleted    bool       `firestore:"deleted"    json:"deleted"`
+	Name             string     `firestore:"name"              json:"name"`
+	Prefecture       string     `firestore:"prefecture"        json:"prefecture"`
+	Address          string     `firestore:"address"           json:"address"`
+	SanitizedAddress string     `firestore:"sanitized_address" json:"sanitized_address"`
+	Series           []string   `firestore:"series"            json:"series"`
+	CreatedAt        time.Time  `firestore:"created_at"        json:"created_at"`
+	UpdatedAt        time.Time  `firestore:"updated_at"        json:"updated_at"`
+	Geography        *Geography `firestore:"geography"         json:"geography"`
+	Deleted          bool       `firestore:"deleted"           json:"deleted"`
 }
 
 // UpdateAddressWithGeography update address and fetch geography if necessary
 func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address string) error {
-	if e.Address == address && e.Geography != nil {
+	sanitizedAddress := sanitizeAddress(address)
+
+	if e.SanitizedAddress == sanitizedAddress && e.Geography != nil {
 		return nil
 	}
 
@@ -52,7 +57,7 @@ func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address str
 			return errors.WithStack(err)
 		}
 
-		r := &maps.GeocodingRequest{Address: address}
+		r := &maps.GeocodingRequest{Address: sanitizedAddress}
 		resp, err := c.Geocode(ctx, r)
 
 		if err != nil {
@@ -76,6 +81,7 @@ func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address str
 	}
 
 	e.Address = address
+	e.SanitizedAddress = sanitizedAddress
 	return nil
 }
 
@@ -95,4 +101,14 @@ func getGoogleMapsAPIKey(ctx context.Context) (string, error) {
 	}
 
 	return googleMapsAPIKey, nil
+}
+
+func sanitizeAddress(address string) string {
+	sanitized := width.Fold.String(address)
+
+	// Remove building name after street name
+	re := regexp.MustCompile(`([0-9]+(?:-[0-9]+)(?:-[0-9]+)).*$`)
+	sanitized = re.ReplaceAllString(sanitized, "$1")
+
+	return sanitized
 }

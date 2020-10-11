@@ -1,0 +1,66 @@
+package db
+
+import (
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
+
+func Test_sanitizeAddress(t *testing.T) {
+	type args struct {
+		address string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "東京都新宿区新宿３－２６－７ 玩具売場",
+			args: args{
+				address: "東京都新宿区新宿３－２６－７ 玩具売場",
+			},
+			want: "東京都新宿区新宿3-26-7",
+		},
+		{
+			name: "東京都新宿区新宿３－２６－７",
+			args: args{
+				address: "東京都新宿区新宿３－２６－７",
+			},
+			want: "東京都新宿区新宿3-26-7",
+		},
+		{
+			name: "東京都新宿区新宿３－２６",
+			args: args{
+				address: "東京都新宿区新宿３－２６",
+			},
+			want: "東京都新宿区新宿3-26",
+		},
+		{
+			name: "東京都新宿区新宿３",
+			args: args{
+				address: "東京都新宿区新宿３",
+			},
+			want: "東京都新宿区新宿3",
+		},
+		{
+			name: "東京都新宿区新宿",
+			args: args{
+				address: "東京都新宿区新宿",
+			},
+			want: "東京都新宿区新宿",
+		},
+		{
+			name: "東京都新宿区西新宿１－５－１ ハルク５Ｆ トイズコーナー",
+			args: args{
+				address: "東京都新宿区西新宿１－５－１ ハルク５Ｆ トイズコーナー",
+			},
+			want: "東京都新宿区西新宿1-5-1",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := sanitizeAddress(tt.args.address)
+			assert.Equal(t, tt.want, got)
+		})
+	}
+}

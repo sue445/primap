@@ -6,9 +6,11 @@ import (
 	"github.com/pkg/errors"
 	secretmanagerenv "github.com/sue445/gcp-secretmanagerenv"
 	"github.com/sue445/primap/config"
+	"golang.org/x/text/width"
 	"google.golang.org/genproto/googleapis/type/latlng"
 	"googlemaps.github.io/maps"
 	"log"
+	"regexp"
 	"time"
 )
 
@@ -96,4 +98,14 @@ func getGoogleMapsAPIKey(ctx context.Context) (string, error) {
 	}
 
 	return googleMapsAPIKey, nil
+}
+
+func sanitizeAddress(address string) string {
+	sanitized := width.Fold.String(address)
+
+	// Remove building name after street name
+	re := regexp.MustCompile(`([0-9]+(?:-[0-9]+)(?:-[0-9]+)).*$`)
+	sanitized = re.ReplaceAllString(sanitized, "$1")
+
+	return sanitized
 }

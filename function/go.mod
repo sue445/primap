@@ -18,6 +18,7 @@ require (
 	github.com/tkrajina/go-reflector v0.5.4 // indirect
 	github.com/tkrajina/typescriptify-golang-structs v0.1.0 // indirect
 	golang.org/x/sys v0.0.0-20200918174421-af09f7315aff // indirect
+	golang.org/x/text v0.3.3
 	google.golang.org/api v0.32.0
 	google.golang.org/genproto v0.0.0-20201001141541-efaab9d3c4f7
 	google.golang.org/grpc v1.32.0

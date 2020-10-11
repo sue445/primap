@@ -150,6 +150,11 @@ export class MapContainer extends React.Component<Props, {}> {
             lat: this.props.latitude,
             lng: this.props.longitude,
           }}
+          containerStyle={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+          }}
         >
           {this.state.shops
             .filter((shop) => {
@@ -177,13 +182,19 @@ export class MapContainer extends React.Component<Props, {}> {
             visible={this.state.showingInfoWindow}
           >
             <div>
+              <h3 className={"text-sm font-bold"}>
+                {this.state.selectedShop.name}
+              </h3>
               <dl>
-                <dt>name</dt>
-                <dd>{this.state.selectedShop.name}</dd>
-                <dt>address</dt>
+                <dt className={"font-semibold"}>住所</dt>
                 <dd>{this.state.selectedShop.address}</dd>
-                <dt>series</dt>
-                <dd>{this.state.selectedShop.series.join(", ")}</dd>
+                <dt className={"font-semibold"}>設置筐体</dt>
+                {this.state.selectedShop.series.includes("prichan") && (
+                  <dd>キラッとプリ☆チャン</dd>
+                )}
+                {this.state.selectedShop.series.includes("pripara") && (
+                  <dd>プリパラ オールアイドル</dd>
+                )}
               </dl>
             </div>
           </InfoWindow>

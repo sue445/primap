@@ -2,6 +2,7 @@ package db
 
 import (
 	"github.com/stretchr/testify/assert"
+	_ "github.com/tkrajina/typescriptify-golang-structs/typescriptify"
 	"testing"
 )
 

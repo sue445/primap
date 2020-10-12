@@ -1,4 +1,6 @@
 export NODE_ENV=development
-export REACT_APP_GOOGLE_BROWSER_API_KEY=
 export REACT_APP_SENTRY_DSN=
 export REACT_APP_SENTRY_RELEASE=local
+
+# NOTE: This is a dev key for local development (Allow only Cloud Firestore API and Maps JavaScript API)
+export REACT_APP_GOOGLE_BROWSER_API_KEY=AIzaSyCJXWlJK5mZFVlptJqcqDtB1-1_uyV0Xzc

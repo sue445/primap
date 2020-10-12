@@ -2,8 +2,7 @@ name: go-mod-tidy-pr
 
 on:
   schedule:
-    # - cron: "0 22 * * 0" # JST 7:00 (Mon)
-    - cron: "0 14 * * *" # JST 23:00
+    - cron: "0 22 * * 0" # JST 7:00 (Mon)
 
 jobs:
   go-mod-tidy-pr:

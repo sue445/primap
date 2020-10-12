@@ -262,6 +262,8 @@ github.com/tkrajina/go-reflector v0.5.4 h1:dS9aJEa/eYNQU/fwsb5CSiATOxcNyA/gG/A7a
 github.com/tkrajina/go-reflector v0.5.4/go.mod h1:9PyLgEOzc78ey/JmQQHbW8cQJ1oucLlNQsg8yFvkVk8=
 github.com/tkrajina/typescriptify-golang-structs v0.1.0 h1:m0JENW9QtudZDSGdedC+PR69uD4MWPgyNTXfuxcv2TU=
 github.com/tkrajina/typescriptify-golang-structs v0.1.0/go.mod h1:toe+mYEakrclj3bKuw24BQvWYhBAlIRa3swhCbLiuf4=
+github.com/tkrajina/typescriptify-golang-structs v0.1.1 h1:Zjt0u2oe6HSRSBxsZXa9AHTXPN6/6WvpXjfwP7Jo+A4=
+github.com/tkrajina/typescriptify-golang-structs v0.1.1/go.mod h1:toe+mYEakrclj3bKuw24BQvWYhBAlIRa3swhCbLiuf4=
 github.com/ugorji/go v1.1.4/go.mod h1:uQMGLiO92mf5W77hV/PUCpI3pbzQx3CRekS0kk+RGrc=
 github.com/ugorji/go v1.1.7/go.mod h1:kZn38zHttfInRq0xu/PH0az30d+z6vm202qpg1oXVMw=
 github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8/go.mod h1:VFNgLljTbGfSG7qAOspJ7OScBnGdDN/yBr0sguwnwf0=

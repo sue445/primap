@@ -174,7 +174,8 @@ jobs:
           export GOPATH=`go env GOPATH`
           export PATH=$GOPATH/bin:$PATH
 
-          go get -u github.com/tkrajina/typescriptify-golang-structs/tscriptify
+          TSCRIPTIFY_VERSION=$(grep 'github.com/tkrajina/typescriptify-golang-structs' go.mod | awk '{ print $2 }')
+          go get -u github.com/tkrajina/typescriptify-golang-structs/tscriptify@${TSCRIPTIFY_VERSION}
 
           make go2ts
           git checkout HEAD -- go.mod go.sum

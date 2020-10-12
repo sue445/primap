@@ -1,0 +1,4 @@
+export NODE_ENV=development
+export REACT_APP_GOOGLE_BROWSER_API_KEY=
+export REACT_APP_SENTRY_DSN=
+export REACT_APP_SENTRY_RELEASE=local

@@ -9,9 +9,12 @@ Register followings from https://console.cloud.google.com/apis/credentials
 
 ## Develop
 ### Setup
+At first, install https://github.com/direnv/direnv
+
 ```bash
-cp .env.examle .env
-vi .env
+cp .envrc.examle .envrc
+vi .envrc
+direnv allow
 
 npm install
 ```

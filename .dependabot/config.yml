@@ -6,6 +6,11 @@ update_configs:
 
     directory: "/function/"
 
+    default_labels:
+      - dependencies
+      - go
+      - function
+
     update_schedule: "daily"
 
     default_assignees:
@@ -25,6 +30,11 @@ update_configs:
 
     directory: "/function/"
 
+    default_labels:
+      - dependencies
+      - javascript
+      - function
+
     update_schedule: "daily"
 
     automerged_updates:
@@ -43,6 +53,11 @@ update_configs:
   - package_manager: "javascript"
 
     directory: "/frontend/"
+
+    default_labels:
+      - dependencies
+      - javascript
+      - frontend
 
     update_schedule: "daily"
 

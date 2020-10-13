@@ -1,4 +1,11 @@
 # primap-function
+[Cloud Functions](https://cloud.google.com/functions) for primap
+
+There are the following functions.
+
+* Get shops from [PrismDB](https://prismdb.takanakahiko.me/)
+* Get geography from shop address and save to [Cloud Firestore](https://firebase.google.com/docs/firestore)
+
 ## Requirement API keys
 Register followings from https://console.cloud.google.com/apis/credentials
 
@@ -14,12 +21,8 @@ vi .env
 ```
 
 ### Testing
-```bash
-firebase --project test emulators:exec --only firestore,pubsub "make test"
-```
+Run one of the following
 
-or
-
-```bash
-docker-compose up --build
-```
+1. `firebase --project test emulators:exec --only firestore,pubsub "make test"`
+    * Requires [Firebase CLI](https://firebase.google.com/docs/cli)
+2. `docker-compose up --build`

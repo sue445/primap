@@ -207,7 +207,7 @@ jobs:
         if: always()
         continue-on-error: true
         with:
-          job_name: '*build-function*'
+          job_name: '*notify*'
           type: ${{ job.status }}
           icon_emoji: ":octocat:"
           url: ${{ secrets.SLACK_WEBHOOK }}

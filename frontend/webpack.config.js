@@ -69,6 +69,9 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    port: 55301,
+  },
 }
 
 if (devMode) {

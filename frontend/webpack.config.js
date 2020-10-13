@@ -1,6 +1,7 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 
 const webpack = require('webpack');
@@ -25,6 +26,11 @@ module.exports = {
       // both options are optional
       filename: 'build/' + (devMode ? '[name].css' : '[name].[hash].css'),
       chunkFilename: 'build/' + (devMode ? '[id].css' : '[id].[hash].css'),
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'static', to: '.' },
+      ],
     }),
   ],
   output: {

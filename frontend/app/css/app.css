@@ -3,3 +3,11 @@
 @tailwind components;
 
 @tailwind utilities;
+
+a.link {
+  @apply no-underline text-blue-500;
+}
+
+a.link:hover {
+  @apply underline;
+}

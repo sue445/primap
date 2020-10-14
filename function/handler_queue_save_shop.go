@@ -4,6 +4,7 @@ import (
 	"cloud.google.com/go/pubsub"
 	"context"
 	"encoding/json"
+	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/db"
@@ -35,6 +36,17 @@ func queueSaveShopHandler(ctx context.Context, m *pubsub.Message) error {
 	if err != nil {
 		return errors.WithStack(err)
 	}
+
+	sentry.ConfigureScope(func(scope *sentry.Scope) {
+		scope.SetTags(map[string]string{
+			"shop.Name":       shop.Name,
+			"shop.Prefecture": shop.Prefecture,
+			"shop.Address":    shop.Address,
+		})
+		scope.SetExtras(map[string]interface{}{
+			"shop.Series": shop.Series,
+		})
+	})
 
 	return saveShop(ctx, config.GetProjectID(), &shop)
 }

@@ -7,3 +7,4 @@ https://primap.web.app/
 * [function](function/) [![Build Status](https://github.com/sue445/primap/workflows/function-build/badge.svg?branch=master)](https://github.com/sue445/primap/actions?query=workflow%3Afunction-build) [![Build Status](https://github.com/sue445/primap/workflows/function-deploy/badge.svg?branch=master)](https://github.com/sue445/primap/actions?query=workflow%3Afunction-deploy)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/b101cae3c1b0fb5c1396/maintainability)](https://codeclimate.com/github/sue445/primap/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/sue445/primap/badge.svg)](https://coveralls.io/github/sue445/primap)

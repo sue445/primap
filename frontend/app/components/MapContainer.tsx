@@ -50,7 +50,11 @@ export class MapContainer extends React.Component<Props, {}> {
     }
 
     const geo = this.props.geo;
-    const center = geo.point(map.getCenter().lat(), map.getCenter().lng());
+
+    const centerLatitude = map.getCenter().lat();
+    const centerLongitude = ((map.getCenter().lng() + 180) % 360) - 180;
+    const center = geo.point(centerLatitude, centerLongitude);
+
     const distance = geo.distance(
       geo.point(bounds.getSouthWest().lat(), bounds.getSouthWest().lng()),
       geo.point(bounds.getNorthEast().lat(), bounds.getNorthEast().lng())

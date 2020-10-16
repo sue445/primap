@@ -37,6 +37,39 @@ defaults:
     working-directory: frontend
 
 jobs:
+  test:
+    name: test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/cache@v2
+        with:
+          path: frontend/node_modules/
+          key: frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+
+      - run: npm install
+      - run: npm test
+
+      - name: Slack Notification (not success)
+        uses: lazy-actions/slatify@master
+        if: "! success()"
+        continue-on-error: true
+        with:
+          job_name: "*test*"
+          type: ${{ job.status }}
+          icon_emoji: ":octocat:"
+          url: ${{ secrets.SLACK_WEBHOOK }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
   webpack:
     name: webpack
 
@@ -116,6 +149,7 @@ jobs:
 
   notify:
     needs:
+      - test
       - webpack
       - lint
 

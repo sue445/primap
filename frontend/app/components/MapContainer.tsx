@@ -2,6 +2,7 @@ import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
 import React from "react";
 import { GeoFireClient } from "geofirex";
 import { ShopEntity, Time } from "./ShopEntity";
+import { correctLongitude } from "./Util";
 
 type Props = {
   latitude: number;
@@ -52,7 +53,7 @@ export class MapContainer extends React.Component<Props, {}> {
     const geo = this.props.geo;
 
     const centerLatitude = map.getCenter().lat();
-    const centerLongitude = ((map.getCenter().lng() + 180) % 360) - 180;
+    const centerLongitude = correctLongitude(map.getCenter().lng());
     const center = geo.point(centerLatitude, centerLongitude);
 
     const distance = geo.distance(

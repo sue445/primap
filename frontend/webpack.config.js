@@ -72,8 +72,5 @@ module.exports = {
   devServer: {
     port: 55301,
   },
-}
-
-if (devMode) {
-  module.exports.devtool = "inline-source-map"
+  devtool: "source-map"
 }

@@ -11,6 +11,7 @@
     "upgrade": "npm install typescript@latest react@latest react-dom@latest @types/react@latest @types/react-dom@latest webpack@latest webpack-dev-server@latest webpack-cli@latest ts-loader@latest clean-webpack-plugin@latest html-webpack-plugin@latest --save-exact",
     "build": "webpack",
     "start": "webpack serve",
+    "test": "jest",
     "prettier:base": "prettier --config prettier.config.js",
     "prettier:check": "npm run prettier:base -- --list-different \"**/*.{ts,tsx}\"",
     "prettier:write": "npm run prettier:base -- --write \"**/*.{ts,tsx}\""

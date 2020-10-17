@@ -106,6 +106,13 @@ func Test_sanitizeAddress(t *testing.T) {
 			},
 			want: "北海道帯広市西4条南20-1",
 		},
+		{
+			name: "京都府長岡京市開田４丁目７番１号",
+			args: args{
+				address: "京都府長岡京市開田４丁目７番１号",
+			},
+			want: "京都府長岡京市開田4-7-1",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

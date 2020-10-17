@@ -57,6 +57,20 @@ func Test_sanitizeAddress(t *testing.T) {
 			},
 			want: "東京都新宿区西新宿1-5-1",
 		},
+		{
+			name: "福岡県福岡市西区徳永１１３－１　玩具売場",
+			args: args{
+				address: "福岡県福岡市西区徳永１１３－１　玩具売場",
+			},
+			want: "福岡県福岡市西区徳永113-1",
+		},
+		{
+			name: "福岡県福岡市西区徳永１１３　玩具売場",
+			args: args{
+				address: "福岡県福岡市西区徳永１１３　玩具売場",
+			},
+			want: "福岡県福岡市西区徳永113",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

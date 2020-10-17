@@ -11,110 +11,94 @@ func Test_sanitizeAddress(t *testing.T) {
 		address string
 	}
 	tests := []struct {
-		name string
 		args args
 		want string
 	}{
 		{
-			name: "東京都新宿区新宿３－２６－７ 玩具売場",
 			args: args{
 				address: "東京都新宿区新宿３－２６－７ 玩具売場",
 			},
 			want: "東京都新宿区新宿3-26-7",
 		},
 		{
-			name: "東京都新宿区新宿３－２６－７",
 			args: args{
 				address: "東京都新宿区新宿３－２６－７",
 			},
 			want: "東京都新宿区新宿3-26-7",
 		},
 		{
-			name: "東京都新宿区新宿３－２６",
 			args: args{
 				address: "東京都新宿区新宿３－２６",
 			},
 			want: "東京都新宿区新宿3-26",
 		},
 		{
-			name: "東京都新宿区新宿３",
 			args: args{
 				address: "東京都新宿区新宿３",
 			},
 			want: "東京都新宿区新宿3",
 		},
 		{
-			name: "東京都新宿区新宿",
 			args: args{
 				address: "東京都新宿区新宿",
 			},
 			want: "東京都新宿区新宿",
 		},
 		{
-			name: "東京都新宿区西新宿１－５－１ ハルク５Ｆ トイズコーナー",
 			args: args{
 				address: "東京都新宿区西新宿１－５－１ ハルク５Ｆ トイズコーナー",
 			},
 			want: "東京都新宿区西新宿1-5-1",
 		},
 		{
-			name: "福岡県福岡市西区徳永１１３－１　玩具売場",
 			args: args{
 				address: "福岡県福岡市西区徳永１１３－１　玩具売場",
 			},
 			want: "福岡県福岡市西区徳永113-1",
 		},
 		{
-			name: "福岡県福岡市西区徳永１１３　玩具売場",
 			args: args{
 				address: "福岡県福岡市西区徳永１１３　玩具売場",
 			},
 			want: "福岡県福岡市西区徳永113",
 		},
 		{
-			name: "福島県いわき市平６丁目６番地２　　イトーヨーカドー平店内　プレビプレイランドコーナー　こころっこ",
 			args: args{
 				address: "福島県いわき市平６丁目６番地２　　イトーヨーカドー平店内　プレビプレイランドコーナー　こころっこ",
 			},
 			want: "福島県いわき市平6-6-2",
 		},
 		{
-			name: "福島県いわき市平６丁目６番地　　イトーヨーカドー平店内　プレビプレイランドコーナー　こころっこ",
 			args: args{
 				address: "福島県いわき市平６丁目６番地　　イトーヨーカドー平店内　プレビプレイランドコーナー　こころっこ",
 			},
 			want: "福島県いわき市平6-6",
 		},
 		{
-			name: "岡山県高梁市中原町１０８４番地の１ポルカ天満屋ハッピータウン内２階",
 			args: args{
 				address: "岡山県高梁市中原町１０８４番地の１ポルカ天満屋ハッピータウン内２階",
 			},
 			want: "岡山県高梁市中原町1084-1",
 		},
 		{
-			name: "北海道岩見沢市大和４条８丁目１　玩具売場",
 			args: args{
 				address: "北海道岩見沢市大和４条８丁目１　玩具売場",
 			},
 			want: "北海道岩見沢市大和4条8-1",
 		},
 		{
-			name: "北海道帯広市西４条南２０丁目１　玩具売場",
 			args: args{
 				address: "北海道帯広市西４条南２０丁目１　玩具売場",
 			},
 			want: "北海道帯広市西4条南20-1",
 		},
 		{
-			name: "京都府長岡京市開田４丁目７番１号",
 			args: args{
 				address: "京都府長岡京市開田４丁目７番１号",
 			},
 			want: "京都府長岡京市開田4-7-1",
 		},
 		{
-			name: "北海道帯広市稲田町南８線西１０－１玩具売場",
 			args: args{
 				address: "北海道帯広市稲田町南８線西１０－１玩具売場",
 			},
@@ -122,7 +106,7 @@ func Test_sanitizeAddress(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
+		t.Run(tt.args.address, func(t *testing.T) {
 			got := sanitizeAddress(tt.args.address)
 			assert.Equal(t, tt.want, got)
 		})

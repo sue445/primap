@@ -107,7 +107,7 @@ func sanitizeAddress(address string) string {
 	sanitized := width.Fold.String(address)
 
 	// Remove building name after street name
-	re := regexp.MustCompile(`([0-9]+(?:-[0-9]+)(?:-[0-9]+)).*$`)
+	re := regexp.MustCompile(`([0-9]+(?:-[0-9]+)?(?:-[0-9]+)?).*$`)
 	sanitized = re.ReplaceAllString(sanitized, "$1")
 
 	return sanitized

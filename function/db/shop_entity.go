@@ -111,7 +111,7 @@ func sanitizeAddress(address string) string {
 	sanitized = regexp.MustCompile(`([0-9]+)(?:(?:丁目)|(?:番地?)|(?:号))`).ReplaceAllString(sanitized, "$1-")
 
 	// Remove building name after street name
-	sanitized = regexp.MustCompile(`([0-9]+(?:-[0-9]+)?(?:-[0-9]+)?)[^条]*$`).ReplaceAllString(sanitized, "$1")
+	sanitized = regexp.MustCompile(`([0-9]+(?:-[0-9]+)?(?:-[0-9]+)?)[^条線]*$`).ReplaceAllString(sanitized, "$1")
 
 	return sanitized
 }

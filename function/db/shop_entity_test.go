@@ -92,6 +92,34 @@ func Test_sanitizeAddress(t *testing.T) {
 			},
 			want: "岡山県高梁市中原町1084-1",
 		},
+		{
+			name: "北海道岩見沢市大和４条８丁目１　玩具売場",
+			args: args{
+				address: "北海道岩見沢市大和４条８丁目１　玩具売場",
+			},
+			want: "北海道岩見沢市大和4条8-1",
+		},
+		{
+			name: "北海道帯広市西４条南２０丁目１　玩具売場",
+			args: args{
+				address: "北海道帯広市西４条南２０丁目１　玩具売場",
+			},
+			want: "北海道帯広市西4条南20-1",
+		},
+		{
+			name: "京都府長岡京市開田４丁目７番１号",
+			args: args{
+				address: "京都府長岡京市開田４丁目７番１号",
+			},
+			want: "京都府長岡京市開田4-7-1",
+		},
+		{
+			name: "北海道帯広市稲田町南８線西１０－１玩具売場",
+			args: args{
+				address: "北海道帯広市稲田町南８線西１０－１玩具売場",
+			},
+			want: "北海道帯広市稲田町南8線西10-1",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -7,10 +7,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - gopath-data:/go
-    ports:
-      - "8000:8000"
     environment:
-      PORT: 8000
       SENTRY_DSN: ${SENTRY_DSN}
       SENTRY_ENVIRONMENT: development
       SENTRY_DEBUG: "true"

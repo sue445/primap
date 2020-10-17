@@ -187,7 +187,7 @@ export class MapContainer extends React.Component<Props, {}> {
             onClose={this.onInfoWindowClose}
             visible={this.state.showingInfoWindow}
           >
-            <div className={"container mx-auto p-2"}>
+            <div className={"container mx-auto p-2 md:w-64 lg:w-64 xl:w-64"}>
               <h3 className={"text-sm font-bold"}>
                 {this.state.selectedShop.name}
               </h3>

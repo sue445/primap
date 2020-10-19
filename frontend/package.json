@@ -27,7 +27,7 @@
     "css-loader": "^5.0.0",
     "html-webpack-plugin": "^4.5.0",
     "jest": "^26.5.3",
-    "mini-css-extract-plugin": "^1.0.0",
+    "mini-css-extract-plugin": "^1.1.0",
     "postcss": "^8.1.2",
     "postcss-loader": "^4.0.4",
     "prettier": "^2.1.2",

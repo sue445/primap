@@ -1,7 +1,5 @@
 package config
 
-import "os"
-
 // InitParams defines args for Init()
 type InitParams struct {
 	ProjectID string
@@ -16,9 +14,5 @@ func Init(args *InitParams) {
 
 // GetProjectID returns ProjectID in config
 func GetProjectID() string {
-	if projectID != "" {
-		return projectID
-	}
-
-	return os.Getenv("GCP_PROJECT")
+	return projectID
 }

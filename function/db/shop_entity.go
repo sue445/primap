@@ -86,10 +86,6 @@ func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address str
 }
 
 func getGoogleMapsAPIKey(ctx context.Context) (string, error) {
-	if config.IsTest() {
-		return "", nil
-	}
-
 	secretmanager, err := secretmanagerenv.NewClient(ctx, config.GetProjectID())
 	if err != nil {
 		return "", errors.WithStack(err)

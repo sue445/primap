@@ -22,8 +22,3 @@ func GetProjectID() string {
 
 	return os.Getenv("GCP_PROJECT")
 }
-
-// IsTest returns whether test env
-func IsTest() bool {
-	return GetProjectID() == "test"
-}

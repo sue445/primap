@@ -4,12 +4,10 @@ import "os"
 
 // InitParams defines args for Init()
 type InitParams struct {
-	ProjectID   string
-	Environment string
+	ProjectID string
 }
 
 var projectID string
-var environment string
 
 // Init Setups config
 func Init(args *InitParams) {
@@ -23,11 +21,6 @@ func GetProjectID() string {
 	}
 
 	return os.Getenv("GCP_PROJECT")
-}
-
-// GetEnvironment returns Environment in config
-func GetEnvironment() string {
-	return environment
 }
 
 // IsTest returns whether test env

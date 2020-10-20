@@ -6,6 +6,8 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 const webpack = require('webpack');
 
+process.traceDeprecation = true;
+
 module.exports = {
   entry: './app/app.tsx',
   plugins: [
@@ -24,8 +26,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: 'build/' + (devMode ? '[name].css' : '[name].[hash].css'),
-      chunkFilename: 'build/' + (devMode ? '[id].css' : '[id].[hash].css'),
+      filename: 'build/' + (devMode ? '[name].css' : '[name].[fullhash].css'),
+      chunkFilename: 'build/' + (devMode ? '[id].css' : '[id].[fullhash].css'),
     }),
     new CopyPlugin({
       patterns: [

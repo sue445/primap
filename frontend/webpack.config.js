@@ -6,6 +6,8 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 const webpack = require('webpack');
 
+process.traceDeprecation = true;
+
 module.exports = {
   entry: './app/app.tsx',
   plugins: [

@@ -40,7 +40,6 @@ export class MapContainer extends React.Component<Props, {}> {
         latitude: data.latitude,
         longitude: data.longitude,
       });
-      this.loadShops(map);
     });
   };
 
@@ -148,6 +147,7 @@ export class MapContainer extends React.Component<Props, {}> {
           zoom={this.props.zoom}
           onReady={this.onMapReady}
           onCenterChanged={this.onMapRefresh}
+          onBoundsChanged={this.onMapRefresh}
           onZoomChanged={this.onMapRefresh}
           onDragend={this.onMapRefresh}
           onRecenter={this.onMapRefresh}

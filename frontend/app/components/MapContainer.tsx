@@ -1,6 +1,7 @@
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
 import React from "react";
 import { GeoFireClient } from "geofirex";
+import * as Sentry from "@sentry/react";
 import { ShopEntity, Time } from "./ShopEntity";
 import { correctLongitude } from "./Util";
 
@@ -40,13 +41,16 @@ export class MapContainer extends React.Component<Props, {}> {
         latitude: data.latitude,
         longitude: data.longitude,
       });
-      this.loadShops(map);
     });
   };
 
   loadShops = (map: google.maps.Map) => {
     const bounds = map.getBounds();
     if (!bounds) {
+      if (process.env.NODE_ENV != "production") {
+        console.log("[WARN] bounds is undefined");
+      }
+      Sentry.captureMessage("[WARN] bounds is undefined");
       return;
     }
 
@@ -148,6 +152,7 @@ export class MapContainer extends React.Component<Props, {}> {
           zoom={this.props.zoom}
           onReady={this.onMapReady}
           onCenterChanged={this.onMapRefresh}
+          onBoundsChanged={this.onMapRefresh}
           onZoomChanged={this.onMapRefresh}
           onDragend={this.onMapRefresh}
           onRecenter={this.onMapRefresh}

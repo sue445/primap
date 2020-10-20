@@ -50,7 +50,7 @@ export class MapContainer extends React.Component<Props, {}> {
       if (process.env.NODE_ENV != "production") {
         console.log("[WARN] bounds is undefined");
       }
-      Sentry.captureMessage("[WARN] bounds is undefined");
+      Sentry.captureMessage("bounds is undefined", Sentry.Severity.Warning);
       return;
     }
 

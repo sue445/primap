@@ -1,0 +1,100 @@
+{
+  "results": [
+    {
+      "address_components": [
+        {
+          "long_name": "7",
+          "short_name": "7",
+          "types": [
+            "premise"
+          ]
+        },
+        {
+          "long_name": "26",
+          "short_name": "26",
+          "types": [
+            "political",
+            "sublocality",
+            "sublocality_level_4"
+          ]
+        },
+        {
+          "long_name": "3-chōme",
+          "short_name": "3-chōme",
+          "types": [
+            "political",
+            "sublocality",
+            "sublocality_level_3"
+          ]
+        },
+        {
+          "long_name": "Shinjuku",
+          "short_name": "Shinjuku",
+          "types": [
+            "political",
+            "sublocality",
+            "sublocality_level_2"
+          ]
+        },
+        {
+          "long_name": "Shinjuku City",
+          "short_name": "Shinjuku City",
+          "types": [
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Tokyo",
+          "short_name": "Tokyo",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Japan",
+          "short_name": "JP",
+          "types": [
+            "country",
+            "political"
+          ]
+        },
+        {
+          "long_name": "160-0022",
+          "short_name": "160-0022",
+          "types": [
+            "postal_code"
+          ]
+        }
+      ],
+      "formatted_address": "3-chōme-26-7 Shinjuku, Shinjuku City, Tokyo 160-0022, Japan",
+      "geometry": {
+        "location": {
+          "lat": 35.6916892,
+          "lng": 139.7018233
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+          "northeast": {
+            "lat": 35.6930381802915,
+            "lng": 139.7031722802915
+          },
+          "southwest": {
+            "lat": 35.6903402197085,
+            "lng": 139.7004743197085
+          }
+        }
+      },
+      "place_id": "ChIJEVmtD9qMGGARu2VSJYvOvuM",
+      "plus_code": {
+        "compound_code": "MPR2+MP Shinjuku City, 東京都 Japan",
+        "global_code": "8Q7XMPR2+MP"
+      },
+      "types": [
+        "street_address"
+      ]
+    }
+  ],
+  "status": "OK"
+}

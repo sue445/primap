@@ -2,6 +2,7 @@ package db
 
 import (
 	"context"
+	"github.com/getsentry/sentry-go"
 	"github.com/mmcloughlin/geohash"
 	"github.com/pkg/errors"
 	secretmanagerenv "github.com/sue445/gcp-secretmanagerenv"
@@ -76,6 +77,13 @@ func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address str
 			}
 		} else {
 			log.Printf("[WARN] Location is unknown: Address=%s, Shop=%+v", address, e)
+
+			sentry.ConfigureScope(func(scope *sentry.Scope) {
+				scope.SetLevel(sentry.LevelWarning)
+				scope.SetTag("sanitizedAddress", sanitizedAddress)
+			})
+			sentry.CaptureMessage("Location is unknown")
+
 			e.Geography = nil
 		}
 	}

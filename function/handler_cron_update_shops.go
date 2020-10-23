@@ -10,6 +10,7 @@ import (
 	"github.com/sue445/primap/db"
 	"github.com/sue445/primap/prismdb"
 	"github.com/sue445/primap/util"
+	"time"
 )
 
 const (
@@ -40,29 +41,38 @@ func getAndPublishShops(ctx context.Context, projectID string) error {
 		return errors.WithStack(err)
 	}
 
+	start1 := time.Now()
 	shops, err := prismdbClient.GetAllShops()
 	if err != nil {
 		return errors.WithStack(err)
 	}
+	duration1 := time.Now().Sub(start1)
+	fmt.Printf("[DEBUG] prismdbClient.GetAllShops (%s)\n", duration1)
 
 	pubsubClient, err := pubsub.NewClient(ctx, projectID)
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
+	start2 := time.Now()
 	for _, shop := range shops {
 		err := publishShop(ctx, pubsubClient, shop)
 		if err != nil {
 			return errors.WithStack(err)
 		}
 	}
+	duration2 := time.Now().Sub(start2)
+	fmt.Printf("[DEBUG] publishShop (%s)\n", duration2)
 
 	fmt.Printf("[INFO][getAndPublishShops] Published shops=%d\n", len(shops))
 
+	start3 := time.Now()
 	err = deleteRemovedShops(ctx, projectID, shops)
 	if err != nil {
 		return errors.WithStack(err)
 	}
+	duration3 := time.Now().Sub(start3)
+	fmt.Printf("[DEBUG] deleteRemovedShops (%s)\n", duration3)
 
 	return nil
 }

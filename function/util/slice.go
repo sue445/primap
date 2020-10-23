@@ -2,6 +2,10 @@ package util
 
 // SubtractSlice returns subtracted slice (src - sub)
 func SubtractSlice(src []string, sub []string) []string {
+	return subtractSliceWithContains(src, sub)
+}
+
+func subtractSliceWithContains(src []string, sub []string) []string {
 	var ret []string
 
 	for _, s := range src {

@@ -5,11 +5,11 @@ import (
 	"testing"
 )
 
-func Test_SubtractSlice(t *testing.T) {
+func Test_subtractSliceWithContains(t *testing.T) {
 	src := []string{"a", "b", "c"}
 	sub := []string{"c", "d", "e"}
 
-	got := SubtractSlice(src, sub)
+	got := subtractSliceWithContains(src, sub)
 
 	assert.Equal(t, []string{"a", "b"}, got)
 }

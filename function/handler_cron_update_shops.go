@@ -10,6 +10,7 @@ import (
 	"github.com/sue445/primap/db"
 	"github.com/sue445/primap/prismdb"
 	"github.com/sue445/primap/util"
+	"golang.org/x/sync/errgroup"
 	"time"
 )
 
@@ -55,11 +56,20 @@ func getAndPublishShops(ctx context.Context, projectID string) error {
 	}
 
 	start2 := time.Now()
+	var eg errgroup.Group
 	for _, shop := range shops {
-		err := publishShop(ctx, pubsubClient, shop)
-		if err != nil {
-			return errors.WithStack(err)
-		}
+		// c.f. https://golang.org/doc/faq#closures_and_goroutines
+		shop := shop
+		eg.Go(func() error {
+			err := publishShop(ctx, pubsubClient, shop)
+			if err != nil {
+				return errors.WithStack(err)
+			}
+			return nil
+		})
+	}
+	if err := eg.Wait(); err != nil {
+		return err
 	}
 	duration2 := time.Now().Sub(start2)
 	fmt.Printf("[DEBUG] publishShop (%s)\n", duration2)

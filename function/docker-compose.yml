@@ -12,6 +12,8 @@ services:
       SENTRY_ENVIRONMENT: development
       SENTRY_DEBUG: "true"
       GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY}
+      PUBSUB_PROJECT_ID: test
+      PUBSUB_EMULATOR_HOST: localhost:8085
 
 volumes:
   gopath-data:

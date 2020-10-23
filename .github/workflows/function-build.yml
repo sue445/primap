@@ -76,6 +76,8 @@ jobs:
           firebase --project $GCP_PROJECT emulators:exec --only firestore,pubsub "make testrace"
         env:
           GCP_PROJECT: test
+          PUBSUB_PROJECT_ID: test
+          PUBSUB_EMULATOR_HOST: localhost:8085
 
       # FIXME: gcov2lcov-action doesn't support mono repo...
       # - name: Convert coverage to lcov

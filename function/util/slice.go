@@ -6,7 +6,7 @@ import (
 
 // SubtractSlice returns subtracted slice (src - sub)
 func SubtractSlice(src []string, sub []string) []string {
-	return subtractSliceWithContains(src, sub)
+	return subtractSliceWithSet(src, sub)
 }
 
 func subtractSliceWithContains(src []string, sub []string) []string {

@@ -22,3 +22,13 @@ func Benchmark_subtractSliceWithContains(b *testing.B) {
 		subtractSliceWithContains(src, sub)
 	}
 }
+
+func Benchmark_subtractSliceWithSet(b *testing.B) {
+	src := generateTestData()
+	sub := generateTestData()
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		subtractSliceWithSet(src, sub)
+	}
+}

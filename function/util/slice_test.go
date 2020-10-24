@@ -47,3 +47,12 @@ func TestContains(t *testing.T) {
 		})
 	}
 }
+
+func Test_subtractSliceWithSet(t *testing.T) {
+	src := []string{"a", "b", "c"}
+	sub := []string{"c", "d", "e"}
+
+	got := subtractSliceWithSet(src, sub)
+
+	assert.Equal(t, []string{"a", "b"}, got)
+}

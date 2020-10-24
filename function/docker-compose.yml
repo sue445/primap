@@ -14,6 +14,7 @@ services:
       GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY}
       PUBSUB_PROJECT_ID: test
       PUBSUB_EMULATOR_HOST: localhost:8085
+      TEST_ARGS: ${TEST_ARGS}
 
 volumes:
   gopath-data:

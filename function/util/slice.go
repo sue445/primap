@@ -1,7 +1,15 @@
 package util
 
+import (
+	"github.com/deckarep/golang-set"
+)
+
 // SubtractSlice returns subtracted slice (src - sub)
 func SubtractSlice(src []string, sub []string) []string {
+	return subtractSliceWithSet(src, sub)
+}
+
+func subtractSliceWithContains(src []string, sub []string) []string {
 	var ret []string
 
 	for _, s := range src {
@@ -24,4 +32,22 @@ func Contains(slice []string, item string) bool {
 
 	_, ok := set[item]
 	return ok
+}
+
+func subtractSliceWithSet(src []string, sub []string) []string {
+	subSet := mapset.NewSet()
+
+	for _, s := range sub {
+		subSet.Add(s)
+	}
+
+	var ret []string
+
+	for _, s := range src {
+		if !subSet.Contains(s) {
+			ret = append(ret, s)
+		}
+	}
+
+	return ret
 }

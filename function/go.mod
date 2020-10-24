@@ -6,6 +6,7 @@ require (
 	cloud.google.com/go v0.69.1 // indirect
 	cloud.google.com/go/firestore v1.3.0
 	cloud.google.com/go/pubsub v1.8.1
+	github.com/deckarep/golang-set v1.7.1
 	github.com/getsentry/sentry-go v0.7.0
 	github.com/golang/protobuf v1.4.3 // indirect
 	github.com/google/uuid v1.1.2

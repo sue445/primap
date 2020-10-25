@@ -77,7 +77,7 @@ export class MapContainer extends React.Component<Props, {}> {
     query.subscribe((hits) => {
       const shops = [] as Array<ShopEntity>;
       hits.forEach((data) => {
-        const shop = ShopEntity.createFrom(data);
+        const shop = new ShopEntity(data);
         shops.push(shop);
         this.shopCache[shop.name] = shop;
       });

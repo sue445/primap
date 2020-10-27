@@ -48,9 +48,9 @@ export class MapContainer extends React.Component<Props, {}> {
     const bounds = map.getBounds();
     if (!bounds) {
       if (process.env.NODE_ENV != "production") {
-        console.log("[WARN] bounds is undefined");
+        console.log("[INFO] bounds is undefined");
       }
-      Sentry.captureMessage("bounds is undefined", Sentry.Severity.Warning);
+      Sentry.captureMessage("bounds is undefined", Sentry.Severity.Info);
       return;
     }
 

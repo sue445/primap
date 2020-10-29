@@ -4,6 +4,7 @@ import { GeoFireClient } from "geofirex";
 import * as Sentry from "@sentry/react";
 import { ShopEntity, Time } from "./ShopEntity";
 import { correctLongitude } from "./Util";
+import SeriesCheckbox from "./SeriesCheckbox";
 
 type Props = {
   latitude: number;
@@ -125,26 +126,18 @@ export class MapContainer extends React.Component<Props, {}> {
       <div>
         <div className="flex mt-6">
           <span className={"h-6 font-bold"}>絞り込み</span>
-          <label className="flex items-center">
-            <input
-              type="checkbox"
-              className="form-checkbox h-6 w-6"
-              onChange={this.onSeriesChanged}
-              value="prichan"
-              checked={this.state.series.has("prichan")}
-            />
-            <span className="ml-1">キラッとプリ☆チャン</span>
-          </label>
-          <label className="flex items-center">
-            <input
-              type="checkbox"
-              className="form-checkbox h-6 w-6"
-              onChange={this.onSeriesChanged}
-              value="pripara"
-              checked={this.state.series.has("pripara")}
-            />
-            <span className="ml-1">プリパラ オールアイドル</span>
-          </label>
+          <SeriesCheckbox
+            title="キラッとプリ☆チャン"
+            value="prichan"
+            checked={this.state.series.has("prichan")}
+            onChange={this.onSeriesChanged}
+          />
+          <SeriesCheckbox
+            title="プリパラ オールアイドル"
+            value="pripara"
+            checked={this.state.series.has("pripara")}
+            onChange={this.onSeriesChanged}
+          />
         </div>
         <Map
           // @ts-ignore

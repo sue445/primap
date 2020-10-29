@@ -43,7 +43,7 @@ jobs:
   test:
     name: test
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Set up Go
@@ -121,7 +121,7 @@ jobs:
   lint:
     name: lint
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Set up Go
@@ -165,7 +165,7 @@ jobs:
   go2ts:
     name: go2ts
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Set up Go
@@ -229,7 +229,7 @@ jobs:
       - lint
       - go2ts
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Slack Notification (success)

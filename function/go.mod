@@ -7,7 +7,6 @@ require (
 	cloud.google.com/go/pubsub v1.8.2
 	github.com/deckarep/golang-set v1.7.1
 	github.com/getsentry/sentry-go v0.7.0
-	github.com/golang/protobuf v1.4.3 // indirect
 	github.com/google/uuid v1.1.2
 	github.com/jarcoal/httpmock v1.0.6
 	github.com/knakk/digest v0.0.0-20160404164910-fd45becddc49 // indirect

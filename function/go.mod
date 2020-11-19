@@ -25,5 +25,5 @@ require (
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20201109203340-2640f1f9cdfb
 	google.golang.org/grpc v1.33.2
-	googlemaps.github.io/maps v1.2.3
+	googlemaps.github.io/maps v1.3.1
 )

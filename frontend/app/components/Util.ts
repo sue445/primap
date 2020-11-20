@@ -5,3 +5,10 @@ export function correctLongitude(longitude: number): number {
   }
   return (longitude % 360) - 180;
 }
+
+export function formatAddress(address: string): string {
+  if (!address) {
+    return "";
+  }
+  return address.replace(/　+/g, "　");
+}

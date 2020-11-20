@@ -3,7 +3,7 @@ import React from "react";
 import { GeoFireClient } from "geofirex";
 import * as Sentry from "@sentry/react";
 import { ShopEntity, Time } from "./ShopEntity";
-import { correctLongitude } from "./Util";
+import { correctLongitude, formatAddress } from "./Util";
 import SeriesCheckbox from "./SeriesCheckbox";
 
 type Props = {
@@ -191,7 +191,7 @@ export class MapContainer extends React.Component<Props, {}> {
               </h3>
               <dl>
                 <dt className={"font-semibold"}>住所</dt>
-                <dd>{this.state.selectedShop.address}</dd>
+                <dd>{formatAddress(this.state.selectedShop.address)}</dd>
                 <dt className={"font-semibold"}>設置筐体</dt>
                 {this.state.selectedShop.series.includes("prichan") && (
                   <dd>キラッとプリ☆チャン</dd>

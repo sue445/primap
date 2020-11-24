@@ -7,6 +7,8 @@ import (
 	"github.com/pkg/errors"
 	secretmanagerenv "github.com/sue445/gcp-secretmanagerenv"
 	"github.com/sue445/primap/config"
+	"github.com/sue445/primap/prismdb"
+	"github.com/sue445/primap/util"
 	"golang.org/x/text/width"
 	"google.golang.org/genproto/googleapis/type/latlng"
 	"googlemaps.github.io/maps"
@@ -33,6 +35,31 @@ type ShopEntity struct {
 	UpdatedAt        time.Time  `firestore:"updated_at"        json:"updated_at"`
 	Geography        *Geography `firestore:"geography"         json:"geography"`
 	Deleted          bool       `firestore:"deleted"           json:"deleted"`
+}
+
+// IsUpdated returns whether it has changed compared to prismdb.Shop
+func (e *ShopEntity) IsUpdated(target *prismdb.Shop) bool {
+	if e.Deleted || e.Geography == nil ||
+		e.Name != target.Name || e.Prefecture != target.Prefecture ||
+		e.Address != target.Address || e.SanitizedAddress != sanitizeAddress(target.Address) {
+
+		return true
+	}
+
+	if len(e.Series) != len(target.Series) {
+		return true
+	}
+
+	sourceSeries := util.SortedSlice(e.Series)
+	targetSeries := util.SortedSlice(target.Series)
+
+	for i := 0; i < len(sourceSeries); i++ {
+		if sourceSeries[i] != targetSeries[i] {
+			return true
+		}
+	}
+
+	return false
 }
 
 // UpdateAddressWithGeography update address and fetch geography if necessary

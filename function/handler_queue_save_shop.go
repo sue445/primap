@@ -59,6 +59,10 @@ func saveShop(ctx context.Context, projectID string, shop *prismdb.Shop) error {
 		return errors.WithStack(err)
 	}
 
+	if !entity.IsUpdated(shop) {
+		return nil
+	}
+
 	entity.Prefecture = shop.Prefecture
 	entity.Series = shop.Series
 	entity.Deleted = false

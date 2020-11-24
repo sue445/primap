@@ -56,3 +56,49 @@ func Test_subtractSliceWithSet(t *testing.T) {
 
 	assert.Equal(t, []string{"a", "b"}, got)
 }
+
+func TestSortedSlice(t *testing.T) {
+	type args struct {
+		src []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want []string
+	}{
+		{
+			name: "arg is sorted",
+			args: args{
+				src: []string{"1", "2"},
+			},
+			want: []string{"1", "2"},
+		},
+		{
+			name: "arg isn't sorted",
+			args: args{
+				src: []string{"2", "1"},
+			},
+			want: []string{"1", "2"},
+		},
+		{
+			name: "arg is empty",
+			args: args{
+				src: []string{},
+			},
+			want: []string{},
+		},
+		{
+			name: "arg contains 1 element",
+			args: args{
+				src: []string{"1"},
+			},
+			want: []string{"1"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := SortedSlice(tt.args.src)
+			assert.Equal(t, tt.want, got)
+		})
+	}
+}

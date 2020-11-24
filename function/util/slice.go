@@ -2,6 +2,7 @@ package util
 
 import (
 	"github.com/deckarep/golang-set"
+	"sort"
 )
 
 // SubtractSlice returns subtracted slice (src - sub)
@@ -50,4 +51,19 @@ func subtractSliceWithSet(src []string, sub []string) []string {
 	}
 
 	return ret
+}
+
+// SortedSlice returns sorted slice
+func SortedSlice(src []string) []string {
+	if sort.StringsAreSorted(src) {
+		return src
+	}
+
+	var dst []string
+	for _, s := range src {
+		dst = append(dst, s)
+	}
+	sort.Strings(dst)
+
+	return dst
 }

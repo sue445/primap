@@ -14,6 +14,7 @@ import (
 	"googlemaps.github.io/maps"
 	"log"
 	"regexp"
+	"strings"
 	"time"
 )
 
@@ -136,6 +137,8 @@ func getGoogleMapsAPIKey(ctx context.Context) (string, error) {
 
 func sanitizeAddress(address string) string {
 	sanitized := width.Fold.String(address)
+
+	sanitized = strings.ReplaceAll(sanitized, "−", "-")
 
 	// Normalize Japanese street number(丁目,番地,号)
 	sanitized = regexp.MustCompile(`([0-9]+)(?:番地)?の([0-9]+)`).ReplaceAllString(sanitized, "$1-$2")

@@ -9,6 +9,8 @@ import (
 	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/db"
 	"github.com/sue445/primap/prismdb"
+	"log"
+	"strings"
 )
 
 // QueueSaveShop is called from pub/sub subscription
@@ -52,6 +54,15 @@ func queueSaveShopHandler(ctx context.Context, m *pubsub.Message) error {
 }
 
 func saveShop(ctx context.Context, projectID string, shop *prismdb.Shop) error {
+	if !strings.HasPrefix(shop.Address, shop.Prefecture) {
+		log.Printf("[WARN] Prefecture is mismatched with address: Prefecture=%s, Address=%s\n", shop.Prefecture, shop.Address)
+
+		sentry.ConfigureScope(func(scope *sentry.Scope) {
+			scope.SetLevel(sentry.LevelWarning)
+		})
+		sentry.CaptureMessage("Prefecture is mismatched with address")
+	}
+
 	dao := db.NewShopDao(ctx, projectID)
 
 	entity, err := dao.LoadOrCreateShop(shop.Name)

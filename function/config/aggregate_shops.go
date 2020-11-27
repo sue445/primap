@@ -44,7 +44,14 @@ func AggregateShops(shops []*prismdb.Shop) []*prismdb.Shop {
 	aggregatedShopsMap := map[string]*prismdb.Shop{}
 
 	for _, shop := range shops {
-		shopName := strings.TrimSuffix(shop.Name, "店")
+		// Remove "店" that isn't "本店"
+		// FIXME: I want to use `(?<!本)店$`, but Go regexp doesn't support negative look-ahead
+		shopName := ""
+		if strings.HasSuffix(shop.Name, "本店") {
+			shopName = shop.Name
+		} else {
+			shopName = strings.TrimSuffix(shop.Name, "店")
+		}
 
 		if reversedSimilarShopNames[shop.Name] != "" {
 			shopName = reversedSimilarShopNames[shop.Name]

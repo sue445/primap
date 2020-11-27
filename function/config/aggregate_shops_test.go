@@ -50,6 +50,12 @@ func TestAggregateShops(t *testing.T) {
 			Address:    "神奈川県藤沢市辻堂新町四丁目１番１号　湘南モールＦＩＬＬ２Ｆ",
 			Series:     []string{"prichan"},
 		},
+		{
+			Name:       "ビックカメラ新宿西口本店",
+			Prefecture: "東京都",
+			Address:    "東京都新宿区西新宿１－１１－１",
+			Series:     []string{"prichan"},
+		},
 	}
 
 	got := AggregateShops(shops)
@@ -60,6 +66,12 @@ func TestAggregateShops(t *testing.T) {
 			Prefecture: "兵庫県",
 			Address:    "兵庫県小野市王子町８６８－１ イオン小野店２Ｆ",
 			Series:     []string{"prichan", "pripara"},
+		},
+		{
+			Name:       "ビックカメラ新宿西口本店",
+			Prefecture: "東京都",
+			Address:    "東京都新宿区西新宿１－１１－１",
+			Series:     []string{"prichan"},
 		},
 		{
 			Name:       "プリズムストーン札幌",

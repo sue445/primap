@@ -49,6 +49,13 @@ func getAndPublishShops(ctx context.Context, projectID string) error {
 	}
 	duration1 := time.Now().Sub(start1)
 	fmt.Printf("[DEBUG] prismdbClient.GetAllShops (%s)\n", duration1)
+	fmt.Printf("[INFO][getAndPublishShops] fetched shops=%d\n", len(shops))
+
+	start4 := time.Now()
+	shops = config.AggregateShops(shops)
+	duration4 := time.Now().Sub(start4)
+	fmt.Printf("[DEBUG] config.AggregateShops (%s)\n", duration4)
+	fmt.Printf("[INFO][getAndPublishShops] aggregated shops=%d\n", len(shops))
 
 	pubsubClient, err := pubsub.NewClient(ctx, projectID)
 	if err != nil {

@@ -23,7 +23,7 @@ describe.each([
     "北海道滝川市東町２丁目２９－１　　　　　　　イオン滝川店１Ｆ",
     "北海道滝川市東町２丁目２９－１　イオン滝川店１Ｆ",
   ],
-])(".correctLongitude()", (address, expected) => {
+])(".formatAddress()", (address, expected) => {
   test(`formatAddress(${address}) returns ${expected}`, () => {
     expect(formatAddress(address)).toBe(expected);
   });

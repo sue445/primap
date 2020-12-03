@@ -19,11 +19,10 @@ require (
 	github.com/tkrajina/go-reflector v0.5.4 // indirect
 	github.com/tkrajina/typescriptify-golang-structs v0.1.3
 	golang.org/x/sync v0.0.0-20201020160332-67f06af15bc9
-	golang.org/x/sys v0.0.0-20201017003518-b09fb700fbb7 // indirect
 	golang.org/x/text v0.3.4
-	google.golang.org/api v0.35.0
+	google.golang.org/api v0.36.0
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20201109203340-2640f1f9cdfb
+	google.golang.org/genproto v0.0.0-20201201144952-b05cb90ed32e
 	google.golang.org/grpc v1.33.2
 	googlemaps.github.io/maps v1.3.1
 )

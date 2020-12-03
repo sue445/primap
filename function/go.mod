@@ -3,7 +3,7 @@ module github.com/sue445/primap
 go 1.13
 
 require (
-	cloud.google.com/go/firestore v1.3.0
+	cloud.google.com/go/firestore v1.4.0
 	cloud.google.com/go/pubsub v1.8.3
 	github.com/deckarep/golang-set v1.7.1
 	github.com/getsentry/sentry-go v0.8.0
@@ -22,7 +22,7 @@ require (
 	golang.org/x/text v0.3.4
 	google.golang.org/api v0.36.0
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20201201144952-b05cb90ed32e
+	google.golang.org/genproto v0.0.0-20201203001206-6486ece9c497
 	google.golang.org/grpc v1.34.0
 	googlemaps.github.io/maps v1.3.1
 )

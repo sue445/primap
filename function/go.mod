@@ -23,6 +23,6 @@ require (
 	google.golang.org/api v0.36.0
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20201201144952-b05cb90ed32e
-	google.golang.org/grpc v1.33.2
+	google.golang.org/grpc v1.34.0
 	googlemaps.github.io/maps v1.3.1
 )

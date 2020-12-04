@@ -9,12 +9,9 @@ import (
 	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/prismdb"
 	"github.com/sue445/primap/util"
-	"golang.org/x/text/width"
 	"google.golang.org/genproto/googleapis/type/latlng"
 	"googlemaps.github.io/maps"
 	"log"
-	"regexp"
-	"strings"
 	"time"
 )
 
@@ -42,7 +39,7 @@ type ShopEntity struct {
 func (e *ShopEntity) IsUpdated(target *prismdb.Shop) bool {
 	if e.Deleted || e.Geography == nil ||
 		e.Name != target.Name || e.Prefecture != target.Prefecture ||
-		e.Address != target.Address || e.SanitizedAddress != sanitizeAddress(target.Address) {
+		e.Address != target.Address || e.SanitizedAddress != util.SanitizeAddress(target.Address) {
 
 		return true
 	}
@@ -65,7 +62,7 @@ func (e *ShopEntity) IsUpdated(target *prismdb.Shop) bool {
 
 // UpdateAddressWithGeography update address and fetch geography if necessary
 func (e *ShopEntity) UpdateAddressWithGeography(ctx context.Context, address string) error {
-	sanitizedAddress := sanitizeAddress(address)
+	sanitizedAddress := util.SanitizeAddress(address)
 
 	if e.Address == address && e.SanitizedAddress == sanitizedAddress && e.Geography != nil {
 		return nil
@@ -133,19 +130,4 @@ func getGoogleMapsAPIKey(ctx context.Context) (string, error) {
 	}
 
 	return googleMapsAPIKey, nil
-}
-
-func sanitizeAddress(address string) string {
-	sanitized := width.Fold.String(address)
-
-	sanitized = strings.ReplaceAll(sanitized, "−", "-")
-
-	// Normalize Japanese street number(丁目,番地,号)
-	sanitized = regexp.MustCompile(`([0-9]+)(?:番地)?の([0-9]+)`).ReplaceAllString(sanitized, "$1-$2")
-	sanitized = regexp.MustCompile(`([0-9]+)(?:(?:丁目)|(?:番地?)|(?:号))`).ReplaceAllString(sanitized, "$1-")
-
-	// Remove building name after street name
-	sanitized = regexp.MustCompile(`([0-9]+(?:-[0-9]+)?(?:-[0-9]+)?)[^条線]*$`).ReplaceAllString(sanitized, "$1")
-
-	return sanitized
 }

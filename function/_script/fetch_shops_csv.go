@@ -6,6 +6,7 @@ import (
 	"encoding/csv"
 	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/prismdb"
+	"github.com/sue445/primap/util"
 	"log"
 	"os"
 	"strings"
@@ -24,7 +25,7 @@ func main() {
 
 	shops = config.AggregateShops(shops)
 
-	header := []string{"name", "prefecture", "address", "series"}
+	header := []string{"name", "prefecture", "address", "sanitized_address", "series"}
 
 	w := csv.NewWriter(os.Stdout)
 
@@ -37,6 +38,7 @@ func main() {
 			shop.Name,
 			shop.Prefecture,
 			shop.Address,
+			util.SanitizeAddress(shop.Address),
 			strings.Join(shop.Series, ","),
 		}
 		if err := w.Write(record); err != nil {

@@ -11,6 +11,7 @@ func SanitizeAddress(address string) string {
 	sanitized := width.Fold.String(address)
 
 	sanitized = strings.ReplaceAll(sanitized, "−", "-")
+	sanitized = strings.ReplaceAll(sanitized, "ー", "-")
 
 	// Normalize Japanese street number(丁目,番地,号)
 	sanitized = regexp.MustCompile(`([0-9]+)(?:番地)?の([0-9]+)`).ReplaceAllString(sanitized, "$1-$2")

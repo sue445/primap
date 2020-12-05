@@ -2,7 +2,7 @@ import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
 import React from "react";
 import { GeoFireClient } from "geofirex";
 import * as Sentry from "@sentry/react";
-import { ShopEntity, Time } from "./ShopEntity";
+import { ShopEntity } from "./ShopEntity";
 import { correctLongitude, formatAddress } from "./Util";
 import SeriesCheckbox from "./SeriesCheckbox";
 
@@ -13,7 +13,7 @@ type Props = {
   geo: GeoFireClient;
 };
 
-const emptyShop = { series: [], updated_at: new Time() } as ShopEntity;
+const emptyShop = { series: [] } as ShopEntity;
 
 const shopLimit = 2000;
 

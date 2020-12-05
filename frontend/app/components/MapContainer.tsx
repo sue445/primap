@@ -199,6 +199,8 @@ export class MapContainer extends React.Component<Props, {}> {
                 {this.state.selectedShop.series.includes("pripara") && (
                   <dd>プリパラ オールアイドル</dd>
                 )}
+                <dt className={"font-semibold"}>更新日時</dt>
+                <dd>{this.state.selectedShop.updated_at?.toLocaleString()}</dd>
               </dl>
             </div>
           </InfoWindow>

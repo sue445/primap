@@ -46,23 +46,14 @@ export class Geography {
     return a;
   }
 }
-export class Time {
-  static createFrom(source: any = {}) {
-    return new Time(source);
-  }
-
-  constructor(source: any = {}) {
-    if ("string" === typeof source) source = JSON.parse(source);
-  }
-}
 export class ShopEntity {
   name: string;
   prefecture: string;
   address: string;
   sanitized_address: string;
   series: string[];
-  created_at: Time;
-  updated_at: Time;
+  created_at: Date;
+  updated_at: Date;
   geography?: Geography;
   deleted: boolean;
 
@@ -77,8 +68,8 @@ export class ShopEntity {
     this.address = source["address"];
     this.sanitized_address = source["sanitized_address"];
     this.series = source["series"];
-    this.created_at = this.convertValues(source["created_at"], Time);
-    this.updated_at = this.convertValues(source["updated_at"], Time);
+    this.created_at = source["created_at"].toDate();
+    this.updated_at = source["updated_at"].toDate();
     this.geography = this.convertValues(source["geography"], Geography);
     this.deleted = source["deleted"];
   }

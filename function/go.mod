@@ -6,7 +6,7 @@ require (
 	cloud.google.com/go/firestore v1.4.0
 	cloud.google.com/go/pubsub v1.9.0
 	github.com/deckarep/golang-set v1.7.1
-	github.com/getsentry/sentry-go v0.8.0
+	github.com/getsentry/sentry-go v0.9.0
 	github.com/google/uuid v1.1.2
 	github.com/jarcoal/httpmock v1.0.6
 	github.com/knakk/digest v0.0.0-20160404164910-fd45becddc49 // indirect

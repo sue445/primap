@@ -25,6 +25,9 @@ update_configs:
       - match:
           dependency_name: "github.com/golang/mock"
           update_type: "all"
+      - match:
+          dependency_name: "github.com/getsentry/sentry-go"
+          update_type: "semver:minor"
 
   - package_manager: "javascript"
 
@@ -68,6 +71,9 @@ update_configs:
       - match:
           dependency_type: "production"
           update_type: "semver:patch"
+      - match:
+          dependency_name: "@sentry/*"
+          update_type: "semver:minor"
 
     default_assignees:
       - sue445

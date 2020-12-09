@@ -17,7 +17,7 @@ import (
 func QueueSaveShop(ctx context.Context, m *pubsub.Message) error {
 	cleanup, err := initFunction(ctx)
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 	defer cleanup()
 
@@ -25,7 +25,7 @@ func QueueSaveShop(ctx context.Context, m *pubsub.Message) error {
 
 	if err != nil {
 		handleError(err)
-		return err
+		return errors.WithStack(err)
 	}
 
 	return nil

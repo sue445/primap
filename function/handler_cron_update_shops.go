@@ -22,7 +22,7 @@ const (
 func CronUpdateShops(ctx context.Context, m *pubsub.Message) error {
 	cleanup, err := initFunction(ctx)
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 	defer cleanup()
 
@@ -30,7 +30,7 @@ func CronUpdateShops(ctx context.Context, m *pubsub.Message) error {
 
 	if err != nil {
 		handleError(err)
-		return err
+		return errors.WithStack(err)
 	}
 
 	return nil
@@ -76,7 +76,7 @@ func getAndPublishShops(ctx context.Context, projectID string) error {
 		})
 	}
 	if err := eg.Wait(); err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 	duration2 := time.Now().Sub(start2)
 	fmt.Printf("[DEBUG] publishShop (%s)\n", duration2)

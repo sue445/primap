@@ -125,12 +125,21 @@ func deleteRemovedShops(ctx context.Context, projectID string, newShops []*prism
 
 	removedShopNames := util.SubtractSlice(dbShopNames, newShopNames)
 
+	var eg errgroup.Group
 	for _, name := range removedShopNames {
-		err := dao.DeleteShop(name)
-		if err != nil {
-			return errors.WithStack(err)
-		}
-		fmt.Printf("[INFO][deleteRemovedShops] Deleted shop=%s\n", name)
+		// c.f. https://golang.org/doc/faq#closures_and_goroutines
+		name := name
+		eg.Go(func() error {
+			err := dao.DeleteShop(name)
+			if err != nil {
+				return errors.WithStack(err)
+			}
+			fmt.Printf("[INFO][deleteRemovedShops] Deleted shop=%s\n", name)
+			return nil
+		})
+	}
+	if err := eg.Wait(); err != nil {
+		return errors.WithStack(err)
 	}
 
 	fmt.Printf("[INFO][deleteRemovedShops] Deleted shops=%d\n", len(removedShopNames))

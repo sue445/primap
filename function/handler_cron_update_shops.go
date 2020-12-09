@@ -22,7 +22,7 @@ const (
 func CronUpdateShops(ctx context.Context, m *pubsub.Message) error {
 	cleanup, err := initFunction(ctx)
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 	defer cleanup()
 
@@ -30,7 +30,7 @@ func CronUpdateShops(ctx context.Context, m *pubsub.Message) error {
 
 	if err != nil {
 		handleError(err)
-		return err
+		return errors.WithStack(err)
 	}
 
 	return nil
@@ -76,7 +76,7 @@ func getAndPublishShops(ctx context.Context, projectID string) error {
 		})
 	}
 	if err := eg.Wait(); err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 	duration2 := time.Now().Sub(start2)
 	fmt.Printf("[DEBUG] publishShop (%s)\n", duration2)
@@ -125,12 +125,21 @@ func deleteRemovedShops(ctx context.Context, projectID string, newShops []*prism
 
 	removedShopNames := util.SubtractSlice(dbShopNames, newShopNames)
 
+	var eg errgroup.Group
 	for _, name := range removedShopNames {
-		err := dao.DeleteShop(name)
-		if err != nil {
-			return errors.WithStack(err)
-		}
-		fmt.Printf("[INFO][deleteRemovedShops] Deleted shop=%s\n", name)
+		// c.f. https://golang.org/doc/faq#closures_and_goroutines
+		name := name
+		eg.Go(func() error {
+			err := dao.DeleteShop(name)
+			if err != nil {
+				return errors.WithStack(err)
+			}
+			fmt.Printf("[INFO][deleteRemovedShops] Deleted shop=%s\n", name)
+			return nil
+		})
+	}
+	if err := eg.Wait(); err != nil {
+		return errors.WithStack(err)
 	}
 
 	fmt.Printf("[INFO][deleteRemovedShops] Deleted shops=%d\n", len(removedShopNames))

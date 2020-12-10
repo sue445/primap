@@ -160,6 +160,15 @@ export class MapContainer extends React.Component<Props, {}> {
             height: "100%",
           }}
         >
+          <Marker
+            position={{
+              lat: this.state.latitude,
+              lng: this.state.longitude,
+            }}
+            icon={{
+              url: "/img/marker_current_position.png",
+            }}
+          />
           {this.state.shops
             .filter((shop) => {
               return shop.series.some((series) => {

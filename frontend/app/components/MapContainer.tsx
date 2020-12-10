@@ -168,6 +168,7 @@ export class MapContainer extends React.Component<Props, {}> {
             icon={{
               url: "/img/marker_current_position.png",
             }}
+            zIndex={10}
           />
           {this.state.shops
             .filter((shop) => {
@@ -185,6 +186,7 @@ export class MapContainer extends React.Component<Props, {}> {
                 }}
                 // @ts-ignore
                 name={shop.name}
+                zIndex={1}
               />
             ))}
 

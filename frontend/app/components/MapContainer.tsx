@@ -160,6 +160,16 @@ export class MapContainer extends React.Component<Props, {}> {
             height: "100%",
           }}
         >
+          <Marker
+            position={{
+              lat: this.state.latitude,
+              lng: this.state.longitude,
+            }}
+            icon={{
+              url: "/img/marker_current_position.png",
+            }}
+            zIndex={10}
+          />
           {this.state.shops
             .filter((shop) => {
               return shop.series.some((series) => {
@@ -176,6 +186,7 @@ export class MapContainer extends React.Component<Props, {}> {
                 }}
                 // @ts-ignore
                 name={shop.name}
+                zIndex={1}
               />
             ))}
 

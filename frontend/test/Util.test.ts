@@ -1,4 +1,8 @@
-import { correctLongitude, formatAddress } from "../app/components/Util";
+import {
+  correctLongitude,
+  formatAddress,
+  getShopMarkerIconUrl,
+} from "../app/components/Util";
 
 describe.each([
   [0, 0],
@@ -26,5 +30,14 @@ describe.each([
 ])(".formatAddress()", (address, expected) => {
   test(`formatAddress(${address}) returns ${expected}`, () => {
     expect(formatAddress(address)).toBe(expected);
+  });
+});
+
+describe.each([
+  ["タイトーステーション新宿南口ゲームワールド", null],
+  ["プリズムストーン 原宿", "/img/marker_prismstone.png"],
+])(".getShopMarkerIconUrl()", (shopName, expected) => {
+  test(`getShopMarkerIconUrl(${shopName}) returns ${expected}`, () => {
+    expect(getShopMarkerIconUrl(shopName)).toBe(expected);
   });
 });

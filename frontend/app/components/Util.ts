@@ -16,3 +16,12 @@ export function formatAddress(address: string): string {
   }
   return address.replace(/　+/g, "　");
 }
+
+export function getShopMarkerIconUrl(shopName: string): string {
+  if (shopName.startsWith("プリズムストーン")) {
+    return "/img/marker_prismstone.png";
+  }
+
+  // Use default icon
+  return null;
+}

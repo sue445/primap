@@ -3,7 +3,7 @@ import React from "react";
 import { GeoFireClient } from "geofirex";
 import * as Sentry from "@sentry/react";
 import { ShopEntity } from "./ShopEntity";
-import { correctLongitude, formatAddress } from "./Util";
+import { correctLongitude, formatAddress, getShopMarkerIconUrl } from "./Util";
 import SeriesCheckbox from "./SeriesCheckbox";
 
 type Props = {
@@ -187,6 +187,9 @@ export class MapContainer extends React.Component<Props, {}> {
                 // @ts-ignore
                 name={shop.name}
                 zIndex={1}
+                icon={{
+                  url: getShopMarkerIconUrl(shop.name),
+                }}
               />
             ))}
 

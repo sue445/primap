@@ -9,7 +9,7 @@ https://primap.web.app/
 [![Maintainability](https://api.codeclimate.com/v1/badges/b101cae3c1b0fb5c1396/maintainability)](https://codeclimate.com/github/sue445/primap/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/sue445/primap/badge.svg)](https://coveralls.io/github/sue445/primap)
 
-## LICENCE
+## LICENSE
 [MIT License](LICENSE) Copyright (c) 2020 sue445
 
 ただし一部画像は下記よりお借りしているためライセンスはそちらに属します

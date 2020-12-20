@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@sentry/react": "^5.29.1",
-    "@sentry/tracing": "^5.29.1",
+    "@sentry/tracing": "^5.29.2",
     "firebase": "^7.24.0",
     "geofirex": "^0.1.0",
     "google-maps-react": "^2.0.6",

@@ -1,7 +1,7 @@
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
 import React from "react";
 import { GeoFireClient } from "geofirex";
-import * as Sentry from "@sentry/react";
+import Sentry from "@sentry/react";
 import { ShopEntity } from "./ShopEntity";
 import { correctLongitude, formatAddress, getShopMarkerIconUrl } from "./Util";
 import SeriesCheckbox from "./SeriesCheckbox";

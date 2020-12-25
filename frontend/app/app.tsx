@@ -1,5 +1,5 @@
 // Firebase App (the core Firebase SDK) is always required and must be listed first
-import firebase from "firebase/app";
+import * as firebase from "firebase/app";
 
 // Add the Firebase products that you want to use
 import "firebase/firestore";
@@ -7,9 +7,9 @@ import "firebase/analytics";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Sentry from "@sentry/react";
+import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
-import geofirex from "geofirex";
+import * as geofirex from "geofirex";
 
 import MapContainer from "./components/MapContainer";
 

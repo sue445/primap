@@ -9,6 +9,10 @@ https://primap.web.app/
 [![Maintainability](https://api.codeclimate.com/v1/badges/b101cae3c1b0fb5c1396/maintainability)](https://codeclimate.com/github/sue445/primap/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/sue445/primap/badge.svg)](https://coveralls.io/github/sue445/primap)
 
+## 細かい説明
+* [プリマップというプリパラやプリ☆チャンが遊べるお店を探せる地図を作った \- くりにっき](https://sue445.hatenablog.com/entry/2020/10/14/194244)
+* [細かすぎて伝わりづらいプリマップの改修ポイント \#プリッカソン \- くりにっき](https://sue445.hatenablog.com/entry/2020/12/02/000000)
+
 ## LICENSE
 [MIT License](LICENSE) Copyright (c) 2020 sue445
 

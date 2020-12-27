@@ -17,7 +17,7 @@ require (
 	github.com/stretchr/testify v1.6.1
 	github.com/sue445/gcp-secretmanagerenv v0.1.1
 	github.com/tkrajina/go-reflector v0.5.4 // indirect
-	github.com/tkrajina/typescriptify-golang-structs v0.1.3
+	github.com/tkrajina/typescriptify-golang-structs v0.1.4
 	golang.org/x/sync v0.0.0-20201207232520-09787c993a3a
 	golang.org/x/text v0.3.4
 	google.golang.org/api v0.36.0

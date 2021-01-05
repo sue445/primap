@@ -24,7 +24,7 @@ defaults:
     working-directory: frontend
 
 jobs:
-  deploy:
+  firebase:
     name: firebase
 
     runs-on: ubuntu-latest

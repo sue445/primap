@@ -17,7 +17,7 @@
     "prettier:write": "npm run prettier:base -- --write \"**/*.{ts,tsx}\""
   },
   "devDependencies": {
-    "@types/googlemaps": "^3.43.0",
+    "@types/googlemaps": "^3.43.1",
     "@types/jest": "^26.0.19",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",

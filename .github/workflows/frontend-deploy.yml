@@ -59,7 +59,7 @@ jobs:
           ls -l public/index.html
 
       - name: GCP Authenticate
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@master
         with:
           version: latest
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}

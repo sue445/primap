@@ -19,7 +19,7 @@ require (
 	github.com/tkrajina/go-reflector v0.5.4 // indirect
 	github.com/tkrajina/typescriptify-golang-structs v0.1.4
 	golang.org/x/sync v0.0.0-20201207232520-09787c993a3a
-	golang.org/x/text v0.3.4
+	golang.org/x/text v0.3.5
 	google.golang.org/api v0.36.0
 	google.golang.org/genproto v0.0.0-20201209185603-f92720507ed4
 	google.golang.org/grpc v1.34.0

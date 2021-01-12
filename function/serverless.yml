@@ -27,6 +27,11 @@ plugins:
 package:
   exclude:
     - node_modules/**
+    - db/testdata/**
+    - testdata/**
+    - testutil/**
+    - _script/**
+    - **/*_test.go
     - .gitignore
     - Dockerfile
     - Makefile

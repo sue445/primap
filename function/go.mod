@@ -8,7 +8,7 @@ require (
 	github.com/deckarep/golang-set v1.7.1
 	github.com/getsentry/sentry-go v0.9.0
 	github.com/google/uuid v1.2.0
-	github.com/jarcoal/httpmock v1.0.7
+	github.com/jarcoal/httpmock v1.0.8
 	github.com/knakk/digest v0.0.0-20160404164910-fd45becddc49 // indirect
 	github.com/knakk/rdf v0.0.0-20190304171630-8521bf4c5042 // indirect
 	github.com/knakk/sparql v0.0.0-20200914044602-05f8b3d450be

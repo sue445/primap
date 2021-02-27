@@ -29,6 +29,8 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    timeout-minutes: 5
+
     steps:
       - uses: actions/checkout@v2
 
@@ -71,6 +73,11 @@ jobs:
           set -xe
           sudo wget https://firebase.tools/bin/linux/latest -O /usr/local/bin/firebase
           sudo chmod 755 /usr/local/bin/firebase
+
+      - name: Turnstyle
+        uses: softprops/turnstyle@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - run: firebase deploy
 

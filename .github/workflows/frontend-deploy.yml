@@ -29,8 +29,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    timeout-minutes: 5
-
     steps:
       - uses: actions/checkout@v2
 
@@ -76,6 +74,9 @@ jobs:
 
       - name: Turnstyle
         uses: softprops/turnstyle@v1
+        with:
+          poll-interval-seconds:  30
+          continue-after-seconds: 300
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

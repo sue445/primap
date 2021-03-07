@@ -4,7 +4,7 @@ go 1.13
 
 require (
 	cloud.google.com/go/firestore v1.5.0
-	cloud.google.com/go/pubsub v1.10.0
+	cloud.google.com/go/pubsub v1.10.1
 	github.com/deckarep/golang-set v1.7.1
 	github.com/getsentry/sentry-go v0.10.0
 	github.com/google/uuid v1.2.0
@@ -17,10 +17,10 @@ require (
 	github.com/stretchr/testify v1.7.0
 	github.com/sue445/gcp-secretmanagerenv v0.1.1
 	github.com/tkrajina/typescriptify-golang-structs v0.1.5
-	golang.org/x/sync v0.0.0-20201207232520-09787c993a3a
+	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 	golang.org/x/text v0.3.5
 	google.golang.org/api v0.40.0
-	google.golang.org/genproto v0.0.0-20210222152913-aa3ee6e6a81c
+	google.golang.org/genproto v0.0.0-20210302174412-5ede27ff9881
 	google.golang.org/grpc v1.36.0
 	googlemaps.github.io/maps v1.3.1
 )

@@ -14,7 +14,7 @@ import (
 // Cleanup should call with defer
 type Cleanup func()
 
-func initFunction(ctx context.Context) (Cleanup, error) {
+func initFunction(ctx context.Context, tracesSampleRate float64) (Cleanup, error) {
 	projectID := os.Getenv("GCP_PROJECT")
 
 	sentryDebug := os.Getenv("SENTRY_DEBUG") != ""
@@ -34,6 +34,7 @@ func initFunction(ctx context.Context) (Cleanup, error) {
 		AttachStacktrace: true,
 		Debug:            sentryDebug,
 		Release:          os.Getenv("SENTRY_RELEASE"),
+		TracesSampleRate: tracesSampleRate,
 	})
 	if err != nil {
 		return nil, errors.WithStack(err)

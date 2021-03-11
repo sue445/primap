@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/db"
@@ -25,6 +26,9 @@ func CronUpdateShops(ctx context.Context, m *pubsub.Message) error {
 		return errors.WithStack(err)
 	}
 	defer cleanup()
+
+	span := sentry.StartSpan(ctx, "CronUpdateShops")
+	defer span.Finish()
 
 	err = getAndPublishShops(ctx, config.GetProjectID())
 

@@ -4,6 +4,7 @@ import (
 	"cloud.google.com/go/pubsub"
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/sue445/primap/config"
@@ -38,6 +39,9 @@ func queueSaveShopHandler(ctx context.Context, m *pubsub.Message) error {
 	if err != nil {
 		return errors.WithStack(err)
 	}
+
+	span := sentry.StartSpan(ctx, "QueueSaveShop", sentry.TransactionName(fmt.Sprintf("QueueSaveShop: %s", shop.Name)))
+	defer span.Finish()
 
 	sentry.ConfigureScope(func(scope *sentry.Scope) {
 		scope.SetTags(map[string]string{

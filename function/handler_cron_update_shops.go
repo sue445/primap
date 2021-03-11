@@ -20,7 +20,7 @@ const (
 
 // CronUpdateShops is called from cloud scheduler
 func CronUpdateShops(ctx context.Context, m *pubsub.Message) error {
-	cleanup, err := initFunction(ctx)
+	cleanup, err := initFunction(ctx, 1.0)
 	if err != nil {
 		return errors.WithStack(err)
 	}

@@ -15,7 +15,7 @@ import (
 
 // QueueSaveShop is called from pub/sub subscription
 func QueueSaveShop(ctx context.Context, m *pubsub.Message) error {
-	cleanup, err := initFunction(ctx)
+	cleanup, err := initFunction(ctx, 0.1)
 	if err != nil {
 		return errors.WithStack(err)
 	}

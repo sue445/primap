@@ -1,10 +1,13 @@
 # primap-function
 [Cloud Functions](https://cloud.google.com/functions) for primap
 
+## Overview
+![overview](_img/overview.svg)
+
 There are the following functions.
 
-* Get shops from [PrismDB](https://prismdb.takanakahiko.me/)
-* Get geography from shop address and save to [Cloud Firestore](https://firebase.google.com/docs/firestore)
+* [CronUpdateShops](handler_cron_update_shops.go): Get shops from [PrismDB](https://prismdb.takanakahiko.me/)
+* [QueueSaveShop](handler_queue_save_shop.go): Get geography from shop address and save to [Cloud Firestore](https://firebase.google.com/docs/firestore)
 
 ## Requirement API keys
 Register followings from https://console.cloud.google.com/apis/credentials
@@ -32,3 +35,12 @@ Run one of the following
 1. `firebase --project test emulators:exec --only firestore,pubsub "make test"`
     * Requires [Firebase CLI](https://firebase.google.com/docs/cli)
 2. `docker-compose up --build`
+
+### Generate [overview.svg](_img/overview.svg)
+Download `plantuml.jar` from https://plantuml.com/download
+
+Then, run following.
+
+```bash
+java -jar /path/to/plantuml.jar -tsvg _img/overview.puml
+```

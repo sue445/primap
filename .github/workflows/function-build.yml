@@ -10,6 +10,7 @@ on:
       - ".dependabot/config.yml"
       - ".github/workflows/go-mod-tidy-pr.yml"
       - "LICENSE"
+      - "function/_img/**"
 
       # Ignore files used only by the frontend
       - "frontend/**"

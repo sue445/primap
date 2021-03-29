@@ -2,7 +2,7 @@
 [Cloud Functions](https://cloud.google.com/functions) for primap
 
 ## Overview
-![overview](img/overview.svg)
+![overview](_img/overview.svg)
 
 There are the following functions.
 
@@ -42,5 +42,5 @@ Download `plantuml.jar` from https://plantuml.com/download
 Then, run following.
 
 ```bash
-java -jar /path/to/plantuml.jar -tsvg img/overview.puml
+java -jar /path/to/plantuml.jar -tsvg _img/overview.puml
 ```

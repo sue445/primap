@@ -30,6 +30,7 @@ package:
     - "db/testdata/**"
     - "testdata/**"
     - "testutil/**"
+    - "_img/**"
     - "_script/**"
     - "**/*_test.go"
     - ".gitignore"

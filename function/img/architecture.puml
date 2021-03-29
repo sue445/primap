@@ -1,0 +1,10 @@
+@startuml
+agent CronUpdateShops
+agent QueueSaveShop as QueueSaveShop1
+agent QueueSaveShop as QueueSaveShop2
+agent QueueSaveShop as QueueSaveShop3
+
+CronUpdateShops -down-> QueueSaveShop1
+CronUpdateShops -down-> QueueSaveShop2
+CronUpdateShops -down-> QueueSaveShop3
+@enduml

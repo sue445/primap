@@ -6,7 +6,7 @@
 
 There are the following functions.
 
-* [CronUpdateShops](handler_cron_update_shops.go): Get shops from [PrismDB](https://prismdb.takanakahiko.me/)
+* [CronUpdateShops](handler_cron_update_shops.go): Runs once a day with [Cloud Scheduler](https://cloud.google.com/scheduler), and get shops from [PrismDB](https://prismdb.takanakahiko.me/)
 * [QueueSaveShop](handler_queue_save_shop.go): Get geography from shop address and save to [Cloud Firestore](https://firebase.google.com/docs/firestore)
 
 ## Requirement API keys

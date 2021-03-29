@@ -1,8 +1,8 @@
 # primap-function
 [Cloud Functions](https://cloud.google.com/functions) for primap
 
-## Architecture
-![architecture](img/architecture.svg)
+## Overview
+![overview](img/overview.svg)
 
 There are the following functions.
 
@@ -36,11 +36,11 @@ Run one of the following
     * Requires [Firebase CLI](https://firebase.google.com/docs/cli)
 2. `docker-compose up --build`
 
-### Generate architecture.svg
+### Generate overview.svg
 Download `plantuml.jar` from https://plantuml.com/download
 
 Then, run following.
 
 ```bash
-java -jar /path/to/plantuml.jar -tsvg img/architecture.puml
+java -jar /path/to/plantuml.jar -tsvg img/overview.puml
 ```

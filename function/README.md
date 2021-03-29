@@ -36,7 +36,7 @@ Run one of the following
     * Requires [Firebase CLI](https://firebase.google.com/docs/cli)
 2. `docker-compose up --build`
 
-### Generate overview.svg
+### Generate [overview.svg](_img/overview.svg)
 Download `plantuml.jar` from https://plantuml.com/download
 
 Then, run following.

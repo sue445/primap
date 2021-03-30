@@ -37,10 +37,4 @@ Run one of the following
 2. `docker-compose up --build`
 
 ### Generate [overview.svg](_img/overview.svg)
-Download `plantuml.jar` from https://plantuml.com/download
-
-Then, run following.
-
-```bash
-java -jar /path/to/plantuml.jar -tsvg _img/overview.puml
-```
+Run `make puml2svg`

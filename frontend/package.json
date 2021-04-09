@@ -31,6 +31,7 @@
     "postcss": "^8.2.9",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.2.1",
+    "prop-types": "^15.7.2",
     "ts-jest": "^26.5.4",
     "ts-loader": "^8.1.0",
     "typescript": "^4.2.4",
@@ -45,7 +46,7 @@
     "geofirex": "^0.1.0",
     "google-maps-react": "^2.0.6",
     "react": "^17.0.2",
-    "react-dom": "^16.14.0",
+    "react-dom": "^17.0.2",
     "rxjs": "^6.6.7",
     "tailwindcss": "^2.1.1"
   }

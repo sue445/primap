@@ -178,38 +178,20 @@ export class MapContainer extends React.Component<Props, {}> {
             })
             .map((shop) => {
               const iconUrl = getShopMarkerIconUrl(shop.name);
-              if (iconUrl != null) {
-                return (
-                  <Marker
-                    key={shop.name}
-                    onClick={this.onMarkerClick}
-                    position={{
-                      lat: shop.geography.geopoint.latitude,
-                      lng: shop.geography.geopoint.longitude,
-                    }}
-                    // @ts-ignore
-                    name={shop.name}
-                    zIndex={1}
-                    icon={{
-                      url: iconUrl,
-                    }}
-                  />
-                );
-              } else {
-                return (
-                  <Marker
-                    key={shop.name}
-                    onClick={this.onMarkerClick}
-                    position={{
-                      lat: shop.geography.geopoint.latitude,
-                      lng: shop.geography.geopoint.longitude,
-                    }}
-                    // @ts-ignore
-                    name={shop.name}
-                    zIndex={1}
-                  />
-                );
-              }
+              return (
+                <Marker
+                  key={shop.name}
+                  onClick={this.onMarkerClick}
+                  position={{
+                    lat: shop.geography.geopoint.latitude,
+                    lng: shop.geography.geopoint.longitude,
+                  }}
+                  // @ts-ignore
+                  name={shop.name}
+                  zIndex={1}
+                  icon={iconUrl != null ? { url: iconUrl } : null}
+                />
+              );
             })}
 
           <InfoWindow

@@ -28,6 +28,7 @@ jobs:
     name: serverless
 
     runs-on: ubuntu-latest
+    concurrency: deploy_to_production
 
     steps:
       - uses: actions/checkout@v2
@@ -44,14 +45,6 @@ jobs:
             function-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
 
       - run: npm install
-
-      - name: Turnstyle
-        uses: softprops/turnstyle@v1
-        with:
-          poll-interval-seconds:  30
-          continue-after-seconds: 1200
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: serverless deploy
         run: |

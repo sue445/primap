@@ -28,6 +28,7 @@ jobs:
     name: firebase
 
     runs-on: ubuntu-latest
+    concurrency: deploy_to_production
 
     steps:
       - uses: actions/checkout@v2
@@ -71,14 +72,6 @@ jobs:
           set -xe
           sudo wget https://firebase.tools/bin/linux/latest -O /usr/local/bin/firebase
           sudo chmod 755 /usr/local/bin/firebase
-
-      - name: Turnstyle
-        uses: softprops/turnstyle@v1
-        with:
-          poll-interval-seconds:  30
-          continue-after-seconds: 300
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - run: firebase deploy
 

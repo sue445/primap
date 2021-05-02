@@ -1,38 +1,40 @@
 version: 2
 updates:
-- package-ecosystem: gomod
-  directory: "/function"
-  schedule:
-    interval: daily
-    timezone: Asia/Tokyo
-  open-pull-requests-limit: 99
-  assignees:
-  - sue445
-  labels:
-  - dependencies
-  - go
-  - function
-- package-ecosystem: npm
-  directory: "/function"
-  schedule:
-    interval: daily
-    timezone: Asia/Tokyo
-  open-pull-requests-limit: 99
-  assignees:
-  - sue445
-  labels:
-  - dependencies
-  - javascript
-  - function
-- package-ecosystem: npm
-  directory: "/frontend"
-  schedule:
-    interval: daily
-    timezone: Asia/Tokyo
-  open-pull-requests-limit: 99
-  assignees:
-  - sue445
-  labels:
-  - dependencies
-  - javascript
-  - frontend
+  - package-ecosystem: gomod
+    directory: "/function"
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 99
+    assignees:
+      - sue445
+    labels:
+      - dependencies
+      - go
+      - function
+
+  - package-ecosystem: npm
+    directory: "/function"
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 99
+    assignees:
+      - sue445
+    labels:
+      - dependencies
+      - javascript
+      - function
+
+  - package-ecosystem: npm
+    directory: "/frontend"
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 99
+    assignees:
+      - sue445
+    labels:
+      - dependencies
+      - javascript
+      - frontend

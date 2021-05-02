@@ -21,7 +21,6 @@ on:
     paths-ignore:
       # Ignore files that are not used in production
       - "**.md"
-      - ".github/workflows/go-mod-tidy-pr.yml"
       - "LICENSE"
 
       # Ignore files used only by the frontend

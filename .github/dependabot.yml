@@ -36,9 +36,3 @@ updates:
   - dependencies
   - javascript
   - frontend
-  ignore:
-  - dependency-name: "@sentry/tracing"
-    versions:
-    - 6.0.3
-    - 6.1.0
-    - 6.3.1

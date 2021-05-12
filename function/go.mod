@@ -21,6 +21,6 @@ require (
 	golang.org/x/text v0.3.6
 	google.golang.org/api v0.46.0
 	google.golang.org/genproto v0.0.0-20210429181445-86c259c2b4ab
-	google.golang.org/grpc v1.37.0
+	google.golang.org/grpc v1.37.1
 	googlemaps.github.io/maps v1.3.2
 )

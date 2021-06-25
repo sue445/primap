@@ -4,7 +4,7 @@ go 1.13
 
 require (
 	cloud.google.com/go/firestore v1.5.0
-	cloud.google.com/go/pubsub v1.11.0
+	cloud.google.com/go/pubsub v1.12.0
 	github.com/deckarep/golang-set v1.7.1
 	github.com/getsentry/sentry-go v0.11.0
 	github.com/google/uuid v1.2.0

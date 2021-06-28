@@ -16,7 +16,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.7.0
 	github.com/sue445/gcp-secretmanagerenv v0.1.1
-	github.com/tkrajina/typescriptify-golang-structs v0.1.5
+	github.com/tkrajina/typescriptify-golang-structs v0.1.6
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 	golang.org/x/text v0.3.6
 	google.golang.org/api v0.49.0

@@ -55,7 +55,7 @@ functions:
           eventType: providers/cloud.pubsub/eventTypes/topic.publish
           resource: 'projects/${self:provider.project}/topics/sls-shop-save-topic'
           failurePolicy:
-            retry: true
+            retry: {}
 
   # NOTE: the following uses an "event" event (pubSub event in this case).
   # Please create the corresponding resources in the Google Cloud

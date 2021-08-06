@@ -4,6 +4,7 @@ updates:
     directory: "/function"
     schedule:
       interval: daily
+      time: "05:00"
       timezone: Asia/Tokyo
     open-pull-requests-limit: 99
     assignees:
@@ -17,6 +18,7 @@ updates:
     directory: "/function"
     schedule:
       interval: daily
+      time: "05:00"
       timezone: Asia/Tokyo
     open-pull-requests-limit: 99
     assignees:
@@ -30,6 +32,7 @@ updates:
     directory: "/frontend"
     schedule:
       interval: daily
+      time: "05:00"
       timezone: Asia/Tokyo
     open-pull-requests-limit: 99
     assignees:

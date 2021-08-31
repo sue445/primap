@@ -20,8 +20,8 @@ require (
 	github.com/tkrajina/typescriptify-golang-structs v0.1.6
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 	golang.org/x/text v0.3.7
-	google.golang.org/api v0.54.0
-	google.golang.org/genproto v0.0.0-20210821163610-241b8fcbd6c8
+	google.golang.org/api v0.55.0
+	google.golang.org/genproto v0.0.0-20210828152312-66f60bf46e71
 	google.golang.org/grpc v1.40.0
 	googlemaps.github.io/maps v1.3.2
 )

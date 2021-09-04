@@ -159,6 +159,7 @@ export class MapContainer extends React.Component<Props, {}> {
             width: "100%",
             height: "100%",
           }}
+          gestureHandling="greedy"
         >
           <Marker
             position={{

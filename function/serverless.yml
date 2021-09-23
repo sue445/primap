@@ -2,7 +2,7 @@ service: primap
 
 provider:
   name: google
-  runtime: go113
+  runtime: go116
   region: asia-northeast1
   project: primap
   stage: production

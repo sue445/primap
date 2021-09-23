@@ -144,8 +144,7 @@ jobs:
         run: |
           set -xe
 
-          # TODO: Use `go install` after Go is upgraded
-          go get -u golang.org/x/lint/golint
+          go install golang.org/x/lint/golint@latest
 
           make fmtci
           make vet
@@ -195,9 +194,7 @@ jobs:
           set -xe
 
           TSCRIPTIFY_VERSION=$(grep 'github.com/tkrajina/typescriptify-golang-structs' go.mod | awk '{ print $2 }')
-
-          # TODO: Use `go install` after Go is upgraded
-          go get -u github.com/tkrajina/typescriptify-golang-structs/tscriptify@${TSCRIPTIFY_VERSION}
+          go install github.com/tkrajina/typescriptify-golang-structs/tscriptify@${TSCRIPTIFY_VERSION}
 
           make go2ts
           git checkout HEAD -- go.mod go.sum

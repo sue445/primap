@@ -2,6 +2,7 @@ package config
 
 import (
 	"github.com/sue445/primap/prismdb"
+	"golang.org/x/text/width"
 	"sort"
 	"strings"
 )
@@ -76,8 +77,10 @@ func AggregateShops(shops []*prismdb.Shop) []*prismdb.Shop {
 	var reversedSimilarShopNames = map[string]string{}
 
 	for key, values := range similarShopNames {
+		foldedKey := width.Fold.String(key)
 		for _, value := range values {
-			reversedSimilarShopNames[value] = key
+			foldedValue := width.Fold.String(value)
+			reversedSimilarShopNames[foldedValue] = foldedKey
 		}
 	}
 
@@ -93,9 +96,12 @@ func AggregateShops(shops []*prismdb.Shop) []*prismdb.Shop {
 			shopName = strings.TrimSuffix(shop.Name, "店")
 		}
 
-		if reversedSimilarShopNames[shop.Name] != "" {
-			shopName = reversedSimilarShopNames[shop.Name]
+		foldedShopName := width.Fold.String(shopName)
+		if reversedSimilarShopNames[foldedShopName] != "" {
+			shopName = reversedSimilarShopNames[foldedShopName]
 		}
+
+		shopName = width.Fold.String(shopName)
 
 		if aggregatedShopsMap[shopName] == nil {
 			aggregatedShopsMap[shopName] = &prismdb.Shop{

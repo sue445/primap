@@ -56,11 +56,35 @@ func TestAggregateShops(t *testing.T) {
 			Address:    "東京都新宿区西新宿１－１１－１",
 			Series:     []string{"prichan"},
 		},
+		{
+			Name:       "NICOPAウイングタウン岡崎",
+			Prefecture: "愛知県",
+			Address:    "愛知県岡崎市羽根町小豆坂3番地",
+			Series:     []string{"prichan", "primagi"},
+		},
+		{
+			Name:       "ＮＩＣＯＰＡウイングタウン岡崎",
+			Prefecture: "愛知県",
+			Address:    "愛知県岡崎市羽根町小豆坂３番地",
+			Series:     []string{"pripara"},
+		},
 	}
 
 	got := AggregateShops(shops)
 
 	want := []*prismdb.Shop{
+		{
+			Name:       "NICOPAウイングタウン岡崎",
+			Prefecture: "愛知県",
+			Address:    "愛知県岡崎市羽根町小豆坂3番地",
+			Series:     []string{"prichan", "primagi", "pripara"},
+		},
+		{
+			Name:       "SOYUGameField湘南",
+			Prefecture: "神奈川県",
+			Address:    "神奈川県藤沢市辻堂新町四丁目１番１号 湘南モールＦＩＬＬ２Ｆ",
+			Series:     []string{"prichan", "pripara"},
+		},
 		{
 			Name:       "ふぇすたらんど小野",
 			Prefecture: "兵庫県",
@@ -83,12 +107,6 @@ func TestAggregateShops(t *testing.T) {
 			Name:       "モーリーファンタジー唐津",
 			Prefecture: "佐賀県",
 			Address:    "佐賀県唐津市鏡字立神４６７１ イオン２階",
-			Series:     []string{"prichan", "pripara"},
-		},
-		{
-			Name:       "ＳＯＹＵＧａｍｅＦｉｅｌｄ湘南",
-			Prefecture: "神奈川県",
-			Address:    "神奈川県藤沢市辻堂新町四丁目１番１号 湘南モールＦＩＬＬ２Ｆ",
 			Series:     []string{"prichan", "pripara"},
 		},
 	}

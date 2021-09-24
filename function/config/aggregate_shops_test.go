@@ -56,15 +56,93 @@ func TestAggregateShops(t *testing.T) {
 			Address:    "東京都新宿区西新宿１－１１－１",
 			Series:     []string{"prichan"},
 		},
+		{
+			Name:       "NICOPAウイングタウン岡崎",
+			Prefecture: "愛知県",
+			Address:    "愛知県岡崎市羽根町小豆坂3番地",
+			Series:     []string{"prichan", "primagi"},
+		},
+		{
+			Name:       "ＮＩＣＯＰＡウイングタウン岡崎",
+			Prefecture: "愛知県",
+			Address:    "愛知県岡崎市羽根町小豆坂３番地",
+			Series:     []string{"pripara"},
+		},
+		{
+			Name:       "モーリーファンタジー・f新潟南",
+			Prefecture: "新潟県",
+			Address:    "新潟県新潟市江南区下早通柳田１丁目１番１号イオンモール２Ｆ",
+			Series:     []string{"prichan", "pripara"},
+		},
+		{
+			Name:       "モーリーファンタジーf新潟南",
+			Prefecture: "新潟県",
+			Address:    "新潟県新潟市江南区下早通柳田1-1-1",
+			Series:     []string{"primagi"},
+		},
+		{
+			Name:       "LABI渋谷",
+			Prefecture: "東京都",
+			Address:    "東京都渋谷区道玄坂2-29-20",
+			Series:     []string{"primagi"},
+		},
+		{
+			Name:       "ヤマダ電機LABI渋谷",
+			Prefecture: "東京都",
+			Address:    "東京都渋谷区道玄坂２－２９－２０",
+			Series:     []string{"prichan"},
+		},
+		{
+			Name:       "プリズムストーン  東京駅",
+			Prefecture: "東京都",
+			Address:    "東京都千代田区丸の内１－９－１　東京駅一番街　Ｂ１Ｆ　東京キャラクターストリート内",
+			Series:     []string{"prichan", "pripara"},
+		},
+		{
+			Name:       "プリズムストーン東京駅",
+			Prefecture: "東京都",
+			Address:    "東京都千代田区丸の内1-9-1",
+			Series:     []string{"primagi"},
+		},
+		{
+			Name:       "SOYUGameField御所野",
+			Prefecture: "秋田県",
+			Address:    "秋田県秋田市御所野地蔵田一丁目１番地１号イオンモール秋田２Ｆ",
+			Series:     []string{"prichan", "pripara"},
+		},
+		{
+			Name:       "ソユーゲームフィールド御所野",
+			Prefecture: "秋田県",
+			Address:    "秋田県秋田市御所野地蔵田一丁目1番地1号 ｲｵﾝﾓｰﾙ秋田2F",
+			Series:     []string{"primagi"},
+		},
 	}
 
 	got := AggregateShops(shops)
 
 	want := []*prismdb.Shop{
 		{
+			Name:       "NICOPAウイングタウン岡崎",
+			Prefecture: "愛知県",
+			Address:    "愛知県岡崎市羽根町小豆坂3番地",
+			Series:     []string{"prichan", "primagi", "pripara"},
+		},
+		{
 			Name:       "ふぇすたらんど小野",
 			Prefecture: "兵庫県",
 			Address:    "兵庫県小野市王子町８６８－１ イオン小野店２Ｆ",
+			Series:     []string{"prichan", "pripara"},
+		},
+		{
+			Name:       "ソユーゲームフィールド御所野",
+			Prefecture: "秋田県",
+			Address:    "秋田県秋田市御所野地蔵田一丁目１番地１号イオンモール秋田２Ｆ",
+			Series:     []string{"prichan", "primagi", "pripara"},
+		},
+		{
+			Name:       "ソユーゲームフィールド湘南",
+			Prefecture: "神奈川県",
+			Address:    "神奈川県藤沢市辻堂新町四丁目１番１号 湘南モールＦＩＬＬ２Ｆ",
 			Series:     []string{"prichan", "pripara"},
 		},
 		{
@@ -80,16 +158,28 @@ func TestAggregateShops(t *testing.T) {
 			Series:     []string{"prichan", "pripara"},
 		},
 		{
+			Name:       "プリズムストーン東京駅",
+			Prefecture: "東京都",
+			Address:    "東京都千代田区丸の内１－９－１　東京駅一番街　Ｂ１Ｆ　東京キャラクターストリート内",
+			Series:     []string{"prichan", "primagi", "pripara"},
+		},
+		{
+			Name:       "モーリーファンタジーf新潟南",
+			Prefecture: "新潟県",
+			Address:    "新潟県新潟市江南区下早通柳田１丁目１番１号イオンモール２Ｆ",
+			Series:     []string{"prichan", "primagi", "pripara"},
+		},
+		{
 			Name:       "モーリーファンタジー唐津",
 			Prefecture: "佐賀県",
 			Address:    "佐賀県唐津市鏡字立神４６７１ イオン２階",
 			Series:     []string{"prichan", "pripara"},
 		},
 		{
-			Name:       "ＳＯＹＵＧａｍｅＦｉｅｌｄ湘南",
-			Prefecture: "神奈川県",
-			Address:    "神奈川県藤沢市辻堂新町四丁目１番１号 湘南モールＦＩＬＬ２Ｆ",
-			Series:     []string{"prichan", "pripara"},
+			Name:       "ヤマダ電機LABI渋谷",
+			Prefecture: "東京都",
+			Address:    "東京都渋谷区道玄坂2-29-20",
+			Series:     []string{"prichan", "primagi"},
 		},
 	}
 

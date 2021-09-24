@@ -17,7 +17,7 @@ func TestClient_GetAllShops(t *testing.T) {
 	want := &Shop{
 		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",
 		Prefecture: "三重県",
-		Address:    "三重県名張市下比奈知黒田3100番地の1",
+		Address:    "三重県名張市下比奈知黒田３１００番地の１",
 		Series:     []string{"prichan"},
 	}
 

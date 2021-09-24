@@ -25,7 +25,7 @@ export class MapContainer extends React.Component<Props, {}> {
     shops: [] as Array<ShopEntity>,
     latitude: this.props.latitude,
     longitude: this.props.longitude,
-    series: new Set(["prichan", "pripara"]),
+    series: new Set(["primagi", "prichan", "pripara"]),
   };
 
   shopCache = {};
@@ -127,6 +127,12 @@ export class MapContainer extends React.Component<Props, {}> {
         <div className="flex mt-6">
           <span className={"h-6 font-bold"}>絞り込み</span>
           <SeriesCheckbox
+            title="ワッチャプリマジ！"
+            value="primagi"
+            checked={this.state.series.has("primagi")}
+            onChange={this.onSeriesChanged}
+          />
+          <SeriesCheckbox
             title="キラッとプリ☆チャン"
             value="prichan"
             checked={this.state.series.has("prichan")}
@@ -208,6 +214,9 @@ export class MapContainer extends React.Component<Props, {}> {
                 <dt className={"font-semibold"}>住所</dt>
                 <dd>{formatAddress(this.state.selectedShop.address)}</dd>
                 <dt className={"font-semibold"}>設置筐体</dt>
+                {this.state.selectedShop.series.includes("primagi") && (
+                  <dd>ワッチャプリマジ！</dd>
+                )}
                 {this.state.selectedShop.series.includes("prichan") && (
                   <dd>キラッとプリ☆チャン</dd>
                 )}

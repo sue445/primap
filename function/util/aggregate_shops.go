@@ -242,14 +242,11 @@ func AggregateShops(shops []*prismdb.Shop) []*prismdb.Shop {
 
 		shopName = strings.ReplaceAll(shopName, "モーリーファンタジー・f", "モーリーファンタジーf")
 		shopName = strings.ReplaceAll(shopName, "CLUBSEGA", "クラブセガ")
+		shopName = strings.ReplaceAll(shopName, "ヤマダ電機LABI", "LABI")
 
 		shopName = regexp.MustCompile(`([^A-Za-z0-9])\s+([^A-Za-z0-9])`).ReplaceAllString(shopName, "$1$2")
 		shopName = regexp.MustCompile(`(?i)SOYU\s*Game\s*Field`).ReplaceAllString(shopName, "ソユーゲームフィールド")
 		shopName = regexp.MustCompile(`^ニコパ`).ReplaceAllString(shopName, "NICOPA")
-
-		if strings.Contains(shopName, "LABI") && !strings.Contains(shopName, "ヤマダ電機LABI") {
-			shopName = strings.ReplaceAll(shopName, "LABI", "ヤマダ電機LABI")
-		}
 
 		shopName = strings.TrimSpace(shopName)
 

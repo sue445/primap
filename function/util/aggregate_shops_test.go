@@ -122,6 +122,12 @@ func TestAggregateShops(t *testing.T) {
 
 	want := []*prismdb.Shop{
 		{
+			Name:       "LABI渋谷",
+			Prefecture: "東京都",
+			Address:    "東京都渋谷区道玄坂2-29-20",
+			Series:     []string{"prichan", "primagi"},
+		},
+		{
 			Name:       "NICOPAウイングタウン岡崎",
 			Prefecture: "愛知県",
 			Address:    "愛知県岡崎市羽根町小豆坂3番地",
@@ -174,12 +180,6 @@ func TestAggregateShops(t *testing.T) {
 			Prefecture: "佐賀県",
 			Address:    "佐賀県唐津市鏡字立神４６７１ イオン２階",
 			Series:     []string{"prichan", "pripara"},
-		},
-		{
-			Name:       "ヤマダ電機LABI渋谷",
-			Prefecture: "東京都",
-			Address:    "東京都渋谷区道玄坂2-29-20",
-			Series:     []string{"prichan", "primagi"},
 		},
 	}
 

@@ -1,4 +1,4 @@
-package config
+package util
 
 import (
 	"github.com/sue445/primap/prismdb"

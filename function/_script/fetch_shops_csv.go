@@ -4,7 +4,6 @@ package main
 
 import (
 	"encoding/csv"
-	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/prismdb"
 	"github.com/sue445/primap/util"
 	"log"
@@ -23,7 +22,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	shops = config.AggregateShops(shops)
+	shops = util.AggregateShops(shops)
 
 	header := []string{"name", "prefecture", "address", "sanitized_address", "series"}
 

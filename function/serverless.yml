@@ -47,6 +47,8 @@ functions:
       - event:
           eventType: providers/cloud.pubsub/eventTypes/topic.publish
           resource: 'projects/${self:provider.project}/topics/sls-cron-topic'
+          failurePolicy:
+            retry: {}
 
   queue_save_shop:
     handler: QueueSaveShop

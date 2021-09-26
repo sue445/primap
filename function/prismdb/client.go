@@ -3,8 +3,13 @@ package prismdb
 import (
 	"github.com/knakk/sparql"
 	"github.com/pkg/errors"
+	"os"
 	"strings"
 	"time"
+)
+
+const (
+	defaultEndpoint = "https://prismdb.takanakahiko.me/sparql"
 )
 
 // Client represents PrismDB API Client
@@ -14,7 +19,12 @@ type Client struct {
 
 // NewClient create a Client instance
 func NewClient() (*Client, error) {
-	repo, err := sparql.NewRepo("https://prismdb.takanakahiko.me/sparql",
+	endpoint := defaultEndpoint
+	if os.Getenv("SPARQL_ENDPOINT") != "" {
+		endpoint = os.Getenv("SPARQL_ENDPOINT")
+	}
+
+	repo, err := sparql.NewRepo(endpoint,
 		sparql.Timeout(time.Second*30),
 	)
 

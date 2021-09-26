@@ -4,10 +4,6 @@ export class LatLng {
   latitude?: number;
   longitude?: number;
 
-  static createFrom(source: any = {}) {
-    return new LatLng(source);
-  }
-
   constructor(source: any = {}) {
     if ("string" === typeof source) source = JSON.parse(source);
     this.latitude = source["latitude"];
@@ -17,10 +13,6 @@ export class LatLng {
 export class Geography {
   geohash: string;
   geopoint?: LatLng;
-
-  static createFrom(source: any = {}) {
-    return new Geography(source);
-  }
 
   constructor(source: any = {}) {
     if ("string" === typeof source) source = JSON.parse(source);
@@ -56,10 +48,6 @@ export class ShopEntity {
   updated_at: Date;
   geography?: Geography;
   deleted: boolean;
-
-  static createFrom(source: any = {}) {
-    return new ShopEntity(source);
-  }
 
   constructor(source: any = {}) {
     if ("string" === typeof source) source = JSON.parse(source);

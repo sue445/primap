@@ -116,6 +116,30 @@ func TestAggregateShops(t *testing.T) {
 			Address:    "秋田県秋田市御所野地蔵田一丁目1番地1号 ｲｵﾝﾓｰﾙ秋田2F",
 			Series:     []string{"primagi"},
 		},
+		{
+			Name:       "ＳＯＹＵＧａｍｅＦｉｅｌｄ長野",
+			Prefecture: "長野県",
+			Address:    "長野県長野市三輪九丁目４３番２４号 イオンタウン長野三輪２Ｆ",
+			Series:     []string{"pripara"},
+		},
+		{
+			Name:       "ＳＯＹＵＧａｍｅＦｉｅｌｄ長野三輪",
+			Prefecture: "長野県",
+			Address:    "長野県長野市三輪九丁目４３番２４号イオンタウン長野三輪２Ｆ",
+			Series:     []string{"prichan"},
+		},
+		{
+			Name:       "ＳＯＹＵＺＡＵＲＵＳＷＯＲＬＤ大森",
+			Prefecture: "東京都",
+			Address:    "東京都大田区大森北二丁目１３－１　イトーヨーカドー大森店３Ｆ",
+			Series:     []string{"prichan", "pripara"},
+		},
+		{
+			Name:       "ソユーザウルスワールド 大森",
+			Prefecture: "東京都",
+			Address:    "東京都大田区大森北二丁目13-1  ｲﾄｰﾖｰｶﾄﾞｰ大森店3F",
+			Series:     []string{"primagi"},
+		},
 	}
 
 	got := AggregateShops(shops)
@@ -150,6 +174,18 @@ func TestAggregateShops(t *testing.T) {
 			Prefecture: "神奈川県",
 			Address:    "神奈川県藤沢市辻堂新町四丁目１番１号 湘南モールＦＩＬＬ２Ｆ",
 			Series:     []string{"prichan", "pripara"},
+		},
+		{
+			Name:       "ソユーゲームフィールド長野三輪",
+			Prefecture: "長野県",
+			Address:    "長野県長野市三輪九丁目４３番２４号 イオンタウン長野三輪２Ｆ",
+			Series:     []string{"prichan", "pripara"},
+		},
+		{
+			Name:       "ソユーザウルスワールド大森",
+			Prefecture: "東京都",
+			Address:    "東京都大田区大森北二丁目１３－１　イトーヨーカドー大森店３Ｆ",
+			Series:     []string{"prichan", "primagi", "pripara"},
 		},
 		{
 			Name:       "ビックカメラ新宿西口本店",

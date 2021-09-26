@@ -24,6 +24,9 @@ func init() {
 		"ＳＯＹＵ　Ｆａｍｉｌｙ　Ｇａｍｅ　Ｆｉｅｌｄ花巻": {
 			"ＳＯＹＵファミリーゲームフィールド花巻",
 		},
+		"ＳＯＹＵＧａｍｅＦｉｅｌｄ長野三輪": {
+			"ＳＯＹＵＧａｍｅＦｉｅｌｄ長野",
+		},
 		"ＳＯＹＵＧａｍｅＦｉｅｌｄ湘南": {
 			"ＳＯＹＵ　Ｇａｍｅ　Ｆｉｅｌｄ湘南店",
 		},
@@ -71,10 +74,6 @@ func init() {
 		},
 		"セガワールド勿来": {
 			"セガ勿来",
-		},
-		"ソユーザウルスワールド大森": {
-			"ＳＯＹＵＺＡＵＲＵＳＷＯＲＬＤ大森店",
-			"ＳＯＹＵ　ＺＡＵＲＵＳ　ＷＯＲＬＤ大森",
 		},
 		"ソユーフォレストハンター松前": {
 			"ＳＯＹＵＦｏｒｅｓｔＨｕｎｔｅｒ松前",
@@ -246,6 +245,7 @@ func AggregateShops(shops []*prismdb.Shop) []*prismdb.Shop {
 
 		shopName = regexp.MustCompile(`([^A-Za-z0-9])\s+([^A-Za-z0-9])`).ReplaceAllString(shopName, "$1$2")
 		shopName = regexp.MustCompile(`(?i)SOYU\s*Game\s*Field`).ReplaceAllString(shopName, "ソユーゲームフィールド")
+		shopName = regexp.MustCompile(`(?i)SOYUZAURUSWORLD`).ReplaceAllString(shopName, "ソユーザウルスワールド")
 		shopName = regexp.MustCompile(`^ニコパ`).ReplaceAllString(shopName, "NICOPA")
 
 		shopName = strings.TrimSpace(shopName)

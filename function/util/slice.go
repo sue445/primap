@@ -67,3 +67,20 @@ func SortedSlice(src []string) []string {
 
 	return dst
 }
+
+// UniqueSlice returns slice with duplicate elements eliminated
+func UniqueSlice(src []string) []string {
+	set := mapset.NewSet()
+
+	var ret []string
+
+	for _, s := range src {
+		if !set.Contains(s) {
+			ret = append(ret, s)
+			set.Add(s)
+		}
+	}
+
+	return ret
+
+}

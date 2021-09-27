@@ -102,3 +102,11 @@ func TestSortedSlice(t *testing.T) {
 		})
 	}
 }
+
+func Test_UniqueSlice(t *testing.T) {
+	src := []string{"a", "b", "c", "b"}
+
+	got := UniqueSlice(src)
+
+	assert.Equal(t, []string{"a", "b", "c"}, got)
+}

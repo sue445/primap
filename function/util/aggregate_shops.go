@@ -276,6 +276,7 @@ func AggregateShops(shops []*prismdb.Shop) []*prismdb.Shop {
 	for _, shopName := range sortedAggregatedShopNames {
 		shop := aggregatedShopsMap[shopName]
 		sort.Strings(shop.Series)
+		shop.Series = UniqueSlice(shop.Series)
 		aggregatedShops = append(aggregatedShops, shop)
 	}
 

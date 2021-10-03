@@ -10,6 +10,7 @@ on:
       - "LICENSE"
       - ".github/workflows/dependabot-auto-merge.yml"
       - "function/_img/**"
+      - "function/_script/**"
 
       # Ignore files used only by the frontend
       - "frontend/**"

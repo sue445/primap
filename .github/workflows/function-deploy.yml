@@ -51,6 +51,7 @@ jobs:
           echo "$SERVICE_ACCOUNT_KEY" > ~/.gcloud/keyfile.json
           npm run deploy
         env:
+          SENTRY_DSN: ${{ secrets.FUNCTION_SENTRY_DSN }}
           SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           SLS_DEBUG: "*"
 

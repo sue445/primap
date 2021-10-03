@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
-	"github.com/sue445/gcp-secretmanagerenv"
 	"github.com/sue445/primap/config"
 	"log"
 	"os"
@@ -18,17 +17,9 @@ func initFunction(ctx context.Context, tracesSampleRate float64) (Cleanup, error
 	projectID := os.Getenv("GCP_PROJECT")
 
 	sentryDebug := os.Getenv("SENTRY_DEBUG") != ""
-	secretmanager, err := secretmanagerenv.NewClient(ctx, projectID)
-	if err != nil {
-		return nil, errors.WithStack(err)
-	}
+	sentryDsn := os.Getenv("SENTRY_DSN")
 
-	sentryDsn, err := secretmanager.GetValueFromEnvOrSecretManager("SENTRY_DSN", false)
-	if err != nil {
-		return nil, errors.WithStack(err)
-	}
-
-	err = sentry.Init(sentry.ClientOptions{
+	err := sentry.Init(sentry.ClientOptions{
 		Dsn:              sentryDsn,
 		Environment:      os.Getenv("SENTRY_ENVIRONMENT"),
 		AttachStacktrace: true,

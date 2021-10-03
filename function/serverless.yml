@@ -18,6 +18,7 @@ provider:
     GCP_PROJECT: ${self:provider.project}
     SENTRY_ENVIRONMENT: production
     SENTRY_RELEASE: ${env:GITHUB_SHA}
+    SENTRY_DSN: ${env:SENTRY_DSN}
 
 plugins:
   - serverless-google-cloudfunctions

@@ -5,6 +5,7 @@ import * as Sentry from "@sentry/react";
 import { ShopEntity } from "./ShopEntity";
 import { correctLongitude, formatAddress, getShopMarkerIconUrl } from "./Util";
 import SeriesCheckbox from "./SeriesCheckbox";
+import SearchConditionRadio from "./SearchConditionRadio";
 
 type Props = {
   latitude: number;
@@ -17,6 +18,8 @@ const emptyShop = { series: new Set([]) } as ShopEntity;
 
 const shopLimit = 2000;
 
+type SearchCondition = "or" | "and";
+
 export class MapContainer extends React.Component<Props, {}> {
   state = {
     activeMarker: {} as google.maps.Marker,
@@ -26,6 +29,7 @@ export class MapContainer extends React.Component<Props, {}> {
     latitude: this.props.latitude,
     longitude: this.props.longitude,
     series: new Set(["primagi", "prichan", "pripara"]),
+    searchCondition: "or" as SearchCondition,
   };
 
   shopCache = {};
@@ -121,6 +125,13 @@ export class MapContainer extends React.Component<Props, {}> {
     this.setState({ series: this.state.series });
   };
 
+  onSearchConditionChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.value == "and" || event.target.value == "or") {
+      this.state.searchCondition = event.target.value;
+    }
+    this.setState({ searchCondition: this.state.searchCondition });
+  };
+
   render() {
     return (
       <div>
@@ -143,6 +154,21 @@ export class MapContainer extends React.Component<Props, {}> {
             value="pripara"
             checked={this.state.series.has("pripara")}
             onChange={this.onSeriesChanged}
+          />
+        </div>
+        <div className="flex mt-6">
+          <span className={"h-6 font-bold"}>検索条件</span>
+          <SearchConditionRadio
+            title="OR"
+            value="or"
+            checked={this.state.searchCondition == "or"}
+            onChange={this.onSearchConditionChanged}
+          />
+          <SearchConditionRadio
+            title="AND"
+            value="and"
+            checked={this.state.searchCondition == "and"}
+            onChange={this.onSearchConditionChanged}
           />
         </div>
         <Map
@@ -178,9 +204,17 @@ export class MapContainer extends React.Component<Props, {}> {
           />
           {this.state.shops
             .filter((shop) => {
-              return Array.from(shop.series).some((series) => {
-                return this.state.series.has(series);
-              });
+              switch (this.state.searchCondition) {
+                case "or":
+                  return Array.from(this.state.series).some((series) => {
+                    return shop.series.has(series);
+                  });
+                case "and":
+                  return Array.from(this.state.series).every((series) => {
+                    return shop.series.has(series);
+                  });
+              }
+              return false;
             })
             .map((shop) => {
               const iconUrl = getShopMarkerIconUrl(shop.name);

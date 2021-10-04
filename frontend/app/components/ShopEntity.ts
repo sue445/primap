@@ -43,7 +43,7 @@ export class ShopEntity {
   prefecture: string;
   address: string;
   sanitized_address: string;
-  series: string[];
+  series: Set<string>;
   created_at: Date;
   updated_at: Date;
   geography?: Geography;
@@ -55,7 +55,7 @@ export class ShopEntity {
     this.prefecture = source["prefecture"];
     this.address = source["address"];
     this.sanitized_address = source["sanitized_address"];
-    this.series = source["series"];
+    this.series = new Set(source["series"]);
     this.created_at = source["created_at"].toDate();
     this.updated_at = source["updated_at"].toDate();
     this.geography = this.convertValues(source["geography"], Geography);

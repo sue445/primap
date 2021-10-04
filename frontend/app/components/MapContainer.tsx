@@ -13,7 +13,7 @@ type Props = {
   geo: GeoFireClient;
 };
 
-const emptyShop = { series: [] } as ShopEntity;
+const emptyShop = { series: new Set([]) } as ShopEntity;
 
 const shopLimit = 2000;
 
@@ -178,7 +178,7 @@ export class MapContainer extends React.Component<Props, {}> {
           />
           {this.state.shops
             .filter((shop) => {
-              return shop.series.some((series) => {
+              return Array.from(shop.series).some((series) => {
                 return this.state.series.has(series);
               });
             })
@@ -214,13 +214,13 @@ export class MapContainer extends React.Component<Props, {}> {
                 <dt className={"font-semibold"}>住所</dt>
                 <dd>{formatAddress(this.state.selectedShop.address)}</dd>
                 <dt className={"font-semibold"}>設置筐体</dt>
-                {this.state.selectedShop.series.includes("primagi") && (
+                {this.state.selectedShop.series.has("primagi") && (
                   <dd>ワッチャプリマジ！</dd>
                 )}
-                {this.state.selectedShop.series.includes("prichan") && (
+                {this.state.selectedShop.series.has("prichan") && (
                   <dd>キラッとプリ☆チャン</dd>
                 )}
-                {this.state.selectedShop.series.includes("pripara") && (
+                {this.state.selectedShop.series.has("pripara") && (
                   <dd>プリパラ オールアイドル</dd>
                 )}
                 <dt className={"font-semibold"}>更新日時</dt>

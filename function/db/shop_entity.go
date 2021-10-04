@@ -28,9 +28,9 @@ type ShopEntity struct {
 	Prefecture       string     `firestore:"prefecture"        json:"prefecture"`
 	Address          string     `firestore:"address"           json:"address"`
 	SanitizedAddress string     `firestore:"sanitized_address" json:"sanitized_address"`
-	Series           []string   `firestore:"series"            json:"series"`
-	CreatedAt        time.Time  `firestore:"created_at"        json:"created_at" ts_type:"Date" ts_transform:"__VALUE__.toDate()"`
-	UpdatedAt        time.Time  `firestore:"updated_at"        json:"updated_at" ts_type:"Date" ts_transform:"__VALUE__.toDate()"`
+	Series           []string   `firestore:"series"            json:"series"     ts_type:"Set<string>" ts_transform:"new Set(__VALUE__)"`
+	CreatedAt        time.Time  `firestore:"created_at"        json:"created_at" ts_type:"Date"        ts_transform:"__VALUE__.toDate()"`
+	UpdatedAt        time.Time  `firestore:"updated_at"        json:"updated_at" ts_type:"Date"        ts_transform:"__VALUE__.toDate()"`
 	Geography        *Geography `firestore:"geography"         json:"geography"`
 	Deleted          bool       `firestore:"deleted"           json:"deleted"`
 }

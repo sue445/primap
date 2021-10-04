@@ -18,6 +18,8 @@ const emptyShop = { series: new Set([]) } as ShopEntity;
 
 const shopLimit = 2000;
 
+const defaultSeries = ["primagi", "prichan", "pripara"];
+
 type SearchCondition = "or" | "and";
 
 export class MapContainer extends React.Component<Props, {}> {
@@ -28,7 +30,8 @@ export class MapContainer extends React.Component<Props, {}> {
     shops: [] as Array<ShopEntity>,
     latitude: this.props.latitude,
     longitude: this.props.longitude,
-    series: new Set(["primagi", "prichan", "pripara"]),
+    series: new Set(defaultSeries),
+    seriesArray: defaultSeries,
     searchCondition: "or" as SearchCondition,
   };
 
@@ -122,14 +125,15 @@ export class MapContainer extends React.Component<Props, {}> {
     } else {
       this.state.series.delete(event.target.value);
     }
+    this.state.seriesArray = Array.from(this.state.series);
     this.setState({ series: this.state.series });
   };
 
   onSearchConditionChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.value == "and" || event.target.value == "or") {
       this.state.searchCondition = event.target.value;
+      this.setState({ searchCondition: this.state.searchCondition });
     }
-    this.setState({ searchCondition: this.state.searchCondition });
   };
 
   render() {
@@ -206,11 +210,11 @@ export class MapContainer extends React.Component<Props, {}> {
             .filter((shop) => {
               switch (this.state.searchCondition) {
                 case "or":
-                  return Array.from(this.state.series).some((series) => {
+                  return this.state.seriesArray.some((series) => {
                     return shop.series.has(series);
                   });
                 case "and":
-                  return Array.from(this.state.series).every((series) => {
+                  return this.state.seriesArray.every((series) => {
                     return shop.series.has(series);
                   });
               }

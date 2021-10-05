@@ -10,7 +10,7 @@ const SearchConditionRadio: React.FC<{
     <label className="flex items-center">
       <input
         type="radio"
-        className="form-checkbox h-6 w-6"
+        className="form-radio h-6 w-6"
         onChange={onChange}
         value={value}
         checked={checked}

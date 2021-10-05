@@ -163,13 +163,13 @@ export class MapContainer extends React.Component<Props, {}> {
         <div className="flex mt-6">
           <span className={"h-6 font-bold"}>検索条件</span>
           <SearchConditionRadio
-            title="OR"
+            title="OR検索"
             value="or"
             checked={this.state.searchCondition == "or"}
             onChange={this.onSearchConditionChanged}
           />
           <SearchConditionRadio
-            title="AND"
+            title="AND検索"
             value="and"
             checked={this.state.searchCondition == "and"}
             onChange={this.onSearchConditionChanged}

@@ -193,11 +193,7 @@ jobs:
       - name: "[NOTE] Run `make go2ts` if this is failed"
         run: |
           set -xe
-
-          TSCRIPTIFY_VERSION=$(grep 'github.com/tkrajina/typescriptify-golang-structs' go.mod | awk '{ print $2 }')
-          go install github.com/tkrajina/typescriptify-golang-structs/tscriptify@${TSCRIPTIFY_VERSION}
-
-          make go2ts
+          make go2ts_ci
           git checkout HEAD -- go.mod go.sum
           git --no-pager diff
           git status | grep "nothing to commit, working tree clean"

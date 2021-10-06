@@ -45,7 +45,7 @@ tscriptify:
 .PHONY: go2ts
 go2ts: tscriptify
 	tscriptify -package=github.com/sue445/primap/db -target=../frontend/app/components/ShopEntity.ts ShopEntity
-	cd ../frontend/ && npm run prettier:write
+	cd ../frontend/ && npm install && npm run prettier:write
 
 .PHONY: puml2svg
 puml2svg:

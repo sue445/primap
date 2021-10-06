@@ -41,15 +41,14 @@ test_all: test testrace fmt lint vet
 .PHONY: tscriptify
 tscriptify:
 	go install github.com/tkrajina/typescriptify-golang-structs/tscriptify@$(TSCRIPTIFY_VERSION)
+	tscriptify -package=github.com/sue445/primap/db -target=../frontend/app/components/ShopEntity.ts ShopEntity
 
 .PHONY: go2ts
 go2ts: tscriptify
-	tscriptify -package=github.com/sue445/primap/db -target=../frontend/app/components/ShopEntity.ts ShopEntity
 	cd ../frontend/ && npm install && npm run prettier:write
 
 .PHONY: go2ts_ci
 go2ts_ci: tscriptify
-	tscriptify -package=github.com/sue445/primap/db -target=../frontend/app/components/ShopEntity.ts ShopEntity
 	cd ../frontend/ && npm run prettier:write
 
 .PHONY: puml2svg

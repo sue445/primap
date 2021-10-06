@@ -47,6 +47,11 @@ go2ts: tscriptify
 	tscriptify -package=github.com/sue445/primap/db -target=../frontend/app/components/ShopEntity.ts ShopEntity
 	cd ../frontend/ && npm install && npm run prettier:write
 
+.PHONY: go2ts_ci
+go2ts_ci: tscriptify
+	tscriptify -package=github.com/sue445/primap/db -target=../frontend/app/components/ShopEntity.ts ShopEntity
+	cd ../frontend/ && npm run prettier:write
+
 .PHONY: puml2svg
 puml2svg:
 	cat _img/overview.puml | docker run --rm -i think/plantuml -tsvg > _img/overview.svg

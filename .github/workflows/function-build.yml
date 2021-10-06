@@ -193,7 +193,7 @@ jobs:
       - name: "[NOTE] Run `make go2ts` if this is failed"
         run: |
           set -xe
-          make go2ts
+          make go2ts_ci
           git checkout HEAD -- go.mod go.sum
           git --no-pager diff
           git status | grep "nothing to commit, working tree clean"

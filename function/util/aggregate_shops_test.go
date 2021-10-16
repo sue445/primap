@@ -266,6 +266,30 @@ func Test_normalizeShopName(t *testing.T) {
 			},
 			want: "ソユーザウルスワールド大森",
 		},
+		{
+			args: args{
+				shopName: "SOYUFamilyGameField防府",
+			},
+			want: "ソユーファミリーゲームフィールド防府",
+		},
+		{
+			args: args{
+				shopName: "SOYU Family Game Field花巻",
+			},
+			want: "ソユーファミリーゲームフィールド花巻",
+		},
+		{
+			args: args{
+				shopName: "THE3RDPLANETBiVi京都二条",
+			},
+			want: "THE 3RD PLANET BiVi京都二条",
+		},
+		{
+			args: args{
+				shopName: "THE3RDPLANETフレスポ国分",
+			},
+			want: "THE 3RD PLANET フレスポ国分",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.args.shopName, func(t *testing.T) {

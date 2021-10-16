@@ -221,3 +221,56 @@ func TestAggregateShops(t *testing.T) {
 
 	assert.Equal(t, want, got)
 }
+
+func Test_normalizeShopName(t *testing.T) {
+	type args struct {
+		shopName string
+	}
+	tests := []struct {
+		args args
+		want string
+	}{
+		{
+			args: args{
+				shopName: "モーリーファンタジー唐津",
+			},
+			want: "モーリーファンタジー唐津",
+		},
+		{
+			args: args{
+				shopName: "ＳＯＹＵＧａｍｅＦｉｅｌｄ湘南",
+			},
+			want: "ソユーゲームフィールド湘南",
+		},
+		{
+			args: args{
+				shopName: "ニコパウイングタウン岡崎",
+			},
+			want: "NICOPAウイングタウン岡崎",
+		},
+		{
+			args: args{
+				shopName: "モーリーファンタジー・f新潟南",
+			},
+			want: "モーリーファンタジーf新潟南",
+		},
+		{
+			args: args{
+				shopName: "ヤマダ電機LABI渋谷",
+			},
+			want: "LABI渋谷",
+		},
+		{
+			args: args{
+				shopName: "ＳＯＹＵＺＡＵＲＵＳＷＯＲＬＤ大森",
+			},
+			want: "ソユーザウルスワールド大森",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.args.shopName, func(t *testing.T) {
+			got := normalizeShopName(tt.args.shopName)
+			assert.Equal(t, tt.want, got)
+		})
+	}
+}

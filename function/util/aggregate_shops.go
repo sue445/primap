@@ -228,18 +228,7 @@ func AggregateShops(shops []*prismdb.Shop) []*prismdb.Shop {
 			shopName = reversedSimilarShopNames[foldedShopName]
 		}
 
-		shopName = width.Fold.String(shopName)
-
-		shopName = strings.ReplaceAll(shopName, "モーリーファンタジー・f", "モーリーファンタジーf")
-		shopName = strings.ReplaceAll(shopName, "CLUBSEGA", "クラブセガ")
-		shopName = strings.ReplaceAll(shopName, "ヤマダ電機LABI", "LABI")
-
-		shopName = regexp.MustCompile(`([^A-Za-z0-9])\s+([^A-Za-z0-9])`).ReplaceAllString(shopName, "$1$2")
-		shopName = regexp.MustCompile(`(?i)SOYU\s*Game\s*Field`).ReplaceAllString(shopName, "ソユーゲームフィールド")
-		shopName = regexp.MustCompile(`(?i)SOYUZAURUSWORLD`).ReplaceAllString(shopName, "ソユーザウルスワールド")
-		shopName = regexp.MustCompile(`^ニコパ`).ReplaceAllString(shopName, "NICOPA")
-
-		shopName = strings.TrimSpace(shopName)
+		shopName = normalizeShopName(shopName)
 
 		if aggregatedShopsMap[shopName] == nil {
 			aggregatedShopsMap[shopName] = &prismdb.Shop{
@@ -272,4 +261,21 @@ func AggregateShops(shops []*prismdb.Shop) []*prismdb.Shop {
 	}
 
 	return aggregatedShops
+}
+
+func normalizeShopName(shopName string) string {
+	shopName = width.Fold.String(shopName)
+
+	shopName = strings.ReplaceAll(shopName, "モーリーファンタジー・f", "モーリーファンタジーf")
+	shopName = strings.ReplaceAll(shopName, "CLUBSEGA", "クラブセガ")
+	shopName = strings.ReplaceAll(shopName, "ヤマダ電機LABI", "LABI")
+
+	shopName = regexp.MustCompile(`([^A-Za-z0-9])\s+([^A-Za-z0-9])`).ReplaceAllString(shopName, "$1$2")
+	shopName = regexp.MustCompile(`(?i)SOYU\s*Game\s*Field`).ReplaceAllString(shopName, "ソユーゲームフィールド")
+	shopName = regexp.MustCompile(`(?i)SOYUZAURUSWORLD`).ReplaceAllString(shopName, "ソユーザウルスワールド")
+	shopName = regexp.MustCompile(`^ニコパ`).ReplaceAllString(shopName, "NICOPA")
+
+	shopName = strings.TrimSpace(shopName)
+
+	return shopName
 }

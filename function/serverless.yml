@@ -82,7 +82,7 @@ resources:
       properties:
         parent: projects/${self:provider.project}/locations/${self:provider.region} # not described in API spec but required
         name: sls-cron-update-shops
-        description: "Map daily update scheduler"
+        description: "Scheduler that updates shops daily"
         schedule: "0 22 * * *" # this controls the CRON schedule of your function invocations
         timeZone: "Asia/Tokyo"
         pubsubTarget:

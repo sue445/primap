@@ -274,6 +274,8 @@ func normalizeShopName(shopName string) string {
 	shopName = strings.ReplaceAll(shopName, "ヤマダ電機LABI", "LABI")
 
 	shopName = regexp.MustCompile(`([^A-Za-z0-9])\s+([^A-Za-z0-9])`).ReplaceAllString(shopName, "$1$2")
+	shopName = regexp.MustCompile(`([A-Za-z0-9])\s+([^A-Za-z0-9])`).ReplaceAllString(shopName, "$1$2")
+	shopName = regexp.MustCompile(`([^A-Za-z0-9])\s+([A-Za-z0-9])`).ReplaceAllString(shopName, "$1$2")
 	shopName = regexp.MustCompile(`(?i)SOYU\s*Game\s*Field`).ReplaceAllString(shopName, "ソユーゲームフィールド")
 	shopName = regexp.MustCompile(`(?i)SOYU\s*Family\s*Game\s*Field`).ReplaceAllString(shopName, "ソユーファミリーゲームフィールド")
 	shopName = regexp.MustCompile(`(?i)SOYUZAURUSWORLD`).ReplaceAllString(shopName, "ソユーザウルスワールド")

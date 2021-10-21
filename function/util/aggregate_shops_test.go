@@ -140,6 +140,18 @@ func TestAggregateShops(t *testing.T) {
 			Address:    "東京都大田区大森北二丁目13-1  ｲﾄｰﾖｰｶﾄﾞｰ大森店3F",
 			Series:     []string{"primagi"},
 		},
+		{
+			Name:       "タイトーステーション　ＢＩＧＦＵＮ平和島",
+			Prefecture: "東京都",
+			Address:    "東京都大田区平和島１－１－１ＢＩＧＦＵＮ平和島３Ｆ",
+			Series:     []string{"prichan", "primagi"},
+		},
+		{
+			Name:       "タイトーステーションＢＩＧＦＵＮ平和島店",
+			Prefecture: "東京都",
+			Address:    "東京都大田区平和島１－１－１ＢＩＧＦＵＮ平和島３Ｆ",
+			Series:     []string{"pripara"},
+		},
 	}
 
 	got := AggregateShops(shops)
@@ -185,6 +197,12 @@ func TestAggregateShops(t *testing.T) {
 			Name:       "ソユーザウルスワールド大森",
 			Prefecture: "東京都",
 			Address:    "東京都大田区大森北二丁目１３－１　イトーヨーカドー大森店３Ｆ",
+			Series:     []string{"prichan", "primagi", "pripara"},
+		},
+		{
+			Name:       "タイトーステーションBIGFUN平和島",
+			Prefecture: "東京都",
+			Address:    "東京都大田区平和島１－１－１ＢＩＧＦＵＮ平和島３Ｆ",
 			Series:     []string{"prichan", "primagi", "pripara"},
 		},
 		{
@@ -289,6 +307,12 @@ func Test_normalizeShopName(t *testing.T) {
 				shopName: "THE3RDPLANETフレスポ国分",
 			},
 			want: "THE 3RD PLANET フレスポ国分",
+		},
+		{
+			args: args{
+				shopName: "タイトーステーション　ＢＩＧＦＵＮ平和島",
+			},
+			want: "タイトーステーションBIGFUN平和島",
 		},
 	}
 	for _, tt := range tests {

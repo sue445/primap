@@ -29,6 +29,7 @@ func init() {
 		},
 		"ＳＯＹＵＧａｍｅＦｉｅｌｄ長野三輪": {
 			"ＳＯＹＵＧａｍｅＦｉｅｌｄ長野",
+			"ＳＯＹＵＧａｍｅＦｉｅｌｄイオンタウン長野三輪",
 		},
 		"ＳＯＹＵＧａｍｅＦｉｅｌｄ湘南": {
 			"ＳＯＹＵ　Ｇａｍｅ　Ｆｉｅｌｄ湘南店",
@@ -44,6 +45,9 @@ func init() {
 		},
 		"アピタプラス岩倉": {
 			"アピタ岩倉",
+		},
+		"アミューズメントランドYAZ平塚": {
+			"ＹＡＺ平塚",
 		},
 		"イオンモール熱田": {
 			"イオン熱田",
@@ -71,6 +75,9 @@ func init() {
 		},
 		"シルクハット川崎モアーズ": {
 			"シルクハットモアーズ",
+		},
+		"ジョイランドアミューズ三島": {
+			"ジョイランド三島",
 		},
 		"そごう千葉": {
 			"そごう千葉本館６階玩具売場",
@@ -145,6 +152,9 @@ func init() {
 		"水戸京成百貨": {
 			"水戸京成百貨店７階玩具売場",
 		},
+		"モーリーファンタジーなかま": {
+			"モーリーファンタジー中間",
+		},
 		"モーリーファンタジー向ヶ丘": {
 			"モーリーファンタジー向ケ丘",
 		},
@@ -156,6 +166,12 @@ func init() {
 		},
 		"モーリーファンタジー千葉ニュータウン": {
 			"モーリーファンタジー千葉ニュ-タウン",
+		},
+		"モーリーファンタジー湘南茅ヶ崎": {
+			"モーリーファンタジー茅ヶ崎",
+		},
+		"モーリーファンタジー三春屋": {
+			"モーリーファンタジー三春谷",
 		},
 		"モーリーファンタジーf加西北条": {
 			"モーリーファンタジー加西北条",
@@ -190,11 +206,18 @@ func init() {
 		"ヨドバシカメラマルチメディア町田": {
 			"ヨドバシカメラマルチメディア町田駅前",
 		},
+		"ラウンドワンスタジアムららぽーと新三郷": {
+			"ラウンドワンららぽーと新三郷",
+		},
 		"レジャーランド高崎駅東口": {
 			"レジャーランド高崎",
 		},
+		"レジャーランド成東": {
+			"レジャーレンド成東",
+		},
 		"わくわくカーニバル": {
 			"わくわくカーニバル神戸",
+			"わいわいカーニバル",
 		},
 		"ワンダーフォレスト江南西": {
 			"ハローズガーデンワンダーフォレスト江南西",
@@ -274,6 +297,8 @@ func normalizeShopName(shopName string) string {
 	shopName = strings.ReplaceAll(shopName, "ヤマダ電機LABI", "LABI")
 
 	shopName = regexp.MustCompile(`([^A-Za-z0-9])\s+([^A-Za-z0-9])`).ReplaceAllString(shopName, "$1$2")
+	shopName = regexp.MustCompile(`([A-Za-z0-9])\s+([^A-Za-z0-9])`).ReplaceAllString(shopName, "$1$2")
+	shopName = regexp.MustCompile(`([^A-Za-z0-9])\s+([A-Za-z0-9])`).ReplaceAllString(shopName, "$1$2")
 	shopName = regexp.MustCompile(`(?i)SOYU\s*Game\s*Field`).ReplaceAllString(shopName, "ソユーゲームフィールド")
 	shopName = regexp.MustCompile(`(?i)SOYU\s*Family\s*Game\s*Field`).ReplaceAllString(shopName, "ソユーファミリーゲームフィールド")
 	shopName = regexp.MustCompile(`(?i)SOYUZAURUSWORLD`).ReplaceAllString(shopName, "ソユーザウルスワールド")

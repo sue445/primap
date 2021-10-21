@@ -306,7 +306,7 @@ func Test_normalizeShopName(t *testing.T) {
 			args: args{
 				shopName: "THE3RDPLANETフレスポ国分",
 			},
-			want: "THE 3RD PLANET フレスポ国分",
+			want: "THE 3RD PLANETフレスポ国分",
 		},
 		{
 			args: args{

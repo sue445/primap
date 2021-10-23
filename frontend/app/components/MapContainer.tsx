@@ -3,7 +3,12 @@ import React from "react";
 import { GeoFireClient } from "geofirex";
 import * as Sentry from "@sentry/react";
 import { ShopEntity } from "./ShopEntity";
-import { correctLongitude, formatAddress, getShopMarkerIconUrl } from "./Util";
+import {
+  correctLongitude,
+  formatAddress,
+  getGoogleMapUrl,
+  getShopMarkerIconUrl,
+} from "./Util";
 import SeriesCheckbox from "./SeriesCheckbox";
 import SearchConditionRadio from "./SearchConditionRadio";
 
@@ -251,6 +256,17 @@ export class MapContainer extends React.Component<Props, {}> {
               <dl>
                 <dt className={"font-semibold"}>住所</dt>
                 <dd>{formatAddress(this.state.selectedShop.address)}</dd>
+                <dd>
+                  <a
+                    className={"link"}
+                    target={"_blank"}
+                    href={getGoogleMapUrl(
+                      this.state.selectedShop.geography?.geopoint
+                    )}
+                  >
+                    Google Mapsで開く
+                  </a>
+                </dd>
                 <dt className={"font-semibold"}>設置筐体</dt>
                 {this.state.selectedShop.series.has("primagi") && (
                   <dd>ワッチャプリマジ！</dd>

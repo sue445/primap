@@ -1,3 +1,5 @@
+import { LatLng } from "./ShopEntity";
+
 export function correctLongitude(longitude: number): number {
   if (-180 < longitude && longitude < 180) {
     return longitude;
@@ -24,4 +26,11 @@ export function getShopMarkerIconUrl(shopName: string): string {
 
   // Use default icon
   return null;
+}
+
+export function getGoogleMapUrl(geopoint?: LatLng): string {
+  if (geopoint) {
+    return `https://www.google.com/maps/search/?api=1&query=${geopoint.latitude},${geopoint.longitude}`;
+  }
+  return "";
 }

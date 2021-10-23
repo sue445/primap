@@ -1,8 +1,10 @@
 import {
   correctLongitude,
   formatAddress,
+  getGoogleMapUrl,
   getShopMarkerIconUrl,
 } from "../app/components/Util";
+import { LatLng } from "../app/components/ShopEntity";
 
 describe.each([
   [0, 0],
@@ -39,5 +41,17 @@ describe.each([
 ])(".getShopMarkerIconUrl()", (shopName, expected) => {
   test(`getShopMarkerIconUrl(${shopName}) returns ${expected}`, () => {
     expect(getShopMarkerIconUrl(shopName)).toBe(expected);
+  });
+});
+
+describe.each([
+  [
+    new LatLng({ latitude: 35.6898545, longitude: 139.7022641 }),
+    "https://www.google.com/maps/search/?api=1&query=35.6898545,139.7022641",
+  ],
+  [null, ""],
+])(".getGoogleMapUrl()", (geopoint, expected) => {
+  test(`getGoogleMapUrl(${geopoint}) returns ${expected}`, () => {
+    expect(getGoogleMapUrl(geopoint)).toBe(expected);
   });
 });

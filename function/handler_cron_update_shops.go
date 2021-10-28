@@ -66,13 +66,15 @@ func getAndPublishShops(ctx context.Context, projectID string) error {
 		return errors.WithStack(err)
 	}
 
+	topic := pubsubClient.Topic(topicID)
+
 	start2 := time.Now()
 	var eg errgroup.Group
 	for _, shop := range shops {
 		// c.f. https://golang.org/doc/faq#closures_and_goroutines
 		shop := shop
 		eg.Go(func() error {
-			err := publishShop(ctx, pubsubClient, shop)
+			err := publishShop(ctx, topic, shop)
 			if err != nil {
 				return errors.WithStack(err)
 			}
@@ -98,9 +100,7 @@ func getAndPublishShops(ctx context.Context, projectID string) error {
 	return nil
 }
 
-func publishShop(ctx context.Context, client *pubsub.Client, shop *prismdb.Shop) error {
-	topic := client.Topic(topicID)
-
+func publishShop(ctx context.Context, topic *pubsub.Topic, shop *prismdb.Shop) error {
 	data, err := json.Marshal(shop)
 
 	if err != nil {

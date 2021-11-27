@@ -43,7 +43,7 @@ const App: React.FC<{}> = (props) => {
   return (
     <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
       <MapContainer
-        // @ts-ignore
+        // @ts-expect-error
         latitude={35.689846}
         longitude={139.700534}
         zoom={15}

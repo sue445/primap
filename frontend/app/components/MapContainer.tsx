@@ -181,7 +181,7 @@ export class MapContainer extends React.Component<Props, {}> {
           />
         </div>
         <Map
-          // @ts-ignore
+          // @ts-expect-error
           google={this.props.google}
           zoom={this.props.zoom}
           onReady={this.onMapReady}
@@ -235,7 +235,7 @@ export class MapContainer extends React.Component<Props, {}> {
                     lat: shop.geography.geopoint.latitude,
                     lng: shop.geography.geopoint.longitude,
                   }}
-                  // @ts-ignore
+                  // @ts-expect-error
                   name={shop.name}
                   zIndex={1}
                   icon={iconUrl != null ? { url: iconUrl } : null}
@@ -245,7 +245,7 @@ export class MapContainer extends React.Component<Props, {}> {
 
           <InfoWindow
             marker={this.state.activeMarker}
-            // @ts-ignore
+            // @ts-expect-error
             onClose={this.onInfoWindowClose}
             visible={this.state.showingInfoWindow}
           >
@@ -291,5 +291,5 @@ export class MapContainer extends React.Component<Props, {}> {
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_BROWSER_API_KEY,
   language: "ja",
-  // @ts-ignore
+  // @ts-expect-error
 })(MapContainer);

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - migrate-to-google-github-actions-auth # TODO: debug
     paths-ignore:
       # Ignore files that are not used in production
       - "**.md"

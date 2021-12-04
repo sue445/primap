@@ -58,12 +58,15 @@ jobs:
           ls -l public/build/
           ls -l public/index.html
 
+      - id: auth
+        uses: google-github-actions/auth@main
+        with:
+          credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+
       - name: GCP Authenticate
         uses: google-github-actions/setup-gcloud@master
         with:
           version: latest
-          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-          export_default_credentials: true
           project_id: ${{ env.GCP_PROJECT }}
 
       - name: Install firebase

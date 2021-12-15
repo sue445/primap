@@ -33,8 +33,17 @@ func QueueSaveShop(ctx context.Context, m *pubsub.Message) error {
 }
 
 func queueSaveShopHandler(ctx context.Context, m *pubsub.Message) error {
+	expired, err := isExpiredEvent(ctx)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	if expired {
+		return nil
+	}
+
 	var shop prismdb.Shop
-	err := json.Unmarshal(m.Data, &shop)
+	err = json.Unmarshal(m.Data, &shop)
 
 	if err != nil {
 		return errors.WithStack(err)

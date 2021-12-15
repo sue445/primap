@@ -60,7 +60,20 @@ func isExpiredEvent(ctx context.Context) (bool, error) {
 	}
 
 	expiration := meta.Timestamp.Add(eventExpiration)
-	if time.Now().After(expiration) {
+	currentTime := time.Now()
+
+	if currentTime.After(expiration) {
+		log.Printf("[INFO] Event is expired: eventTime=%v, currentTime=%v\n", meta.Timestamp, currentTime)
+
+		sentry.ConfigureScope(func(scope *sentry.Scope) {
+			scope.SetLevel(sentry.LevelInfo)
+			scope.SetExtras(map[string]interface{}{
+				"eventTime":   meta.Timestamp,
+				"currentTime": currentTime,
+			})
+		})
+		sentry.CaptureMessage("Event is expired")
+
 		return true, nil
 	}
 

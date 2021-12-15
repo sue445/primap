@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - feature/avoid_infinite_retry_loops
     paths-ignore:
       # Ignore files that are not used in production
       - "**.md"

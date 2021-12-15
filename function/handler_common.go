@@ -1,6 +1,7 @@
 package primap
 
 import (
+	"cloud.google.com/go/functions/metadata"
 	"context"
 	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
@@ -8,6 +9,10 @@ import (
 	"log"
 	"os"
 	"time"
+)
+
+const (
+	eventExpiration = 30 * time.Minute
 )
 
 // Cleanup should call with defer
@@ -45,4 +50,19 @@ func initFunction(ctx context.Context, tracesSampleRate float64) (Cleanup, error
 func handleError(err error) {
 	log.Printf("[ERROR] %+v", err)
 	sentry.CaptureException(err)
+}
+
+func isExpiredEvent(ctx context.Context) (bool, error) {
+	meta, err := metadata.FromContext(ctx)
+	if err != nil {
+		// Assume an error on the function invoker and try again.
+		return false, errors.WithStack(err)
+	}
+
+	expiration := meta.Timestamp.Add(eventExpiration)
+	if time.Now().After(expiration) {
+		return true, nil
+	}
+
+	return false, nil
 }

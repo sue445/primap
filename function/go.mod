@@ -7,7 +7,7 @@ require (
 	cloud.google.com/go/functions v1.0.0
 	cloud.google.com/go/pubsub v1.17.1
 	cloud.google.com/go/secretmanager v0.1.0 // indirect
-	github.com/deckarep/golang-set v1.7.1
+	github.com/deckarep/golang-set v1.8.0
 	github.com/getsentry/sentry-go v0.11.0
 	github.com/google/uuid v1.3.0
 	github.com/jarcoal/httpmock v1.0.8

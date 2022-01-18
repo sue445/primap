@@ -163,6 +163,12 @@ func Test_SanitizeAddress(t *testing.T) {
 			},
 			want: "福島県 いわき市小名浜港背後地震災復興土地区画整理事業地内",
 		},
+		{
+			args: args{
+				address: "福島県福島市南矢野目字西荒田50-の17 ｲｵﾝ福島店3階",
+			},
+			want: "福島県福島市南矢野目字西荒田50-17",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.args.address, func(t *testing.T) {

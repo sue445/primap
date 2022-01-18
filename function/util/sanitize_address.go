@@ -15,7 +15,7 @@ func SanitizeAddress(address string) string {
 	// Normalize Japanese street number(丁目,番地,号)
 	sanitized = regexp.MustCompile(`([0-9]+)ー([0-9]+)`).ReplaceAllString(sanitized, "$1-$2")
 	sanitized = regexp.MustCompile(`([0-9]+)ー([0-9]+)`).ReplaceAllString(sanitized, "$1-$2")
-	sanitized = regexp.MustCompile(`([0-9]+)(?:番地)?の([0-9]+)`).ReplaceAllString(sanitized, "$1-$2")
+	sanitized = regexp.MustCompile(`([0-9]+)(?:番地|-)?の([0-9]+)`).ReplaceAllString(sanitized, "$1-$2")
 	sanitized = regexp.MustCompile(`([0-9]+)(?:(?:丁目)|(?:番地?)|(?:号))`).ReplaceAllString(sanitized, "$1-")
 	sanitized = regexp.MustCompile(`-([^0-9]|$)`).ReplaceAllString(sanitized, "$1")
 

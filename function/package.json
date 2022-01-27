@@ -7,10 +7,10 @@
     "url": "https://github.com/sue445/primap.git"
   },
   "scripts": {
-    "deploy": "serverless deploy -v"
+    "deploy": "serverless deploy --verbose"
   },
   "devDependencies": {
-    "serverless": "^2.72.2",
+    "serverless": "^3.0.0",
     "serverless-google-cloudfunctions": "^4.5.0"
   }
 }

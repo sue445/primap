@@ -8,7 +8,7 @@ require (
 	cloud.google.com/go/pubsub v1.19.0
 	cloud.google.com/go/secretmanager v0.1.0 // indirect
 	github.com/deckarep/golang-set v1.8.0
-	github.com/getsentry/sentry-go v0.12.0
+	github.com/getsentry/sentry-go v0.13.0
 	github.com/google/uuid v1.3.0
 	github.com/jarcoal/httpmock v1.1.0
 	github.com/knakk/digest v0.0.0-20160404164910-fd45becddc49 // indirect

@@ -31,4 +31,6 @@ func TestGetAllShops(t *testing.T) {
 		return
 	}
 	assert.Equal(t, want, got[0])
+
+	assert.Contains(t, got, shopList[0])
 }

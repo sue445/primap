@@ -28,5 +28,10 @@ func GetAllShops() ([]*Shop, error) {
 		shops = append(shops, shop)
 	}
 
+	// append shopList to prismdb shops
+	for _, shop := range shopList {
+		shops = append(shops, shop)
+	}
+
 	return shops, nil
 }

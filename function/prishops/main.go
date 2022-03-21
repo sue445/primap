@@ -5,7 +5,7 @@ import (
 	"github.com/sue445/primap/prismdb"
 )
 
-// GetAllShops get all shops
+// GetAllShops get all shopList
 func GetAllShops() ([]*Shop, error) {
 	client, err := prismdb.NewClient()
 	if err != nil {

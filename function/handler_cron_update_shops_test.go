@@ -5,7 +5,7 @@ import (
 	"context"
 	"github.com/jarcoal/httpmock"
 	"github.com/stretchr/testify/assert"
-	"github.com/sue445/primap/prismdb"
+	"github.com/sue445/primap/prishops"
 	"github.com/sue445/primap/testutil"
 	"os"
 	"testing"
@@ -62,7 +62,7 @@ func Test_publishShop(t *testing.T) {
 		return
 	}
 
-	shop := &prismdb.Shop{
+	shop := &prishops.Shop{
 		Name:       "ＭＥＧＡドン・キホーテＵＮＹ名張",
 		Prefecture: "三重県",
 		Address:    "三重県名張市下比奈知黒田3100番地の1",

@@ -1,4 +1,4 @@
-package prismdb
+package prishops
 
 // Shop represents a shop
 type Shop struct {

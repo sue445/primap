@@ -9,7 +9,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/db"
-	"github.com/sue445/primap/prismdb"
+	"github.com/sue445/primap/prishops"
 	"github.com/sue445/primap/util"
 	"golang.org/x/sync/errgroup"
 	"time"
@@ -41,18 +41,13 @@ func CronUpdateShops(ctx context.Context, m *pubsub.Message) error {
 }
 
 func getAndPublishShops(ctx context.Context, projectID string) error {
-	prismdbClient, err := prismdb.NewClient()
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
 	start1 := time.Now()
-	shops, err := prismdbClient.GetAllShops()
+	shops, err := prishops.GetAllShops()
 	if err != nil {
 		return errors.WithStack(err)
 	}
 	duration1 := time.Now().Sub(start1)
-	fmt.Printf("[DEBUG] prismdbClient.GetAllShops (%s)\n", duration1)
+	fmt.Printf("[DEBUG] prishops.GetAllShops (%s)\n", duration1)
 	fmt.Printf("[INFO][getAndPublishShops] fetched shops=%d\n", len(shops))
 
 	start4 := time.Now()
@@ -100,7 +95,7 @@ func getAndPublishShops(ctx context.Context, projectID string) error {
 	return nil
 }
 
-func publishShop(ctx context.Context, topic *pubsub.Topic, shop *prismdb.Shop) error {
+func publishShop(ctx context.Context, topic *pubsub.Topic, shop *prishops.Shop) error {
 	data, err := json.Marshal(shop)
 
 	if err != nil {
@@ -115,7 +110,7 @@ func publishShop(ctx context.Context, topic *pubsub.Topic, shop *prismdb.Shop) e
 	return nil
 }
 
-func deleteRemovedShops(ctx context.Context, projectID string, newShops []*prismdb.Shop) error {
+func deleteRemovedShops(ctx context.Context, projectID string, newShops []*prishops.Shop) error {
 	var newShopNames []string
 	for _, shop := range newShops {
 		newShopNames = append(newShopNames, shop.Name)

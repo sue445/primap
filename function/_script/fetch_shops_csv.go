@@ -4,7 +4,7 @@ package main
 
 import (
 	"encoding/csv"
-	"github.com/sue445/primap/prismdb"
+	"github.com/sue445/primap/prishops"
 	"github.com/sue445/primap/util"
 	"log"
 	"os"
@@ -12,12 +12,7 @@ import (
 )
 
 func main() {
-	prismdbClient, err := prismdb.NewClient()
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	shops, err := prismdbClient.GetAllShops()
+	shops, err := prishops.GetAllShops()
 	if err != nil {
 		log.Fatalln(err)
 	}

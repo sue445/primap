@@ -1,6 +1,6 @@
 package prismdb
 
-// Shop represents a shop with pripara or prichan
+// Shop represents a shop
 type Shop struct {
 	Name       string   `json:"name"`
 	Prefecture string   `json:"prefecture"`

@@ -64,7 +64,7 @@ jobs:
           credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY }}
 
       - name: GCP Authenticate
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v0
         with:
           version: latest
           project_id: ${{ env.GCP_PROJECT }}

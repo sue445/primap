@@ -1,5 +1,5 @@
 # primap
-プリマップは [ワッチャプリマジ！](https://primagi.jp/) 、 [キラッとプリ☆チャン](https://prichan.jp/) 、 [プリパラ オールアイドル](https://pripara.jp/allidol/) の遊べるお店を地図で表示するサイトです。（非公式）
+プリマップは [ワッチャプリマジ！](https://primagi.jp/) 、 [プリパラ オールアイドル](https://pripara.jp/allidol/) の遊べるお店を地図で表示するサイトです。（非公式）
 
 https://primap.web.app/
 

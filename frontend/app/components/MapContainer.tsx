@@ -174,6 +174,8 @@ export class MapContainer extends React.Component<Props, {}> {
             onChange={this.onSearchConditionChanged}
           />
         </div>
+
+        {/* @ts-expect-error */}
         <Map
           // @ts-expect-error
           google={this.props.google}
@@ -237,9 +239,9 @@ export class MapContainer extends React.Component<Props, {}> {
               );
             })}
 
+          {/* @ts-expect-error */}
           <InfoWindow
             marker={this.state.activeMarker}
-            // @ts-expect-error
             onClose={this.onInfoWindowClose}
             visible={this.state.showingInfoWindow}
           >

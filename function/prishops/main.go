@@ -3,6 +3,7 @@ package prishops
 import (
 	"github.com/pkg/errors"
 	"github.com/sue445/primap/prismdb"
+	"github.com/sue445/primap/util"
 )
 
 // GetAllShops get all shopList
@@ -25,6 +26,13 @@ func GetAllShops() ([]*Shop, error) {
 			Address:    prismdbShop.Address,
 			Series:     prismdbShop.Series,
 		}
+
+		// Pripara is set up in the PrismStone Shop.
+		// c.f. https://twitter.com/T_ARTS_PRETTY/status/1484043957709402115
+		if util.Contains(shop.Series, "prismstone") {
+			shop.Series = append(shop.Series, "pripara")
+		}
+
 		shops = append(shops, shop)
 	}
 

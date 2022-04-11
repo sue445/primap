@@ -32,5 +32,13 @@ func TestGetAllShops(t *testing.T) {
 	}
 	assert.Equal(t, wantShop, gotShops[0])
 
+	wantShop2 := &Shop{
+		Name:       "プリズムストーンカフェ原宿店",
+		Prefecture: "東京都",
+		Address:    "東京都渋谷区神宮前3-18-27 2F",
+		Series:     []string{"primagi", "prismstone", "pripara"},
+	}
+	assert.Equal(t, wantShop2, gotShops[983])
+
 	assert.Contains(t, gotShops, shopList[0])
 }

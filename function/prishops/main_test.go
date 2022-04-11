@@ -14,23 +14,23 @@ func TestGetAllShops(t *testing.T) {
 	httpmock.RegisterResponder("POST", "https://prismdb.takanakahiko.me/sparql",
 		httpmock.NewStringResponder(200, testutil.ReadTestData("../testdata/all_shops.json")))
 
-	want := &Shop{
-		Name:       "NICOPAイオン伊勢",
-		Prefecture: "三重県",
-		Address:    "三重県伊勢市楠部町乙160 ｲｵﾝ伊勢店",
-		Series:     []string{"primagi"},
-	}
-
-	got, err := GetAllShops()
+	gotShops, err := GetAllShops()
 
 	if !assert.NoError(t, err) {
 		return
 	}
 
-	if !assert.Greater(t, len(got), 0) {
+	if !assert.Greater(t, len(gotShops), 0) {
 		return
 	}
-	assert.Equal(t, want, got[0])
 
-	assert.Contains(t, got, shopList[0])
+	wantShop := &Shop{
+		Name:       "NICOPAイオン伊勢",
+		Prefecture: "三重県",
+		Address:    "三重県伊勢市楠部町乙160 ｲｵﾝ伊勢店",
+		Series:     []string{"primagi"},
+	}
+	assert.Equal(t, wantShop, gotShops[0])
+
+	assert.Contains(t, gotShops, shopList[0])
 }

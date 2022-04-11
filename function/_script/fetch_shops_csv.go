@@ -17,7 +17,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	shops = util.AggregateShops(shops)
+	shops = prishops.AggregateShops(shops)
 
 	header := []string{"name", "prefecture", "address", "sanitized_address", "series"}
 

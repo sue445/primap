@@ -39,6 +39,4 @@ func TestGetAllShops(t *testing.T) {
 		Series:     []string{"primagi", "prismstone", "pripara"},
 	}
 	assert.Equal(t, wantShop2, gotShops[983])
-
-	assert.Contains(t, gotShops, shopList[0])
 }

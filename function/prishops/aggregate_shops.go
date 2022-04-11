@@ -1,7 +1,7 @@
-package util
+package prishops
 
 import (
-	"github.com/sue445/primap/prishops"
+	"github.com/sue445/primap/util"
 	"golang.org/x/text/width"
 	"regexp"
 	"sort"
@@ -230,7 +230,7 @@ func init() {
 }
 
 // AggregateShops returns aggregated shops with similar name
-func AggregateShops(shops []*prishops.Shop) []*prishops.Shop {
+func AggregateShops(shops []*Shop) []*Shop {
 	var reversedSimilarShopNames = map[string]string{}
 
 	for key, values := range similarShopNames {
@@ -241,7 +241,7 @@ func AggregateShops(shops []*prishops.Shop) []*prishops.Shop {
 		}
 	}
 
-	aggregatedShopsMap := map[string]*prishops.Shop{}
+	aggregatedShopsMap := map[string]*Shop{}
 
 	for _, shop := range shops {
 		// Remove "店" that isn't "本店"
@@ -261,7 +261,7 @@ func AggregateShops(shops []*prishops.Shop) []*prishops.Shop {
 		shopName = normalizeShopName(shopName)
 
 		if aggregatedShopsMap[shopName] == nil {
-			aggregatedShopsMap[shopName] = &prishops.Shop{
+			aggregatedShopsMap[shopName] = &Shop{
 				Name:       shopName,
 				Address:    shop.Address,
 				Prefecture: shop.Prefecture,
@@ -281,12 +281,12 @@ func AggregateShops(shops []*prishops.Shop) []*prishops.Shop {
 	}
 	sort.Strings(sortedAggregatedShopNames)
 
-	var aggregatedShops []*prishops.Shop
+	var aggregatedShops []*Shop
 
 	for _, shopName := range sortedAggregatedShopNames {
 		shop := aggregatedShopsMap[shopName]
 		sort.Strings(shop.Series)
-		shop.Series = UniqueSlice(shop.Series)
+		shop.Series = util.UniqueSlice(shop.Series)
 		aggregatedShops = append(aggregatedShops, shop)
 	}
 

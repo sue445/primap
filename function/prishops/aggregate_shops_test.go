@@ -1,13 +1,12 @@
-package util
+package prishops
 
 import (
 	"github.com/stretchr/testify/assert"
-	"github.com/sue445/primap/prishops"
 	"testing"
 )
 
 func TestAggregateShops(t *testing.T) {
-	shops := []*prishops.Shop{
+	shops := []*Shop{
 		{
 			Name:       "ふぇすたらんど小野店",
 			Prefecture: "兵庫県",
@@ -156,7 +155,7 @@ func TestAggregateShops(t *testing.T) {
 
 	got := AggregateShops(shops)
 
-	want := []*prishops.Shop{
+	want := []*Shop{
 		{
 			Name:       "LABI渋谷",
 			Prefecture: "東京都",

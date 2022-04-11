@@ -51,7 +51,7 @@ func getAndPublishShops(ctx context.Context, projectID string) error {
 	fmt.Printf("[INFO][getAndPublishShops] fetched shops=%d\n", len(shops))
 
 	start4 := time.Now()
-	shops = util.AggregateShops(shops)
+	shops = prishops.AggregateShops(shops)
 	duration4 := time.Now().Sub(start4)
 	fmt.Printf("[DEBUG] AggregateShops (%s)\n", duration4)
 	fmt.Printf("[INFO][getAndPublishShops] aggregated shops=%d\n", len(shops))

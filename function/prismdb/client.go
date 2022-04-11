@@ -50,7 +50,7 @@ WHERE {
         prism:prefecture ?prefecture;
         prism:name ?name;
         prism:address ?address.
-    FILTER (?series IN("primagi"))
+    FILTER (?series IN("primagi", "prismstone"))
 }
 GROUP BY ?shop ?prefecture
 ORDER BY ?prefecture ?shop

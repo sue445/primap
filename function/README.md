@@ -46,6 +46,3 @@ Run one of the following
 1. `firebase --project test emulators:exec --only firestore,pubsub "make test"`
     * Requires [Firebase CLI](https://firebase.google.com/docs/cli)
 2. `docker-compose up --build`
-
-### Generate [overview.svg](_img/overview.svg)
-Run `make puml2svg`

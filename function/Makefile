@@ -50,7 +50,3 @@ go2ts: tscriptify
 .PHONY: go2ts_ci
 go2ts_ci: tscriptify
 	cd ../frontend/ && npm run prettier:write
-
-.PHONY: puml2svg
-puml2svg:
-	cat _img/overview.puml | docker run --rm -i think/plantuml -tsvg > _img/overview.svg

@@ -2,7 +2,18 @@
 [Cloud Functions](https://cloud.google.com/functions) for primap
 
 ## Overview
-![overview](_img/overview.svg)
+```mermaid
+flowchart TD
+  scheduler["Cloud Scheduler"] -- Runs once a day --> cron["CronUpdateShops"]
+
+  cron --> queue1["QueueSaveShop"]
+  cron --> queue2["QueueSaveShop"]
+  cron --> queue3["QueueSaveShop"]
+
+  queue1 --> firestore[(Cloud Firestore)]
+  queue2 --> firestore
+  queue3 --> firestore
+```
 
 There are the following functions.
 

@@ -41,7 +41,6 @@ Sentry.init({
 
 const App: React.FC<{}> = (props) => {
   return (
-    /* @ts-expect-error - Temporary Fix c.f. https://github.com/getsentry/sentry-javascript/issues/4904#issuecomment-1093336029 */
     <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
       <MapContainer
         // @ts-expect-error

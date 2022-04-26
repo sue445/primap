@@ -59,7 +59,7 @@ jobs:
           ls -l public/index.html
 
       - id: auth
-        uses: google-github-actions/auth@main
+        uses: google-github-actions/auth@v0
         with:
           credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY }}
 

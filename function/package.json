@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "serverless": "^3.16.0",
-    "serverless-google-cloudfunctions": "^4.5.0"
+    "serverless-google-cloudfunctions": "^4.6.0"
   }
 }

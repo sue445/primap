@@ -10,7 +10,7 @@
     "deploy": "serverless deploy --verbose"
   },
   "devDependencies": {
-    "serverless": "^3.18.1",
+    "serverless": "^3.18.2",
     "serverless-google-cloudfunctions": "^4.6.0"
   }
 }

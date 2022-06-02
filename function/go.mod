@@ -5,7 +5,7 @@ go 1.16
 require (
 	cloud.google.com/go/firestore v1.6.1
 	cloud.google.com/go/functions v1.3.0
-	cloud.google.com/go/pubsub v1.22.0
+	cloud.google.com/go/pubsub v1.22.1
 	cloud.google.com/go/secretmanager v0.1.0 // indirect
 	github.com/deckarep/golang-set v1.8.0
 	github.com/getsentry/sentry-go v0.13.0

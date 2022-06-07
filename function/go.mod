@@ -19,10 +19,10 @@ require (
 	github.com/stretchr/testify v1.7.2
 	github.com/sue445/gcp-secretmanagerenv v0.1.1
 	github.com/tkrajina/typescriptify-golang-structs v0.1.7
-	golang.org/x/sync v0.0.0-20220513210516-0976fa681c29
+	golang.org/x/sync v0.0.0-20220601150217-0de741cfad7f
 	golang.org/x/text v0.3.7
-	google.golang.org/api v0.82.0
-	google.golang.org/genproto v0.0.0-20220527130721-00d5c0f3be58
+	google.golang.org/api v0.83.0
+	google.golang.org/genproto v0.0.0-20220602131408-e326c6e8e9c8
 	google.golang.org/grpc v1.47.0
 	googlemaps.github.io/maps v1.3.2
 )

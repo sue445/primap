@@ -40,7 +40,8 @@ module.exports = {
     filename: 'build/[name].[contenthash].js'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+    fallback: { "url": require.resolve("url/") }
   },
   module: {
     rules: [

@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	cloud.google.com/go/firestore v1.6.1
-	cloud.google.com/go/functions v1.3.0
+	cloud.google.com/go/functions v1.4.0
 	cloud.google.com/go/pubsub v1.22.2
 	cloud.google.com/go/secretmanager v0.1.0 // indirect
 	github.com/deckarep/golang-set v1.8.0
@@ -22,7 +22,7 @@ require (
 	golang.org/x/sync v0.0.0-20220601150217-0de741cfad7f
 	golang.org/x/text v0.3.7
 	google.golang.org/api v0.84.0
-	google.golang.org/genproto v0.0.0-20220608133413-ed9918b62aac
+	google.golang.org/genproto v0.0.0-20220616135557-88e70c0c3a90
 	google.golang.org/grpc v1.47.0
 	googlemaps.github.io/maps v1.3.2
 )

@@ -51,14 +51,9 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version-file: "function/go.mod"
+          cache: true
+          cache-dependency-path: "function/go.sum"
         id: go
-
-      - uses: actions/cache@v1
-        with:
-          path: ~/go/pkg/mod
-          key: function-v1-${{ runner.os }}-go-${{ hashFiles('function/go.sum') }}
-          restore-keys: |
-            function-v1-${{ runner.os }}-go-
 
       - name: Install firebase emulator
         run: |
@@ -129,14 +124,9 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version-file: "function/go.mod"
+          cache: true
+          cache-dependency-path: "function/go.sum"
         id: go
-
-      - uses: actions/cache@v1
-        with:
-          path: ~/go/pkg/mod
-          key: function-v1-${{ runner.os }}-go-${{ hashFiles('function/go.sum') }}
-          restore-keys: |
-            function-v1-${{ runner.os }}-go-
 
       - name: Run lint
         run: |
@@ -171,18 +161,15 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version-file: "function/go.mod"
+          cache: true
+          cache-dependency-path: "function/go.sum"
         id: go
-
-      - uses: actions/cache@v1
-        with:
-          path: ~/go/pkg/mod
-          key: function-v1-${{ runner.os }}-go-${{ hashFiles('function/go.sum') }}
-          restore-keys: |
-            function-v1-${{ runner.os }}-go-
 
       - uses: actions/setup-node@v3
         with:
           node-version-file: ".nvmrc"
+          cache: "npm"
+          cache-dependency-path: "function/package-lock.json"
 
       - run: npm ci
         working-directory: frontend

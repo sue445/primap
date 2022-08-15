@@ -33,7 +33,6 @@ on:
 
 env:
   TEST_ARGS: -coverprofile coverage.out -covermode atomic
-  NODE_VERSION: 14
 
 defaults:
   run:

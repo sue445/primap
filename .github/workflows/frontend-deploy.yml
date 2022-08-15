@@ -15,8 +15,7 @@ on:
       - ".github/workflows/function-*.yml"
 
 env:
-  GCP_PROJECT:  primap
-  NODE_VERSION: 14
+  GCP_PROJECT: primap
 
 defaults:
   run:
@@ -39,9 +38,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: frontend/node_modules/
-          key: frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('frontend/package-lock.json') }}
+          key: frontend-v1-${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
           restore-keys: |
-            frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+            frontend-v1-${{ runner.os }}-node-
 
       - run: npm install
 

@@ -16,9 +16,6 @@ on:
       - "frontend/**"
       - ".github/workflows/frontend-*.yml"
 
-env:
-  NODE_VERSION: 14
-
 defaults:
   run:
     working-directory: function
@@ -40,9 +37,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: function/node_modules/
-          key: function-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('function/package-lock.json') }}
+          key: function-v1-${{ runner.os }}-node-${{ hashFiles('function/package-lock.json') }}
           restore-keys: |
-            function-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+            function-v1-${{ runner.os }}-node-
 
       - run: npm install
 

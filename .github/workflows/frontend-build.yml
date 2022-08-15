@@ -44,13 +44,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: ".nvmrc"
-
-      - uses: actions/cache@v2
-        with:
-          path: frontend/node_modules/
-          key: frontend-v1-${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
-          restore-keys: |
-            frontend-v1-${{ runner.os }}-node-
+          cache: "npm"
+          cache-dependency-path: "frontend/package-lock.json"
 
       - run: npm install
       - run: npm test
@@ -77,13 +72,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: ".nvmrc"
-
-      - uses: actions/cache@v2
-        with:
-          path: frontend/node_modules/
-          key: frontend-v1-${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
-          restore-keys: |
-            frontend-v1-${{ runner.os }}-node-
+          cache: "npm"
+          cache-dependency-path: "frontend/package-lock.json"
 
       - run: npm install
       - run: npm run build
@@ -121,13 +111,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: ".nvmrc"
-
-      - uses: actions/cache@v2
-        with:
-          path: frontend/node_modules/
-          key: frontend-v1-${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
-          restore-keys: |
-            frontend-v1-${{ runner.os }}-node-
+          cache: "npm"
+          cache-dependency-path: "frontend/package-lock.json"
 
       - run: npm install
       - run: npm run prettier:check

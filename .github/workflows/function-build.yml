@@ -168,6 +168,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: ".nvmrc"
+          cache: "npm"
+          cache-dependency-path: "function/package-lock.json"
 
       - run: npm ci
         working-directory: frontend

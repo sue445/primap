@@ -5,6 +5,8 @@ on:
     branches:
       - master
     paths-ignore:
+      - ".nvmrc"
+
       # Ignore files that are not used in production
       - "**.md"
       - "LICENSE"
@@ -15,9 +17,6 @@ on:
       # Ignore files used only by the frontend
       - "frontend/**"
       - ".github/workflows/frontend-*.yml"
-
-env:
-  NODE_VERSION: 14
 
 defaults:
   run:
@@ -33,16 +32,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version-file: ".nvmrc"
 
       - uses: actions/cache@v2
         with:
           path: function/node_modules/
-          key: function-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('function/package-lock.json') }}
+          key: function-v1-${{ runner.os }}-node-${{ hashFiles('function/package-lock.json') }}
           restore-keys: |
-            function-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+            function-v1-${{ runner.os }}-node-
 
       - run: npm install
 

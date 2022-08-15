@@ -28,9 +28,6 @@ on:
       - "function/**"
       - ".github/workflows/function-*.yml"
 
-env:
-  NODE_VERSION: 14
-
 defaults:
   run:
     working-directory: frontend
@@ -44,16 +41,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version-file: ".nvmrc"
 
       - uses: actions/cache@v2
         with:
           path: frontend/node_modules/
-          key: frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('frontend/package-lock.json') }}
+          key: frontend-v1-${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
           restore-keys: |
-            frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+            frontend-v1-${{ runner.os }}-node-
 
       - run: npm install
       - run: npm test
@@ -77,16 +74,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version-file: ".nvmrc"
 
       - uses: actions/cache@v2
         with:
           path: frontend/node_modules/
-          key: frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('frontend/package-lock.json') }}
+          key: frontend-v1-${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
           restore-keys: |
-            frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+            frontend-v1-${{ runner.os }}-node-
 
       - run: npm install
       - run: npm run build
@@ -121,16 +118,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version-file: ".nvmrc"
 
       - uses: actions/cache@v2
         with:
           path: frontend/node_modules/
-          key: frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('frontend/package-lock.json') }}
+          key: frontend-v1-${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
           restore-keys: |
-            frontend-v1-${{ runner.os }}-node-${{ env.NODE_VERSION }}-
+            frontend-v1-${{ runner.os }}-node-
 
       - run: npm install
       - run: npm run prettier:check

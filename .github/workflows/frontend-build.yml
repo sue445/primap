@@ -46,7 +46,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version-file: ".nvmrc"
 
       - uses: actions/cache@v2
         with:
@@ -79,7 +79,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version-file: ".nvmrc"
 
       - uses: actions/cache@v2
         with:
@@ -123,7 +123,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version-file: ".nvmrc"
 
       - uses: actions/cache@v2
         with:

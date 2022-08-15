@@ -183,7 +183,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version-file: ".nvmrc"
 
       - run: npm ci
         working-directory: frontend

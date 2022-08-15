@@ -32,7 +32,6 @@ on:
       - ".github/workflows/frontend-*.yml"
 
 env:
-  GO_VERSION: 1.16
   GO111MODULE: "on"
   TEST_ARGS: -coverprofile coverage.out -covermode atomic
   NODE_VERSION: 14
@@ -59,9 +58,9 @@ jobs:
       - uses: actions/cache@v1
         with:
           path: ~/go/pkg/mod
-          key: function-v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('function/go.sum') }}
+          key: function-v1-${{ runner.os }}-go-${{ hashFiles('function/go.sum') }}
           restore-keys: |
-            function-v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-
+            function-v1-${{ runner.os }}-go-
 
       - name: Install firebase emulator
         run: |
@@ -114,7 +113,7 @@ jobs:
         if: "! success()"
         continue-on-error: true
         with:
-          job_name: ${{ format('*test* ({0})', env.GO_VERSION) }}
+          job_name: "*test*"
           type: ${{ job.status }}
           icon_emoji: ":octocat:"
           url: ${{ secrets.SLACK_WEBHOOK }}
@@ -137,9 +136,9 @@ jobs:
       - uses: actions/cache@v1
         with:
           path: ~/go/pkg/mod
-          key: function-v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('function/go.sum') }}
+          key: function-v1-${{ runner.os }}-go-${{ hashFiles('function/go.sum') }}
           restore-keys: |
-            function-v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-
+            function-v1-${{ runner.os }}-go-
 
       - name: Run lint
         run: |
@@ -179,9 +178,9 @@ jobs:
       - uses: actions/cache@v1
         with:
           path: ~/go/pkg/mod
-          key: function-v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('function/go.sum') }}
+          key: function-v1-${{ runner.os }}-go-${{ hashFiles('function/go.sum') }}
           restore-keys: |
-            function-v1-${{ runner.os }}-go-${{ env.GO_VERSION }}-
+            function-v1-${{ runner.os }}-go-
 
       - uses: actions/setup-node@v1
         with:

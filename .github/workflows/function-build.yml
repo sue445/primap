@@ -181,7 +181,7 @@ jobs:
           restore-keys: |
             function-v1-${{ runner.os }}-go-
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
 

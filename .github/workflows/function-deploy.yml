@@ -36,13 +36,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: ".nvmrc"
-
-      - uses: actions/cache@v2
-        with:
-          path: function/node_modules/
-          key: function-v1-${{ runner.os }}-node-${{ hashFiles('function/package-lock.json') }}
-          restore-keys: |
-            function-v1-${{ runner.os }}-node-
+          cache: "npm"
+          cache-dependency-path: "function/package-lock.json"
 
       - run: npm install
 

@@ -9,6 +9,7 @@ on:
       - "**.md"
       - "LICENSE"
       - ".github/workflows/dependabot-auto-merge.yml"
+      - ".github/dependabot-auto-merge.yml"
 
       # Ignore files used only by the function
       - "function/**"
@@ -23,6 +24,7 @@ on:
       - "**.md"
       - "LICENSE"
       - ".github/workflows/dependabot-auto-merge.yml"
+      - ".github/dependabot-auto-merge.yml"
 
       # Ignore files used only by the function
       - "function/**"

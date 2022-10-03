@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - frontend-deploy-workload-identity # TODO: Debug
     paths-ignore:
       # Ignore files that are not used in production
       - "**.md"

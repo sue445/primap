@@ -16,7 +16,17 @@ on:
       - ".github/workflows/function-*.yml"
 
 env:
-  GCP_PROJECT: primap
+  # e.g. projects/123456789/locations/global/workloadIdentityPools/github-actions/providers/github-actions
+  WORKLOAD_IDENTITY_PROVIDER: "projects/659376400894/locations/global/workloadIdentityPools/primap/providers/github-actions"
+
+  # e.g. terraform@GCP_PROJECT_ID.iam.gserviceaccount.com
+  SERVICE_ACCOUNT_EMAIL: "deployer@primap.iam.gserviceaccount.com"
+
+permissions:
+  contents: read
+  id-token: write
+  issues: write
+  pull-requests: write
 
 defaults:
   run:
@@ -56,13 +66,11 @@ jobs:
       - id: auth
         uses: google-github-actions/auth@v0
         with:
-          credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT_EMAIL }}
 
       - name: GCP Authenticate
         uses: google-github-actions/setup-gcloud@v0
-        with:
-          version: latest
-          project_id: ${{ env.GCP_PROJECT }}
 
       - name: Install firebase
         run: |

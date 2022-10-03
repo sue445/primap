@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - function-deploy-workload-identity # TODO: debug
     paths-ignore:
       - ".nvmrc"
 
@@ -18,6 +19,19 @@ on:
       # Ignore files used only by the frontend
       - "frontend/**"
       - ".github/workflows/frontend-*.yml"
+
+env:
+  # e.g. projects/123456789/locations/global/workloadIdentityPools/github-actions/providers/github-actions
+  WORKLOAD_IDENTITY_PROVIDER: "projects/659376400894/locations/global/workloadIdentityPools/primap/providers/github-actions"
+
+  # e.g. terraform@GCP_PROJECT_ID.iam.gserviceaccount.com
+  SERVICE_ACCOUNT_EMAIL: "deployer@primap.iam.gserviceaccount.com"
+
+permissions:
+  contents: read
+  id-token: write
+  issues: write
+  pull-requests: write
 
 defaults:
   run:
@@ -41,14 +55,19 @@ jobs:
 
       - run: npm install
 
+      - id: auth
+        uses: google-github-actions/auth@v0
+        with:
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT_EMAIL }}
+
+      - name: GCP Authenticate
+        uses: google-github-actions/setup-gcloud@v0
+
       - name: serverless deploy
-        run: |
-          mkdir -p ~/.gcloud/
-          echo "$SERVICE_ACCOUNT_KEY" > ~/.gcloud/keyfile.json
-          npm run deploy
+        run: npm run deploy
         env:
           SENTRY_DSN: ${{ secrets.FUNCTION_SENTRY_DSN }}
-          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           SLS_DEBUG: "*"
 
       - name: Create Sentry release

@@ -69,10 +69,6 @@ jobs:
           sed -i "s!__GOOGLE_APPLICATION_CREDENTIALS__!${GOOGLE_APPLICATION_CREDENTIALS}!g" serverless.yml
           grep "credentials:"  serverless.yml
 
-      # TODO: debug log
-      - run: ls -l ${GOOGLE_APPLICATION_CREDENTIALS}
-      - run: cat serverless.yml
-
       - name: serverless deploy
         run: npm run deploy
         env:

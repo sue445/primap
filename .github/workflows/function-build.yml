@@ -8,8 +8,10 @@ on:
       # Ignore files that are not used in production
       - "**.md"
       - "LICENSE"
+      - ".github/workflows/dependabot-auto-merge.yml"
       - "function/_img/**"
       - "function/_script/**"
+      - ".github/dependabot-auto-merge.yml"
 
       # Ignore files used only by the frontend
       - "frontend/**"
@@ -23,6 +25,8 @@ on:
       # Ignore files that are not used in production
       - "**.md"
       - "LICENSE"
+      - ".github/workflows/dependabot-auto-merge.yml"
+      - ".github/dependabot-auto-merge.yml"
       - "function/_img/**"
 
       # Ignore files used only by the frontend

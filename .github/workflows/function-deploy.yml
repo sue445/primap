@@ -10,6 +10,8 @@ on:
       # Ignore files that are not used in production
       - "**.md"
       - "LICENSE"
+      - ".github/workflows/dependabot-auto-merge.yml"
+      - ".github/dependabot-auto-merge.yml"
       - "function/_img/**"
       - "function/_script/**"
 

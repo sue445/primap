@@ -16,6 +16,7 @@ on:
       # Ignore files used only by the frontend
       - "frontend/**"
       - ".github/workflows/frontend-*.yml"
+  workflow_dispatch:
 
 defaults:
   run:

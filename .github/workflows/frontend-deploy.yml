@@ -12,6 +12,7 @@ on:
       # Ignore files used only by the function
       - "function/**"
       - ".github/workflows/function-*.yml"
+  workflow_dispatch:
 
 env:
   # e.g. projects/123456789/locations/global/workloadIdentityPools/github-actions/providers/github-actions

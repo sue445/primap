@@ -26,7 +26,9 @@ jobs:
     name: serverless
 
     runs-on: ubuntu-latest
-    concurrency: function-deploy
+
+    concurrency: function-production
+    environment: function-production
 
     steps:
       - uses: actions/checkout@v3

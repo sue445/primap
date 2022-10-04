@@ -33,7 +33,11 @@ jobs:
     name: firebase
 
     runs-on: ubuntu-latest
-    concurrency: frontend-deploy
+
+    concurrency: frontend-production
+    environment:
+      name: frontend-production
+      url:  https://primap.web.app/
 
     steps:
       - uses: actions/checkout@v3

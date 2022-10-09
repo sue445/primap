@@ -37,8 +37,8 @@ defaults:
     working-directory: function
 
 jobs:
-  deploy:
-    name: serverless
+  function:
+    name: function
 
     runs-on: ubuntu-latest
 
@@ -115,7 +115,7 @@ jobs:
 
   notify:
     needs:
-      - deploy
+      - function
 
     runs-on: ubuntu-latest
     environment: function-production

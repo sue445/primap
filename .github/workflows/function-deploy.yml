@@ -86,6 +86,8 @@ jobs:
         run: |
           gcloud functions deploy ${FUNCTION_NAME} \
             --gen2 \
+            --retry \
+            --serve-all-traffic-latest-revision \
             --region=asia-northeast1 \
             --memory=128Mi \
             --runtime=go116 \

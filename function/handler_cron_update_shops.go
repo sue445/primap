@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	topicID = "sls-shop-save-topic"
+	topicID = "shop-save-topic"
 )
 
 // CronUpdateShops is called from cloud scheduler

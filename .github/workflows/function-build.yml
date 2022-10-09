@@ -171,9 +171,9 @@ jobs:
         with:
           node-version-file: ".nvmrc"
           cache: "npm"
-          cache-dependency-path: "function/package-lock.json"
+          cache-dependency-path: "frontend/package-lock.json"
 
-      - run: npm ci
+      - run: npm install
         working-directory: frontend
 
       - name: "[NOTE] Run `make go2ts` if this is failed"

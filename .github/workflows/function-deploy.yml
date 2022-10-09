@@ -94,7 +94,7 @@ jobs:
             --entry-point=${FUNCTION_ENTRY_POINT} \
             --timeout=${FUNCTION_TIMEOUT} \
             --trigger-topic=${FUNCTION_TRIGGER_TOPIC} \
-            --set-env-vars=GCP_PROJECT=${GCP_PROJECT},SENTRY_DSN=${SENTRY_DSN},SENTRY_RELEASE=${GITHUB_SHA}
+            --set-env-vars=GCP_PROJECT=${GCP_PROJECT},SENTRY_DSN=${SENTRY_DSN},SENTRY_RELEASE=${GITHUB_SHA},SENTRY_ENVIRONMENT=production
         env:
           FUNCTION_NAME:          ${{ matrix.function_name }}
           FUNCTION_TIMEOUT:       ${{ matrix.function_timeout }}

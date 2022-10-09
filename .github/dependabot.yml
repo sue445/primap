@@ -15,20 +15,6 @@ updates:
       - function
 
   - package-ecosystem: npm
-    directory: "/function"
-    schedule:
-      interval: daily
-      time: "05:00"
-      timezone: Asia/Tokyo
-    open-pull-requests-limit: 99
-    assignees:
-      - sue445
-    labels:
-      - dependencies
-      - javascript
-      - function
-
-  - package-ecosystem: npm
     directory: "/frontend"
     schedule:
       interval: daily

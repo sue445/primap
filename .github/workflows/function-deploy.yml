@@ -3,7 +3,8 @@ name: function-deploy
 on:
   push:
     branches:
-      - master
+      - "master"
+      - "deploy/**"
     paths-ignore:
       - ".nvmrc"
 

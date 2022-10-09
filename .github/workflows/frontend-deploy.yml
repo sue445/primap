@@ -3,7 +3,8 @@ name: frontend-deploy
 on:
   push:
     branches:
-      - master
+      - "master"
+      - "deploy/**"
     paths-ignore:
       # Ignore files that are not used in production
       - "**.md"

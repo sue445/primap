@@ -21,6 +21,17 @@ on:
       - ".github/workflows/frontend-*.yml"
   workflow_dispatch:
 
+env:
+  # e.g. projects/123456789/locations/global/workloadIdentityPools/github-actions/providers/github-actions
+  WORKLOAD_IDENTITY_PROVIDER: "projects/659376400894/locations/global/workloadIdentityPools/primap/providers/github-actions"
+
+  # e.g. terraform@GCP_PROJECT_ID.iam.gserviceaccount.com
+  SERVICE_ACCOUNT_EMAIL: "deployer@primap.iam.gserviceaccount.com"
+
+permissions:
+  contents: read
+  id-token: write
+
 defaults:
   run:
     working-directory: function
@@ -34,26 +45,82 @@ jobs:
     concurrency: function-production
     environment: function-production
 
+    strategy:
+      fail-fast: false
+
+      matrix:
+        include:
+          - function_name:          cron-update-shops
+            function_entry_point:   CronUpdateShops
+            function_trigger_topic: cron-update-shops
+            function_timeout:       540s # NOTE: This is max
+
+          - function_name:          queue-save-shop
+            function_entry_point:   QueueSaveShop
+            function_trigger_topic: shop-save-topic
+            function_timeout:       30s
+
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
+      - id: auth
+        uses: google-github-actions/auth@v0
         with:
-          node-version-file: ".nvmrc"
-          cache: "npm"
-          cache-dependency-path: "function/package-lock.json"
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT_EMAIL }}
 
-      - run: npm install
+      - name: GCP Authenticate
+        uses: google-github-actions/setup-gcloud@v0
 
-      - name: serverless deploy
+      - name: Add credential path to .gcloudignore
         run: |
-          mkdir -p ~/.gcloud/
-          echo "$SERVICE_ACCOUNT_KEY" > ~/.gcloud/keyfile.json
-          npm run deploy
+          # e.g.
+          # CREDENTIAL_FILE_PATH: /home/runner/work/slack-bots-function/slack-bots-function/a08afad6ea60285b8fd69e2e
+          # GITHUB_WORKSPACE: /home/runner/work/slack-bots-function/slack-bots-function
+          # After: a08afad6ea60285b8fd69e2e
+          echo $CREDENTIAL_FILE_PATH | sed -e "s#${GITHUB_WORKSPACE}/##g" >> .gcloudignore
         env:
-          SENTRY_DSN: ${{ secrets.FUNCTION_SENTRY_DSN }}
-          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-          SLS_DEBUG: "*"
+          CREDENTIAL_FILE_PATH: ${{ steps.auth.outputs.credentials_file_path }}
+
+      - name: Deploy function
+        run: |
+          gcloud functions deploy ${FUNCTION_NAME} \
+            --gen2 \
+            --region=asia-northeast1 \
+            --memory=128Mi \
+            --runtime=go116 \
+            --service-account=function@primap.iam.gserviceaccount.com \
+            --entry-point=${FUNCTION_ENTRY_POINT} \
+            --timeout=${FUNCTION_TIMEOUT} \
+            --trigger-topic=${FUNCTION_TRIGGER_TOPIC} \
+            --set-env-vars=GCP_PROJECT=${GCP_PROJECT},SENTRY_DSN=${SENTRY_DSN},SENTRY_RELEASE=${GITHUB_SHA}
+        env:
+          FUNCTION_NAME:          ${{ matrix.function_name }}
+          FUNCTION_TIMEOUT:       ${{ matrix.function_timeout }}
+          FUNCTION_TRIGGER_TOPIC: ${{ matrix.function_trigger_topic }}
+          FUNCTION_ENTRY_POINT:   ${{ matrix.function_entry_point }}
+          SENTRY_DSN:             ${{ secrets.FUNCTION_SENTRY_DSN }}
+
+      - name: Slack Notification (not success)
+        uses: lazy-actions/slatify@master
+        if: "! success()"
+        continue-on-error: true
+        with:
+          job_name: ${{ format('*deploy* ({0})', matrix.function_name) }}
+          type: ${{ job.status }}
+          icon_emoji: ":octocat:"
+          url: ${{ secrets.SLACK_WEBHOOK }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  notify:
+    needs:
+      - deploy
+
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v3
 
       - name: Create Sentry release
         uses: getsentry/action-release@v1
@@ -69,7 +136,7 @@ jobs:
         if: always()
         continue-on-error: true
         with:
-          job_name: '*serverless*'
+          job_name: '*notify*'
           type: ${{ job.status }}
           icon_emoji: ":octocat:"
           url: ${{ secrets.SLACK_WEBHOOK }}

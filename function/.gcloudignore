@@ -1,0 +1,8 @@
+bin/
+db/testdata/
+testdata/
+testutil/
+_img/
+_script/
+Dockerfile
+Makefile

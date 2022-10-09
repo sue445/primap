@@ -6,3 +6,4 @@ _img/
 _script/
 Dockerfile
 Makefile
+*_test.go

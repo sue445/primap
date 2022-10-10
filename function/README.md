@@ -31,7 +31,6 @@ Register followings from https://console.cloud.google.com/apis/credentials
 Register following keys to [Secret Manager](https://cloud.google.com/secret-manager)
 
 * `GOOGLE_MAPS_API_KEY` **(required)**
-* `SENTRY_DSN` (optional)
 
 ## Development
 ### Setup

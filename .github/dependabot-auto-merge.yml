@@ -4,3 +4,18 @@
 - match:
     dependency_type: "production"
     update_type: "semver:patch"
+- match:
+    dependency_name: "github.com/stretchr/testify"
+    update_type: "all"
+- match:
+    dependency_name: "github.com/jarcoal/httpmock"
+    update_type: "all"
+- match:
+    dependency_name: "google.golang.org/api"
+    update_type: "semver:minor"
+- match:
+    dependency_name: "google.golang.org/genproto"
+    update_type: "semver:minor"
+- match:
+    dependency_name: "google.golang.org/grpc"
+    update_type: "semver:minor"

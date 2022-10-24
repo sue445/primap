@@ -15,7 +15,7 @@ require (
 	github.com/knakk/sparql v0.0.0-20200914044602-05f8b3d450be
 	github.com/mmcloughlin/geohash v0.10.0
 	github.com/pkg/errors v0.9.1
-	github.com/stretchr/testify v1.8.0
+	github.com/stretchr/testify v1.8.1
 	github.com/sue445/gcp-secretmanagerenv v0.1.1
 	github.com/tkrajina/typescriptify-golang-structs v0.1.7
 	golang.org/x/sync v0.0.0-20220929204114-8fcdb60fdcc0

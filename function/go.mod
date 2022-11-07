@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	cloud.google.com/go/firestore v1.8.0
-	cloud.google.com/go/functions v1.8.0
+	cloud.google.com/go/functions v1.9.0
 	cloud.google.com/go/pubsub v1.26.0
 	github.com/deckarep/golang-set v1.8.0
 	github.com/getsentry/sentry-go v0.13.0
@@ -21,7 +21,7 @@ require (
 	golang.org/x/sync v0.1.0
 	golang.org/x/text v0.4.0
 	google.golang.org/api v0.102.0
-	google.golang.org/genproto v0.0.0-20221024183307-1bc688fe9f3e
+	google.golang.org/genproto v0.0.0-20221027153422-115e99e71e1c
 	google.golang.org/grpc v1.50.1
 	googlemaps.github.io/maps v1.3.2
 )

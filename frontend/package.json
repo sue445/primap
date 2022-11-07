@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/googlemaps": "^3.43.3",
     "@types/jest": "^27.5.0",
-    "@types/react": "^18.0.24",
+    "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "autoprefixer": "^10.4.13",
     "clean-webpack-plugin": "^4.0.0",

@@ -36,13 +36,13 @@ defaults:
   run:
     working-directory: function
 
+concurrency: function-production
+
 jobs:
   function:
     name: function
 
     runs-on: ubuntu-latest
-
-    concurrency: function-production
 
     strategy:
       fail-fast: false

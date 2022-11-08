@@ -7,7 +7,7 @@ require (
 	cloud.google.com/go/functions v1.9.0
 	cloud.google.com/go/pubsub v1.26.0
 	github.com/deckarep/golang-set v1.8.0
-	github.com/getsentry/sentry-go v0.13.0
+	github.com/getsentry/sentry-go v0.14.0
 	github.com/google/uuid v1.3.0
 	github.com/jarcoal/httpmock v1.2.0
 	github.com/knakk/sparql v0.0.0-20200914044602-05f8b3d450be
@@ -44,7 +44,7 @@ require (
 	go.opencensus.io v0.23.0 // indirect
 	golang.org/x/net v0.0.0-20221014081412-f15817d10f9b // indirect
 	golang.org/x/oauth2 v0.0.0-20221014153046-6fdb5e3db783 // indirect
-	golang.org/x/sys v0.0.0-20220728004956-3c1f35247d10 // indirect
+	golang.org/x/sys v0.0.0-20220928140112-f11e5e49a4ec // indirect
 	golang.org/x/time v0.0.0-20220922220347-f3bd1da661af // indirect
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/appengine v1.6.7 // indirect

@@ -7,7 +7,7 @@ require (
 	cloud.google.com/go/functions v1.9.0
 	cloud.google.com/go/pubsub v1.28.0
 	github.com/deckarep/golang-set v1.8.0
-	github.com/getsentry/sentry-go v0.15.0
+	github.com/getsentry/sentry-go v0.16.0
 	github.com/google/uuid v1.3.0
 	github.com/jarcoal/httpmock v1.2.0
 	github.com/knakk/sparql v0.0.0-20200914044602-05f8b3d450be

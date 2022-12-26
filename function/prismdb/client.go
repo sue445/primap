@@ -40,20 +40,51 @@ func (c *Client) GetAllShops() ([]*Shop, error) {
 	query := `
 PREFIX prism: <https://prismdb.takanakahiko.me/prism-schema.ttl#>
 SELECT
-    sample(?prefecture) AS ?prefecture
-    sample(?name) AS ?name
-    sample(?address) AS ?address
-    group_concat(distinct ?series; separator=",") AS ?series
+  sample(?prefecture) AS ?prefecture
+  sample(?name) AS ?name
+  sample(?address) AS ?address
+  group_concat(distinct ?series; separator=",") AS ?series
 WHERE {
-    ?shop a prism:Shop;
+  {
+    SELECT
+      sample(?prefecture) AS ?prefecture
+      sample(?name) AS ?name
+      sample(?address) AS ?address
+      group_concat(distinct ?series2; separator=",") AS ?series
+    WHERE {
+      ?shop a prism:Shop;
+        prism:series ?series;
+        prism:group ?group;
+        prism:prefecture ?prefecture;
+        prism:name ?name;
+        prism:address ?address.
+      FILTER (?series IN("primagi"))
+      BIND(concat("primagi_", ?group) AS ?series2)
+    }
+    GROUP BY ?shop ?prefecture
+    ORDER BY ?prefecture ?shop
+  }
+  UNION
+  {
+    SELECT
+      sample(?prefecture) AS ?prefecture
+      sample(?name) AS ?name
+      sample(?address) AS ?address
+      group_concat(distinct ?series; separator=",") AS ?series
+    WHERE {
+      ?shop a prism:Shop;
         prism:series ?series;
         prism:prefecture ?prefecture;
         prism:name ?name;
         prism:address ?address.
-    FILTER (?series IN("primagi", "prismstone"))
+      FILTER (?series NOT IN("primagi"))
+    }
+    GROUP BY ?shop ?prefecture
+    ORDER BY ?prefecture ?shop
+  }
 }
-GROUP BY ?shop ?prefecture
-ORDER BY ?prefecture ?shop
+GROUP BY ?name ?prefecture
+ORDER BY ?prefecture ?name
 `
 
 	res, err := c.repo.Query(query)

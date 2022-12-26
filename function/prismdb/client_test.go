@@ -15,10 +15,10 @@ func TestClient_GetAllShops(t *testing.T) {
 		httpmock.NewStringResponder(200, testutil.ReadTestData("../testdata/all_shops.json")))
 
 	want := &Shop{
-		Name:       "NICOPAイオン伊勢",
+		Name:       "モーリーファンタジー伊勢ララパーク",
 		Prefecture: "三重県",
-		Address:    "三重県伊勢市楠部町乙160 ｲｵﾝ伊勢店",
-		Series:     []string{"primagi"},
+		Address:    "三重県伊勢市小木町曽弥538 ｲｵﾝﾗﾗﾊﾟｰｸSC2階",
+		Series:     []string{"primagi_1"},
 	}
 
 	c, err := NewClient()

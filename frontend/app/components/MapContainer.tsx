@@ -23,7 +23,7 @@ const emptyShop = { series: new Set([]) } as ShopEntity;
 
 const shopLimit = 2000;
 
-const defaultSeries = ["primagi", "pripara"];
+const defaultSeries = ["primagi_1", "primagi_2", "pripara"];
 
 type SearchCondition = "or" | "and";
 
@@ -148,8 +148,14 @@ export class MapContainer extends React.Component<Props, {}> {
           <span className={"h-6 font-bold"}>絞り込み</span>
           <SeriesCheckbox
             title="ワッチャプリマジ！"
-            value="primagi"
-            checked={this.state.series.has("primagi")}
+            value="primagi_1"
+            checked={this.state.series.has("primagi_1")}
+            onChange={this.onSeriesChanged}
+          />
+          <SeriesCheckbox
+            title="リアルプリマジスタジオ"
+            value="primagi_2"
+            checked={this.state.series.has("primagi_2")}
             onChange={this.onSeriesChanged}
           />
           <SeriesCheckbox
@@ -264,8 +270,11 @@ export class MapContainer extends React.Component<Props, {}> {
                   </a>
                 </dd>
                 <dt className={"font-semibold"}>設置筐体</dt>
-                {this.state.selectedShop.series.has("primagi") && (
+                {this.state.selectedShop.series.has("primagi_1") && (
                   <dd>ワッチャプリマジ！</dd>
+                )}
+                {this.state.selectedShop.series.has("primagi_2") && (
+                  <dd>リアルプリマジスタジオ</dd>
                 )}
                 {this.state.selectedShop.series.has("pripara") && (
                   <dd>プリパラ オールアイドル</dd>

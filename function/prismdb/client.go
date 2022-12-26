@@ -59,6 +59,8 @@ WHERE {
         prism:name ?name;
         prism:address ?address.
       FILTER (?series IN("primagi"))
+
+      # Add shop group (1. Normal PriMagi shop, 2. Real PriMagi Studio) at the end of a series (e.g. primagi_1, primagi_2)
       BIND(concat("primagi_", ?group) AS ?series2)
     }
     GROUP BY ?shop ?prefecture

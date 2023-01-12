@@ -6,8 +6,6 @@ on:
       - "master"
       - "deploy/**"
     paths-ignore:
-      - ".nvmrc"
-
       # Ignore files that are not used in production
       - "**.md"
       - "LICENSE"

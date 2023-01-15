@@ -462,8 +462,8 @@ google.golang.org/protobuf v1.26.0-rc.1/go.mod h1:jlhhOSvTdKEhbULTjvd4ARK9grFBp0
 google.golang.org/protobuf v1.26.0/go.mod h1:9q0QmTI4eRPtz6boOQmLYwt+qCgq0jsYwAQnmE0givc=
 google.golang.org/protobuf v1.28.1 h1:d0NfwRgPtno5B1Wa6L2DAG+KivqkdutMf1UhdNx175w=
 google.golang.org/protobuf v1.28.1/go.mod h1:HV8QOd/L58Z+nl8r43ehVNZIU/HEI6OcFqwMG9pJV4I=
-googlemaps.github.io/maps v1.3.2 h1:3YfYdVWFTFi7lVdCdrDYW3dqHvfCSUdC7/x8pbMOuKQ=
-googlemaps.github.io/maps v1.3.2/go.mod h1:cCq0JKYAnnCRSdiaBi7Ex9CW15uxIAk7oPi8V/xEh6s=
+googlemaps.github.io/maps v1.3.3 h1:+yzRnGXLZqvj9wSka8O8dBuyAAb2sQN+zna6pPgO8mI=
+googlemaps.github.io/maps v1.3.3/go.mod h1:cCq0JKYAnnCRSdiaBi7Ex9CW15uxIAk7oPi8V/xEh6s=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 h1:YR8cESwS4TdDjEe65xsg0ogRM/Nc3DYOhEAlW+xobZo=

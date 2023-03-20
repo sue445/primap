@@ -41,7 +41,7 @@
     "webpack-dev-server": "^4.13.1"
   },
   "dependencies": {
-    "@sentry/react": "^7.43.0",
+    "@sentry/react": "^7.44.1",
     "@sentry/tracing": "^7.44.1",
     "firebase": "^7.24.0",
     "geofirex": "^0.1.0",

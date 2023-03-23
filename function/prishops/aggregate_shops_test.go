@@ -313,6 +313,12 @@ func Test_normalizeShopName(t *testing.T) {
 			},
 			want: "タイトーステーションBIGFUN平和島",
 		},
+		{
+			args: args{
+				shopName: "GiGOあべのアポロ 3F/4F",
+			},
+			want: "GiGOあべのアポロ3F／4F",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.args.shopName, func(t *testing.T) {

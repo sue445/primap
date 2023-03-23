@@ -5,7 +5,7 @@ go 1.20
 require (
 	cloud.google.com/go/firestore v1.9.0
 	cloud.google.com/go/functions v1.12.0
-	cloud.google.com/go/pubsub v1.29.0
+	cloud.google.com/go/pubsub v1.30.0
 	github.com/deckarep/golang-set v1.8.0
 	github.com/getsentry/sentry-go v0.19.0
 	github.com/google/uuid v1.3.0

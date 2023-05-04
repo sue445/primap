@@ -16,7 +16,7 @@ require (
 	github.com/stretchr/testify v1.8.2
 	github.com/sue445/gcp-secretmanagerenv v0.1.1
 	github.com/tkrajina/typescriptify-golang-structs v0.1.10
-	golang.org/x/sync v0.1.0
+	golang.org/x/sync v0.2.0
 	golang.org/x/text v0.9.0
 	google.golang.org/api v0.121.0
 	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1

@@ -30,8 +30,8 @@ cloud.google.com/go/datastore v1.0.0/go.mod h1:LXYbyblFSglQ5pkeyhO+Qmw7ukd3C+pD7
 cloud.google.com/go/datastore v1.1.0/go.mod h1:umbIZjpQpHh4hmRpGhH4tLFup+FVzqBi1b3c64qFpCk=
 cloud.google.com/go/firestore v1.10.0 h1:FG5C49ukKKqyljY+XNRZGae1HZaiVe7aoqi2BipnBuM=
 cloud.google.com/go/firestore v1.10.0/go.mod h1:eAeoQCV8F35Mcy4k8ZrQbcSYZOayIwoiU7ZJ6xzH1+o=
-cloud.google.com/go/functions v1.14.0 h1:nhhVBBXH6RAkxROnvPZibzOu7BWkN6uh354PXqNzJrg=
-cloud.google.com/go/functions v1.14.0/go.mod h1:8Ner7FZHTwbPHoD9nDKnQqWf52Ibz9u9EESdt6jd0Ao=
+cloud.google.com/go/functions v1.15.0 h1:GwwI6YLnGz8NDQaKluem0I0EeV5K3eVSAjEEg13gh3M=
+cloud.google.com/go/functions v1.15.0/go.mod h1:i36eTUYrnDmqLEuJUGlisdwFF023ppXVWMppCDWJwF0=
 cloud.google.com/go/iam v1.0.1 h1:lyeCAU6jpnVNrE9zGQkTl3WgNgK/X+uWwaw0kynZJMU=
 cloud.google.com/go/iam v1.0.1/go.mod h1:yR3tmSL8BcZB4bxByRv2jkSIahVmCtfKZwLYGBalRE8=
 cloud.google.com/go/kms v1.10.2 h1:8UePKEypK3SQ6g+4mn/s/VgE5L7XOh+FwGGRUqvY3Hw=

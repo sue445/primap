@@ -21,7 +21,7 @@ require (
 	google.golang.org/api v0.125.0
 	google.golang.org/genproto v0.0.0-20230530153820-e85fd2cbaebc
 	google.golang.org/grpc v1.55.0
-	googlemaps.github.io/maps v1.4.0
+	googlemaps.github.io/maps v1.5.0
 )
 
 require (

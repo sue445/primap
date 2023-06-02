@@ -34,3 +34,7 @@ updates:
       - dependencies
       - javascript
       - frontend
+    groups:
+      sentry-dependencies:
+        patterns:
+          - "@sentry/*"

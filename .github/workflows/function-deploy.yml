@@ -10,6 +10,7 @@ on:
       - "**.md"
       - "LICENSE"
       - ".github/workflows/dependabot-auto-merge.yml"
+      - ".github/dependabot.yml"
       - ".github/dependabot-auto-merge.yml"
       - "function/_img/**"
       - "function/_script/**"

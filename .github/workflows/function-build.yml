@@ -11,6 +11,7 @@ on:
       - ".github/workflows/dependabot-auto-merge.yml"
       - "function/_img/**"
       - "function/_script/**"
+      - ".github/dependabot.yml"
       - ".github/dependabot-auto-merge.yml"
 
       # Ignore files used only by the frontend

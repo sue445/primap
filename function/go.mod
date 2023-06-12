@@ -18,7 +18,7 @@ require (
 	github.com/tkrajina/typescriptify-golang-structs v0.1.10
 	golang.org/x/sync v0.2.0
 	golang.org/x/text v0.9.0
-	google.golang.org/api v0.126.0
+	google.golang.org/api v0.127.0
 	google.golang.org/genproto v0.0.0-20230530153820-e85fd2cbaebc
 	google.golang.org/grpc v1.55.0
 	googlemaps.github.io/maps v1.5.0
@@ -36,7 +36,7 @@ require (
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/s2a-go v0.1.4 // indirect
-	github.com/googleapis/enterprise-certificate-proxy v0.2.3 // indirect
+	github.com/googleapis/enterprise-certificate-proxy v0.2.4 // indirect
 	github.com/googleapis/gax-go/v2 v2.10.0 // indirect
 	github.com/knakk/digest v0.0.0-20160404164910-fd45becddc49 // indirect
 	github.com/knakk/rdf v0.0.0-20190304171630-8521bf4c5042 // indirect

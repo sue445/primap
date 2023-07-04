@@ -2,9 +2,9 @@ package db
 
 import (
 	"context"
+	"github.com/cockroachdb/errors"
 	"github.com/getsentry/sentry-go"
 	"github.com/mmcloughlin/geohash"
-	"github.com/pkg/errors"
 	secretmanagerenv "github.com/sue445/gcp-secretmanagerenv"
 	"github.com/sue445/primap/config"
 	"github.com/sue445/primap/prismdb"

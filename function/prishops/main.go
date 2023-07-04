@@ -1,7 +1,7 @@
 package prishops
 
 import (
-	"github.com/pkg/errors"
+	"github.com/cockroachdb/errors"
 	"github.com/sue445/primap/prismdb"
 	"github.com/sue445/primap/util"
 )

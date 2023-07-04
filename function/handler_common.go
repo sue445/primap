@@ -3,8 +3,8 @@ package primap
 import (
 	"cloud.google.com/go/functions/metadata"
 	"context"
+	"github.com/cockroachdb/errors"
 	"github.com/getsentry/sentry-go"
-	"github.com/pkg/errors"
 	"github.com/sue445/primap/config"
 	"log"
 	"os"

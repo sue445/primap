@@ -3,7 +3,7 @@ package db
 import (
 	"cloud.google.com/go/firestore"
 	"context"
-	"github.com/pkg/errors"
+	"github.com/cockroachdb/errors"
 	"google.golang.org/api/iterator"
 	"sort"
 	"time"

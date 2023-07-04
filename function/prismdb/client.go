@@ -1,8 +1,8 @@
 package prismdb
 
 import (
+	"github.com/cockroachdb/errors"
 	"github.com/knakk/sparql"
-	"github.com/pkg/errors"
 	"os"
 	"strings"
 	"time"

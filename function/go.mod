@@ -17,7 +17,7 @@ require (
 	github.com/sue445/gcp-secretmanagerenv v0.2.0
 	github.com/tkrajina/typescriptify-golang-structs v0.1.10
 	golang.org/x/sync v0.3.0
-	golang.org/x/text v0.10.0
+	golang.org/x/text v0.11.0
 	google.golang.org/api v0.129.0
 	google.golang.org/genproto v0.0.0-20230530153820-e85fd2cbaebc
 	google.golang.org/grpc v1.56.1

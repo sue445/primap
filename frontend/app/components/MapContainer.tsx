@@ -75,7 +75,7 @@ export class MapContainer extends React.Component<Props, {}> {
 
     const distance = geo.distance(
       geo.point(bounds.getSouthWest().lat(), bounds.getSouthWest().lng()),
-      geo.point(bounds.getNorthEast().lat(), bounds.getNorthEast().lng())
+      geo.point(bounds.getNorthEast().lat(), bounds.getNorthEast().lng()),
     );
 
     const firestoreRef = geo.app
@@ -263,7 +263,7 @@ export class MapContainer extends React.Component<Props, {}> {
                     className={"link"}
                     target={"_blank"}
                     href={getGoogleMapUrl(
-                      this.state.selectedShop.geography?.geopoint
+                      this.state.selectedShop.geography?.geopoint,
                     )}
                   >
                     Google Mapsで開く

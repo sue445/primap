@@ -34,6 +34,10 @@ updates:
       - dependencies
       - javascript
       - frontend
+    ignore:
+      - dependency-name: "firebase"
+        versions:
+          - ">= 8.0" # c.f. https://github.com/sue445/primap/issues/643
     groups:
       sentry-dependencies:
         patterns:

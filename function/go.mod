@@ -3,7 +3,7 @@ module github.com/sue445/primap
 go 1.20
 
 require (
-	cloud.google.com/go/firestore v1.11.0
+	cloud.google.com/go/firestore v1.12.0
 	cloud.google.com/go/functions v1.15.1
 	cloud.google.com/go/pubsub v1.33.0
 	github.com/cockroachdb/errors v1.10.0

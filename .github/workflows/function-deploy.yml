@@ -88,7 +88,7 @@ jobs:
             --serve-all-traffic-latest-revision \
             --region=asia-northeast1 \
             --memory=128Mi \
-            --runtime=go121 \
+            --runtime=go120 \
             --service-account=function@primap.iam.gserviceaccount.com \
             --entry-point=${FUNCTION_ENTRY_POINT} \
             --timeout=${FUNCTION_TIMEOUT} \

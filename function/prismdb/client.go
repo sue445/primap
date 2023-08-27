@@ -41,7 +41,7 @@ func NewClient() (*Client, error) {
 // GetAllShops get all shops from PrismDB
 func (c *Client) GetAllShops() ([]*Shop, error) {
 	query := `
-PREFIX prism: <https://web-lk3h3ydj7a-an.a.run.app/prism-schema.ttl#>
+PREFIX prism: <https://prismdb.takanakahiko.me/prism-schema.ttl#>
 SELECT
   sample(?prefecture) AS ?prefecture
   sample(?name) AS ?name

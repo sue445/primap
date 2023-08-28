@@ -11,7 +11,7 @@ func TestGetAllShops(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	httpmock.RegisterResponder("POST", "https://web-lk3h3ydj7a-an.a.run.app/sparql",
+	httpmock.RegisterResponder("POST", "https://prismdb.takanakahiko.me/sparql",
 		httpmock.NewStringResponder(200, testutil.ReadTestData("../testdata/all_shops.json")))
 
 	gotShops, err := GetAllShops()

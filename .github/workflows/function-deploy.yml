@@ -93,13 +93,18 @@ jobs:
             --entry-point=${FUNCTION_ENTRY_POINT} \
             --timeout=${FUNCTION_TIMEOUT} \
             --trigger-topic=${FUNCTION_TRIGGER_TOPIC} \
-            --set-env-vars=GCP_PROJECT=${GCP_PROJECT},SENTRY_DSN=${SENTRY_DSN},SENTRY_RELEASE=${GITHUB_SHA},SENTRY_ENVIRONMENT=production
+            --set-env-vars=GCP_PROJECT=${GCP_PROJECT},SENTRY_DSN=${SENTRY_DSN},SENTRY_RELEASE=${GITHUB_SHA},SENTRY_ENVIRONMENT=production,SPARQL_ENDPOINT=${SPARQL_ENDPOINT}
         env:
           FUNCTION_NAME:          ${{ matrix.function_name }}
           FUNCTION_TIMEOUT:       ${{ matrix.function_timeout }}
           FUNCTION_TRIGGER_TOPIC: ${{ matrix.function_trigger_topic }}
           FUNCTION_ENTRY_POINT:   ${{ matrix.function_entry_point }}
           SENTRY_DSN:             ${{ secrets.FUNCTION_SENTRY_DSN }}
+
+          # FIXME: Temporarily use https://github.com/sue445/prismdb because upstream can't get the latest data
+          # c.f. https://github.com/prickathon/prismdb/issues/539
+          # SPARQL_ENDPOINT: https://prismdb.takanakahiko.me/sparql
+          SPARQL_ENDPOINT: https://web-lk3h3ydj7a-an.a.run.app/sparql
 
       - name: Slack Notification (not success)
         uses: lazy-actions/slatify@master

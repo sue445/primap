@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.21.0
 
 require (
-	cloud.google.com/go/firestore v1.12.0
+	cloud.google.com/go/firestore v1.13.0
 	cloud.google.com/go/functions v1.15.1
 	cloud.google.com/go/pubsub v1.33.0
 	github.com/cockroachdb/errors v1.11.1

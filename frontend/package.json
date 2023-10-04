@@ -20,7 +20,7 @@
     "@types/googlemaps": "^3.43.3",
     "@types/jest": "^27.5.0",
     "@types/react": "^18.2.24",
-    "@types/react-dom": "^18.2.8",
+    "@types/react-dom": "^18.2.10",
     "autoprefixer": "^10.4.16",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",

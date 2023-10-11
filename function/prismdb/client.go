@@ -95,6 +95,10 @@ ORDER BY ?prefecture ?name
 		return []*Shop{}, errors.WithStack(err)
 	}
 
+	if len(res.Solutions()) < 1 {
+		return []*Shop{}, errors.New("shops are empty")
+	}
+
 	var shops []*Shop
 
 	for _, row := range res.Solutions() {

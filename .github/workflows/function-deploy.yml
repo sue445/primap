@@ -100,7 +100,9 @@ jobs:
           FUNCTION_TRIGGER_TOPIC: ${{ matrix.function_trigger_topic }}
           FUNCTION_ENTRY_POINT:   ${{ matrix.function_entry_point }}
           SENTRY_DSN:             ${{ secrets.FUNCTION_SENTRY_DSN }}
-          SPARQL_ENDPOINT:        https://prismdb.takanakahiko.me/sparql
+
+          # SPARQL_ENDPOINT: https://prismdb.takanakahiko.me/sparql # https://github.com/prickathon/prismdb
+          SPARQL_ENDPOINT: https://web-lk3h3ydj7a-an.a.run.app/sparql # https://github.com/sue445/prismdb
 
       - name: Slack Notification (not success)
         uses: lazy-actions/slatify@master

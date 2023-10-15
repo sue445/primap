@@ -17,7 +17,7 @@ require (
 	github.com/mmcloughlin/geohash v0.10.0
 	github.com/stretchr/testify v1.8.4
 	github.com/sue445/gcp-secretmanagerenv v0.2.0
-	github.com/tkrajina/typescriptify-golang-structs v0.1.10
+	github.com/tkrajina/typescriptify-golang-structs v0.1.11
 	golang.org/x/sync v0.4.0
 	golang.org/x/text v0.13.0
 	google.golang.org/api v0.147.0

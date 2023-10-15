@@ -135,8 +135,8 @@ github.com/sue445/gcp-secretmanagerenv v0.2.0 h1:b5MSTGr1OjQ5KSvamoPGkq5DCkXJ1yK
 github.com/sue445/gcp-secretmanagerenv v0.2.0/go.mod h1:fP2dFElfXEgkQ9b1pxsb6aVPeiqxqgBN2C5ZF/Q2Q0w=
 github.com/tkrajina/go-reflector v0.5.5 h1:gwoQFNye30Kk7NrExj8zm3zFtrGPqOkzFMLuQZg1DtQ=
 github.com/tkrajina/go-reflector v0.5.5/go.mod h1:ECbqLgccecY5kPmPmXg1MrHW585yMcDkVl6IvJe64T4=
-github.com/tkrajina/typescriptify-golang-structs v0.1.10 h1:W/Ta9Kqo2lV+7bVXuQoUhZ0bDlnjwtPpKsy3A9M1nYg=
-github.com/tkrajina/typescriptify-golang-structs v0.1.10/go.mod h1:sjU00nti/PMEOZb07KljFlR+lJ+RotsC0GBQMv9EKls=
+github.com/tkrajina/typescriptify-golang-structs v0.1.11 h1:zEIVczF/iWgs4eTY7NQqbBe23OVlFVk9sWLX/FDYi4Q=
+github.com/tkrajina/typescriptify-golang-structs v0.1.11/go.mod h1:sjU00nti/PMEOZb07KljFlR+lJ+RotsC0GBQMv9EKls=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 go.opencensus.io v0.22.3/go.mod h1:yxeiOL68Rb0Xd1ddK5vPZ/oVn4vY4Ynel7k9FzqtOIw=

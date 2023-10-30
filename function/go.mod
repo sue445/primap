@@ -16,7 +16,7 @@ require (
 	github.com/knakk/sparql v0.0.0-20200914044602-05f8b3d450be
 	github.com/mmcloughlin/geohash v0.10.0
 	github.com/stretchr/testify v1.8.4
-	github.com/sue445/gcp-secretmanagerenv v0.2.0
+	github.com/sue445/gcp-secretmanagerenv v0.2.1
 	github.com/tkrajina/typescriptify-golang-structs v0.1.11
 	golang.org/x/sync v0.4.0
 	golang.org/x/text v0.13.0
@@ -32,7 +32,7 @@ require (
 	cloud.google.com/go/compute/metadata v0.2.3 // indirect
 	cloud.google.com/go/iam v1.1.2 // indirect
 	cloud.google.com/go/longrunning v0.5.1 // indirect
-	cloud.google.com/go/secretmanager v1.11.1 // indirect
+	cloud.google.com/go/secretmanager v1.11.3 // indirect
 	github.com/cockroachdb/logtags v0.0.0-20230118201751-21c54148d20b // indirect
 	github.com/cockroachdb/redact v1.1.5 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect

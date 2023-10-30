@@ -17,8 +17,8 @@ cloud.google.com/go/longrunning v0.5.1 h1:Fr7TXftcqTudoyRJa113hyaqlGdiBQkp0Gq7tE
 cloud.google.com/go/longrunning v0.5.1/go.mod h1:spvimkwdz6SPWKEt/XBij79E9fiTkHSQl/fRUUQJYJc=
 cloud.google.com/go/pubsub v1.33.0 h1:6SPCPvWav64tj0sVX/+npCBKhUi/UjJehy9op/V3p2g=
 cloud.google.com/go/pubsub v1.33.0/go.mod h1:f+w71I33OMyxf9VpMVcZbnG5KSUkCOUHYpFd5U1GdRc=
-cloud.google.com/go/secretmanager v1.11.1 h1:cLTCwAjFh9fKvU6F13Y4L9vPcx9yiWPyWXE4+zkuEQs=
-cloud.google.com/go/secretmanager v1.11.1/go.mod h1:znq9JlXgTNdBeQk9TBW/FnR/W4uChEKGeqQWAJ8SXFw=
+cloud.google.com/go/secretmanager v1.11.3 h1:Xk7NFAUuW9q+eX4AxwS/dDuhlNWQ1MmfxQpsfbgRsEg=
+cloud.google.com/go/secretmanager v1.11.3/go.mod h1:0bA2o6FabmShrEy328i67aV+65XoUFFSmVeLBn/51jI=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
@@ -131,8 +131,8 @@ github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO
 github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
 github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
 github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
-github.com/sue445/gcp-secretmanagerenv v0.2.0 h1:b5MSTGr1OjQ5KSvamoPGkq5DCkXJ1yKN3EgHRtv7uiU=
-github.com/sue445/gcp-secretmanagerenv v0.2.0/go.mod h1:fP2dFElfXEgkQ9b1pxsb6aVPeiqxqgBN2C5ZF/Q2Q0w=
+github.com/sue445/gcp-secretmanagerenv v0.2.1 h1:hoheRFD+MXgC/5NN/p64OXuQnbh+xsVhL+v9isJXmM4=
+github.com/sue445/gcp-secretmanagerenv v0.2.1/go.mod h1:geBrAl3IGhbFoTGMufoPe/ddxrhLT8MbiuE+qAhLz6U=
 github.com/tkrajina/go-reflector v0.5.5 h1:gwoQFNye30Kk7NrExj8zm3zFtrGPqOkzFMLuQZg1DtQ=
 github.com/tkrajina/go-reflector v0.5.5/go.mod h1:ECbqLgccecY5kPmPmXg1MrHW585yMcDkVl6IvJe64T4=
 github.com/tkrajina/typescriptify-golang-structs v0.1.11 h1:zEIVczF/iWgs4eTY7NQqbBe23OVlFVk9sWLX/FDYi4Q=

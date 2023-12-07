@@ -80,8 +80,7 @@ jobs:
       - name: Install firebase
         run: |
           set -xe
-          sudo wget https://firebase.tools/bin/linux/latest -O /usr/local/bin/firebase
-          sudo chmod 755 /usr/local/bin/firebase
+          npm install -g firebase-tools
 
       - run: firebase deploy
 

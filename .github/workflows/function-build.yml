@@ -57,11 +57,14 @@ jobs:
           cache-dependency-path: "function/go.sum"
         id: go
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
       - name: Install firebase emulator
         run: |
           set -xe
-          sudo wget https://firebase.tools/bin/linux/latest -O /usr/local/bin/firebase --quiet
-          sudo chmod 755 /usr/local/bin/firebase
+          npm install -g firebase-tools
           firebase setup:emulators:firestore
           firebase setup:emulators:pubsub
 

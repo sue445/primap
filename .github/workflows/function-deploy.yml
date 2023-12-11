@@ -68,7 +68,7 @@ jobs:
           service_account: ${{ env.SERVICE_ACCOUNT_EMAIL }}
 
       - name: GCP Authenticate
-        uses: google-github-actions/setup-gcloud@v1
+        uses: google-github-actions/setup-gcloud@v2
 
       - name: Add credential path to .gcloudignore
         run: |

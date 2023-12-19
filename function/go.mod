@@ -22,7 +22,7 @@ require (
 	golang.org/x/text v0.14.0
 	google.golang.org/api v0.154.0
 	google.golang.org/genproto v0.0.0-20231120223509-83a465c0220f
-	google.golang.org/grpc v1.60.0
+	google.golang.org/grpc v1.60.1
 	googlemaps.github.io/maps v1.7.0
 )
 

@@ -9,7 +9,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
-import * as geofirex from "geofirex";
+import * as geofirex from "@thetsf/geofirex";
 
 import MapContainer from "./components/MapContainer";
 

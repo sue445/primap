@@ -2,6 +2,13 @@ import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
 import React from "react";
 import { GeoFireClient } from "@thetsf/geofirex";
 import * as Sentry from "@sentry/react";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  limit,
+} from "firebase/firestore";
 import { ShopEntity } from "./ShopEntity";
 import {
   correctLongitude,
@@ -78,16 +85,18 @@ export class MapContainer extends React.Component<Props, {}> {
       geo.point(bounds.getNorthEast().lat(), bounds.getNorthEast().lng()),
     );
 
-    const firestoreRef = geo.app
-      .firestore()
-      .collection("Shops")
-      .where("deleted", "==", false)
-      .limit(shopLimit);
-    const query = geo
+    const db = getFirestore(geo.app);
+    const firestoreRef = query(
+      collection(db, "Shops"),
+      where("deleted", "==", false),
+      limit(shopLimit),
+    );
+
+    const geoQuery = geo
       .query(firestoreRef)
       .within(center, distance / 2, "geography");
 
-    query.subscribe((hits) => {
+    geoQuery.subscribe((hits) => {
       const shops = [] as Array<ShopEntity>;
       hits.forEach((data) => {
         const shop = new ShopEntity(data);

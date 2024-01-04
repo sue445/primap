@@ -1,9 +1,8 @@
 // Firebase App (the core Firebase SDK) is always required and must be listed first
-import * as firebase from "firebase/app";
+import firebase from "firebase/compat/app";
 
 // Add the Firebase products that you want to use
-import "firebase/firestore";
-import "firebase/analytics";
+import "firebase/compat/analytics";
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -23,13 +22,13 @@ const firebaseConfig = {
   appId: "1:659376400894:web:46a6da52d40c6983c238af",
   measurementId: "G-W2NTFNL7QE",
 };
-firebase.initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 if (process.env.NODE_ENV == "production") {
   firebase.analytics();
 }
 
-const geo = geofirex.init(firebase);
+const geo = geofirex.init(firebaseApp);
 
 Sentry.init({
   dsn: process.env.REACT_APP_SENTRY_DSN,

@@ -1,8 +1,8 @@
 // Firebase App (the core Firebase SDK) is always required and must be listed first
-import firebase from "firebase/compat/app";
+import { initializeApp } from "firebase/app";
 
 // Add the Firebase products that you want to use
-import "firebase/compat/analytics";
+import { getAnalytics } from "firebase/analytics";
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -22,10 +22,10 @@ const firebaseConfig = {
   appId: "1:659376400894:web:46a6da52d40c6983c238af",
   measurementId: "G-W2NTFNL7QE",
 };
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 
 if (process.env.NODE_ENV == "production") {
-  firebase.analytics();
+  getAnalytics(firebaseApp);
 }
 
 const geo = geofirex.init(firebaseApp);

@@ -49,7 +49,7 @@ func queueSaveShopHandler(ctx context.Context, m *pubsub.Message) error {
 		return errors.WithStack(err)
 	}
 
-	span := sentry.StartSpan(ctx, "QueueSaveShop", sentry.TransactionName(fmt.Sprintf("QueueSaveShop: %s", shop.Name)))
+	span := sentry.StartSpan(ctx, "QueueSaveShop", sentry.WithTransactionName(fmt.Sprintf("QueueSaveShop: %s", shop.Name)))
 	defer span.Finish()
 
 	sentry.ConfigureScope(func(scope *sentry.Scope) {

@@ -15,7 +15,7 @@ require (
 	github.com/jarcoal/httpmock v1.3.1
 	github.com/knakk/sparql v0.0.0-20200914044602-05f8b3d450be
 	github.com/mmcloughlin/geohash v0.10.0
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.9.0
 	github.com/sue445/gcp-secretmanagerenv v0.2.1
 	github.com/tkrajina/typescriptify-golang-structs v0.1.11
 	golang.org/x/sync v0.6.0

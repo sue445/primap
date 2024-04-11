@@ -54,15 +54,12 @@ jobs:
       - run: npm test
 
       - name: Slack Notification (not success)
-        uses: lazy-actions/slatify@master
+        uses: act10ns/slack@v2
         if: "! success()"
         continue-on-error: true
         with:
-          job_name: "*test*"
-          type: ${{ job.status }}
-          icon_emoji: ":octocat:"
-          url: ${{ secrets.SLACK_WEBHOOK }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
 
   webpack:
     name: webpack
@@ -93,15 +90,12 @@ jobs:
           ls -l public/index.html
 
       - name: Slack Notification (not success)
-        uses: lazy-actions/slatify@master
+        uses: act10ns/slack@v2
         if: "! success()"
         continue-on-error: true
         with:
-          job_name: "*webpack*"
-          type: ${{ job.status }}
-          icon_emoji: ":octocat:"
-          url: ${{ secrets.SLACK_WEBHOOK }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
 
   lint:
     name: lint
@@ -121,15 +115,12 @@ jobs:
       - run: npm run prettier:check
 
       - name: Slack Notification (not success)
-        uses: lazy-actions/slatify@master
+        uses: act10ns/slack@v2
         if: "! success()"
         continue-on-error: true
         with:
-          job_name: "*lint*"
-          type: ${{ job.status }}
-          icon_emoji: ":octocat:"
-          url: ${{ secrets.SLACK_WEBHOOK }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
 
   notify:
     needs:
@@ -141,12 +132,9 @@ jobs:
 
     steps:
       - name: Slack Notification (success)
-        uses: lazy-actions/slatify@master
+        uses: act10ns/slack@v2
         if: always()
         continue-on-error: true
         with:
-          job_name: '*notify*'
-          type: ${{ job.status }}
-          icon_emoji: ":octocat:"
-          url: ${{ secrets.SLACK_WEBHOOK }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}

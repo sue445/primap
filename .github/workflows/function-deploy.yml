@@ -105,15 +105,13 @@ jobs:
           # SPARQL_ENDPOINT: https://web-lk3h3ydj7a-an.a.run.app/sparql # https://github.com/sue445/prismdb
 
       - name: Slack Notification (not success)
-        uses: lazy-actions/slatify@master
+        uses: act10ns/slack@v2
         if: "! success()"
         continue-on-error: true
         with:
-          job_name: ${{ format('*deploy* ({0})', matrix.function_name) }}
-          type: ${{ job.status }}
-          icon_emoji: ":octocat:"
-          url: ${{ secrets.SLACK_WEBHOOK }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
+          matrix: ${{ toJson(matrix) }}
 
   notify:
     needs:
@@ -135,12 +133,9 @@ jobs:
           environment: production
 
       - name: Slack Notification
-        uses: lazy-actions/slatify@master
+        uses: act10ns/slack@v2
         if: always()
         continue-on-error: true
         with:
-          job_name: '*notify*'
-          type: ${{ job.status }}
-          icon_emoji: ":octocat:"
-          url: ${{ secrets.SLACK_WEBHOOK }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}

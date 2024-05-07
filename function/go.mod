@@ -7,7 +7,7 @@ toolchain go1.21.0
 require (
 	cloud.google.com/go/firestore v1.15.0
 	cloud.google.com/go/functions v1.16.2
-	cloud.google.com/go/pubsub v1.37.0
+	cloud.google.com/go/pubsub v1.38.0
 	github.com/cockroachdb/errors v1.11.1
 	github.com/deckarep/golang-set v1.8.0
 	github.com/getsentry/sentry-go v0.27.0
@@ -55,13 +55,13 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	github.com/tkrajina/go-reflector v0.5.5 // indirect
-	go.einride.tech/aip v0.66.0 // indirect
+	go.einride.tech/aip v0.67.1 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.49.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.49.0 // indirect
 	go.opentelemetry.io/otel v1.24.0 // indirect
 	go.opentelemetry.io/otel/metric v1.24.0 // indirect
-	go.opentelemetry.io/otel/sdk v1.22.0 // indirect
+	go.opentelemetry.io/otel/sdk v1.24.0 // indirect
 	go.opentelemetry.io/otel/trace v1.24.0 // indirect
 	golang.org/x/crypto v0.22.0 // indirect
 	golang.org/x/net v0.24.0 // indirect

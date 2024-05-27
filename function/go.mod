@@ -10,7 +10,7 @@ require (
 	cloud.google.com/go/pubsub v1.38.0
 	github.com/cockroachdb/errors v1.11.2
 	github.com/deckarep/golang-set v1.8.0
-	github.com/getsentry/sentry-go v0.27.0
+	github.com/getsentry/sentry-go v0.28.0
 	github.com/google/uuid v1.6.0
 	github.com/jarcoal/httpmock v1.3.1
 	github.com/knakk/sparql v0.0.0-20200914044602-05f8b3d450be

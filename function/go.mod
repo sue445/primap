@@ -8,7 +8,7 @@ require (
 	cloud.google.com/go/firestore v1.15.0
 	cloud.google.com/go/functions v1.16.2
 	cloud.google.com/go/pubsub v1.38.0
-	github.com/cockroachdb/errors v1.11.2
+	github.com/cockroachdb/errors v1.11.3
 	github.com/deckarep/golang-set v1.8.0
 	github.com/getsentry/sentry-go v0.28.0
 	github.com/google/uuid v1.6.0

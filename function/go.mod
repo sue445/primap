@@ -20,7 +20,7 @@ require (
 	github.com/tkrajina/typescriptify-golang-structs v0.1.11
 	golang.org/x/sync v0.7.0
 	golang.org/x/text v0.16.0
-	google.golang.org/api v0.185.0
+	google.golang.org/api v0.186.0
 	google.golang.org/genproto v0.0.0-20240617180043-68d350f18fd4
 	google.golang.org/grpc v1.64.0
 	googlemaps.github.io/maps v1.7.0
@@ -28,7 +28,7 @@ require (
 
 require (
 	cloud.google.com/go v0.115.0 // indirect
-	cloud.google.com/go/auth v0.5.1 // indirect
+	cloud.google.com/go/auth v0.6.0 // indirect
 	cloud.google.com/go/auth/oauth2adapt v0.2.2 // indirect
 	cloud.google.com/go/compute/metadata v0.3.0 // indirect
 	cloud.google.com/go/iam v1.1.8 // indirect
@@ -46,7 +46,7 @@ require (
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/google/s2a-go v0.1.7 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.2 // indirect
-	github.com/googleapis/gax-go/v2 v2.12.4 // indirect
+	github.com/googleapis/gax-go/v2 v2.12.5 // indirect
 	github.com/knakk/digest v0.0.0-20160404164910-fd45becddc49 // indirect
 	github.com/knakk/rdf v0.0.0-20190304171630-8521bf4c5042 // indirect
 	github.com/kr/pretty v0.3.1 // indirect

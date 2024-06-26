@@ -7,7 +7,7 @@ toolchain go1.22.0
 require (
 	cloud.google.com/go/firestore v1.15.0
 	cloud.google.com/go/functions v1.16.2
-	cloud.google.com/go/pubsub v1.39.0
+	cloud.google.com/go/pubsub v1.40.0
 	github.com/cockroachdb/errors v1.11.3
 	github.com/deckarep/golang-set v1.8.0
 	github.com/getsentry/sentry-go v0.28.1
@@ -68,7 +68,7 @@ require (
 	golang.org/x/oauth2 v0.21.0 // indirect
 	golang.org/x/sys v0.21.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240610135401-a8a62080eff3 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20240617180043-68d350f18fd4 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240617180043-68d350f18fd4 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

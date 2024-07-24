@@ -5,7 +5,7 @@ go 1.22
 toolchain go1.22.0
 
 require (
-	cloud.google.com/go/firestore v1.15.0
+	cloud.google.com/go/firestore v1.16.0
 	cloud.google.com/go/functions v1.16.5
 	cloud.google.com/go/pubsub v1.40.0
 	github.com/cockroachdb/errors v1.11.3
@@ -46,7 +46,7 @@ require (
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/google/s2a-go v0.1.7 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.2 // indirect
-	github.com/googleapis/gax-go/v2 v2.12.5 // indirect
+	github.com/googleapis/gax-go/v2 v2.13.0 // indirect
 	github.com/knakk/digest v0.0.0-20160404164910-fd45becddc49 // indirect
 	github.com/knakk/rdf v0.0.0-20190304171630-8521bf4c5042 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
@@ -68,7 +68,7 @@ require (
 	golang.org/x/oauth2 v0.21.0 // indirect
 	golang.org/x/sys v0.22.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240701130421-f6361c86f094 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20240722135656-d784300faade // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240722135656-d784300faade // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

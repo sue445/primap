@@ -6,7 +6,7 @@ toolchain go1.22.0
 
 require (
 	cloud.google.com/go/firestore v1.16.0
-	cloud.google.com/go/functions v1.16.6
+	cloud.google.com/go/functions v1.17.0
 	cloud.google.com/go/pubsub v1.41.0
 	github.com/cockroachdb/errors v1.11.3
 	github.com/deckarep/golang-set v1.8.0
@@ -28,7 +28,7 @@ require (
 
 require (
 	cloud.google.com/go v0.115.0 // indirect
-	cloud.google.com/go/auth v0.7.3 // indirect
+	cloud.google.com/go/auth v0.8.0 // indirect
 	cloud.google.com/go/auth/oauth2adapt v0.2.3 // indirect
 	cloud.google.com/go/compute/metadata v0.5.0 // indirect
 	cloud.google.com/go/iam v1.1.12 // indirect

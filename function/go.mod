@@ -6,7 +6,7 @@ toolchain go1.22.0
 
 require (
 	cloud.google.com/go/firestore v1.16.0
-	cloud.google.com/go/functions v1.17.0
+	cloud.google.com/go/functions v1.18.0
 	cloud.google.com/go/pubsub v1.41.0
 	github.com/cockroachdb/errors v1.11.3
 	github.com/deckarep/golang-set v1.8.0

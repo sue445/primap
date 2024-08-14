@@ -9,8 +9,8 @@ cloud.google.com/go/compute/metadata v0.5.0 h1:Zr0eK8JbFv6+Wi4ilXAR8FJ3wyNdpxHKJ
 cloud.google.com/go/compute/metadata v0.5.0/go.mod h1:aHnloV2TPI38yx4s9+wAZhHykWvVCfu7hQbF+9CWoiY=
 cloud.google.com/go/firestore v1.16.0 h1:YwmDHcyrxVRErWcgxunzEaZxtNbc8QoFYA/JOEwDPgc=
 cloud.google.com/go/firestore v1.16.0/go.mod h1:+22v/7p+WNBSQwdSwP57vz47aZiY+HrDkrOsJNhk7rg=
-cloud.google.com/go/functions v1.17.0 h1:vrYGAUIvB+YW1D8nR79FHRalKOTGoQ5GUCjgOfH0VhQ=
-cloud.google.com/go/functions v1.17.0/go.mod h1:r8uxxI35hdP2slfTjGJvx04NRy8sP/EXUMZ0NYfBd+w=
+cloud.google.com/go/functions v1.18.0 h1:50K2iLtj7xj6xqrhdNOL+aVaHwKi4h7qgNWP9ieTDag=
+cloud.google.com/go/functions v1.18.0/go.mod h1:r8uxxI35hdP2slfTjGJvx04NRy8sP/EXUMZ0NYfBd+w=
 cloud.google.com/go/iam v1.1.12 h1:JixGLimRrNGcxvJEQ8+clfLxPlbeZA6MuRJ+qJNQ5Xw=
 cloud.google.com/go/iam v1.1.12/go.mod h1:9LDX8J7dN5YRyzVHxwQzrQs9opFFqn0Mxs9nAeB+Hhg=
 cloud.google.com/go/kms v1.18.4 h1:dYN3OCsQ6wJLLtOnI8DGUwQ5shMusXsWCCC+s09ATsk=
